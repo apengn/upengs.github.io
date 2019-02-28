@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="支持https harbor，公有或私有仓库支持push image  什么是dragonfly Dragonfly 是一款基于 P2P 的智能镜像和文件分发工具。它旨在提高文件传输的效率和速率，最大限度地利用网络带宽，尤其是在分发大量数据时，例如应用分发、缓存分发、日志分发和镜像分发。 在阿里巴巴，Dragonfly 每个月会被调用 20 亿次，分发的数据量高达 3.4PB。Dragonfly">
+<meta property="og:type" content="article">
+<meta property="og:title" content="dragonfly 之 p2p 镜像分发">
+<meta property="og:url" content="http://yoursite.com/2019/02/26/dragonfly/index.html">
+<meta property="og:site_name" content="Peng">
+<meta property="og:description" content="支持https harbor，公有或私有仓库支持push image  什么是dragonfly Dragonfly 是一款基于 P2P 的智能镜像和文件分发工具。它旨在提高文件传输的效率和速率，最大限度地利用网络带宽，尤其是在分发大量数据时，例如应用分发、缓存分发、日志分发和镜像分发。 在阿里巴巴，Dragonfly 每个月会被调用 20 亿次，分发的数据量高达 3.4PB。Dragonfly">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://d7y.io/docs/zh-cn/img/dfget.png">
+<meta property="og:image" content="https://d7y.io/docs/zh-cn/img/dfget-combine-container.png">
+<meta property="og:image" content="https://d7y.io/docs/zh-cn/img/distributing.png">
+<meta property="og:updated_time" content="2019-02-26T04:09:18.399Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="dragonfly 之 p2p 镜像分发">
+<meta name="twitter:description" content="支持https harbor，公有或私有仓库支持push image  什么是dragonfly Dragonfly 是一款基于 P2P 的智能镜像和文件分发工具。它旨在提高文件传输的效率和速率，最大限度地利用网络带宽，尤其是在分发大量数据时，例如应用分发、缓存分发、日志分发和镜像分发。 在阿里巴巴，Dragonfly 每个月会被调用 20 亿次，分发的数据量高达 3.4PB。Dragonfly">
+<meta name="twitter:image" content="https://d7y.io/docs/zh-cn/img/dfget.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/02/26/dragonfly/">
+
+
+
+
+
+  <title>dragonfly 之 p2p 镜像分发 | Peng</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Peng</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Welcome to my Blogs!</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/26/dragonfly/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="pengemailcom@163.com">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Peng">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">dragonfly 之 p2p 镜像分发</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-26T09:07:21+08:00">
+                2019-02-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>支持https harbor，公有或私有仓库<br>支持push image </p>
+<h3 id="什么是dragonfly"><a href="#什么是dragonfly" class="headerlink" title="什么是dragonfly"></a>什么是dragonfly</h3><p> Dragonfly 是一款基于 P2P 的智能镜像和文件分发工具。它旨在提高文件传输的效率和速率，最大限度地利用网络带宽，尤其是在分发大量数据时，例如应用分发、缓存分发、日志分发和镜像分发。</p>
+<p>在阿里巴巴，Dragonfly 每个月会被调用 20 亿次，分发的数据量高达 3.4PB。Dragonfly 已成为阿里巴巴基础设施中的重要一环。</p>
+<p>尽管容器技术大部分时候简化了运维工作，但是它也带来了一些挑战：例如镜像分发的效率问题，尤其是必须在多个主机上复制镜像分发时。</p>
+<p>Dragonfly 在这种场景下能够完美支持 Docker 和 PouchContainer。它也兼容其他格式的容器。相比原生方式，它能将容器分发速度提高 57 倍，并让 Registry 网络出口流量降低 99.5%。</p>
+<p>Dragonfly 能让所有类型的文件、镜像或数据分发变得简单而经济。</p>
+<h3 id="Dragonfly-有何优势（具备以下特性）？"><a href="#Dragonfly-有何优势（具备以下特性）？" class="headerlink" title="Dragonfly 有何优势（具备以下特性）？"></a>Dragonfly 有何优势（具备以下特性）？</h3><ul>
+<li>基于 P2P 的文件分发：通过利用 P2P 技术进行文件传输，它能最大限度地利用每个对等节点（Peer）的带宽资源，以提高下载效率，并节省大量跨机房带宽，尤其是昂贵的跨境带宽。</li>
+<li>非侵入式支持所有类型的容器技术：Dragonfly 可无缝支持多种容器用于分发镜像。</li>
+<li>机器级别的限速：除了像许多其他下载工具（例如 wget 和 curl）那样的针对当前下载任务的限速之外，Dragonfly 还支持针对整个机器的限速。</li>
+<li>被动式 CDN：这种 CDN 机制可防止重复远程下载。</li>
+<li>高度一致性：Dragonfly 可确保所有下载的文件是一致的，即使用户不提供任何检查代码（MD5）。</li>
+<li>磁盘保护和高效 IO：预检磁盘空间、延迟同步、以最佳顺序写文件分块、隔离网络-读/磁盘-写等等。</li>
+<li>高性能：SuperNode 是完全闭环的，意味着它不依赖任何数据库或分布式缓存，能够以极高性能处理请求。</li>
+<li>自动隔离异常：Dragonfly 会自动隔离异常节点（对等节点或 SuperNode）来提高下载稳定性。</li>
+<li>对文件源无压力：一般只有少数几个 SuperNode 会从源下载文件。</li>
+<li>支持标准 HTTP 头文件：支持通过 HTTP 头文件提交鉴权信息。</li>
+<li>有效的 Registry 鉴权并发控制：减少对 Registry 鉴权服务的压力。</li>
+<li>简单易用：仅需极少的配置。</li>
+</ul>
+<h3 id="dragonfly原理"><a href="#dragonfly原理" class="headerlink" title="dragonfly原理"></a>dragonfly原理</h3><p>Dragonfly 下载普通文件和下载容器镜像的工作原理略有不同。</p>
+<h5 id="下载普通文件"><a href="#下载普通文件" class="headerlink" title="下载普通文件"></a>下载普通文件</h5><p>SuperNode 充当 CDN，并负责调度对等节点（Peer）之间的文件分块传输。dfget 是 P2P 客户端，也称为“Peer”（对等节点），主要用于下载和共享文件分块。</p>
+<p><img src="https://d7y.io/docs/zh-cn/img/dfget.png" alt="image"></p>
+<h4 id="下载镜像文件"><a href="#下载镜像文件" class="headerlink" title="下载镜像文件"></a>下载镜像文件</h4><p>Registry 类似于文件服务器。dfget proxy 也称为 dfdaemon，会拦截来自 docker pull 或 docker push 的 HTTP 请求，然后使用 dfget 来处理那些跟镜像分层相关的请求。</p>
+<p><img src="https://d7y.io/docs/zh-cn/img/dfget-combine-container.png" alt="image"></p>
+<h4 id="下载文件分块"><a href="#下载文件分块" class="headerlink" title="下载文件分块"></a>下载文件分块</h4><p>每个文件会被分成多个分块，并在对等节点之间传输。一个对等节点就是一个 P2P 客户端。SuperNode 会判断本地是否存在对应的文件。如果不存在，则会将其从文件服务器下载到 SuperNode。</p>
+<p><img src="https://d7y.io/docs/zh-cn/img/distributing.png" alt="image"></p>
+<h3 id="dragonfly部署（参考dragonfly官网）"><a href="#dragonfly部署（参考dragonfly官网）" class="headerlink" title="dragonfly部署（参考dragonfly官网）"></a>dragonfly部署（参考dragonfly官网）</h3><p><a href="https://d7y.io/zh-cn/" target="_blank" rel="noopener">https://d7y.io/zh-cn/</a></p>
+<h3 id="dragonfly-https的harbor"><a href="#dragonfly-https的harbor" class="headerlink" title="dragonfly https的harbor"></a>dragonfly https的harbor</h3><p>dragonfly 常见问题</p>
+<p><a href="https://github.com/dragonflyoss/Dragonfly/blob/master/FAQ.md" target="_blank" rel="noopener">https://github.com/dragonflyoss/Dragonfly/blob/master/FAQ.md</a></p>
+<p>目的：启用 docker PROXY  让dragonfly 支持https </p>
+<h4 id="1、部署https-harbor"><a href="#1、部署https-harbor" class="headerlink" title="1、部署https harbor"></a>1、部署https harbor</h4><p><a href="https://github.com/goharbor/harbor/blob/master/docs/configure_https.md" target="_blank" rel="noopener">https://github.com/goharbor/harbor/blob/master/docs/configure_https.md</a></p>
+<h4 id="2、部署docker-proxy"><a href="#2、部署docker-proxy" class="headerlink" title="2、部署docker_proxy"></a>2、部署docker_proxy</h4><p>pull images</p>
+<p>pull_images.sh<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/sh</span><br><span class="line">docker_registry_proxy=&quot;dockerhubwp/docker_proxy_nginx:latest&quot;</span><br><span class="line">supernode=&quot;registry.cn-hangzhou.aliyuncs.com/alidragonfly/supernode:0.2.0&quot;</span><br><span class="line">dfclient=&quot;dockerhubwp/dfclient:latest&quot;</span><br><span class="line"></span><br><span class="line">images=&quot;$&#123;docker_registry_proxy&#125; $&#123;supernode&#125; $&#123;dfclient&#125;&quot;</span><br><span class="line"></span><br><span class="line">function pullImage()&#123;</span><br><span class="line">   for image in $&#123;images&#125;; do</span><br><span class="line">        echo -e &quot;pull image ======&gt;$&#123;image&#125;&quot;</span><br><span class="line">        docker pull $&#123;image&#125;</span><br><span class="line">    done</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">pullImage</span><br></pre></td></tr></table></figure></p>
+<p>docker_proxy.sh</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">#! /bin/sh</span><br><span class="line"></span><br><span class="line">#   Separate deployment docker_proxy</span><br><span class="line"></span><br><span class="line"># dfdaemon and docker registry map</span><br><span class="line"># example  x.x.x</span><br><span class="line">registry=&quot;harbor域名&quot;</span><br><span class="line">containername=docker_registry_proxy</span><br><span class="line">#  你需要配置的dns 服务器 (如：dnsmasq)  </span><br><span class="line">DNS_SERVER=&quot;dns-server&quot;</span><br><span class="line">docker_registry_proxy=&quot;dockerhubwp/docker_proxy_nginx:latest&quot;</span><br><span class="line"></span><br><span class="line"># get localhost ip</span><br><span class="line">ipaddr=$(ip addr | awk &apos;/^[0-9]+: / &#123;&#125;; /inet.*global/ &#123;print gensub(/(.*)\/(.*)/, &quot;\\1&quot;, &quot;g&quot;, $2)&#125;&apos;)</span><br><span class="line">localhostIp=$(echo $&#123;ipaddr&#125; | cut -d &quot; &quot; -f 1)</span><br><span class="line"></span><br><span class="line">function changeDockerProxy() &#123;</span><br><span class="line">    mkdir -p /etc/systemd/system/docker.service.d</span><br><span class="line">	cat &lt;&lt;EOD &gt;/etc/systemd/system/docker.service.d/http-proxy.conf</span><br><span class="line">[Service]</span><br><span class="line">Environment=&quot;HTTP_PROXY=http://127.0.0.1:3128/&quot;</span><br><span class="line">Environment=&quot;HTTPS_PROXY=http://127.0.0.1:3128/&quot;</span><br><span class="line">EOD</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function dockerDockerProxyRun() &#123;</span><br><span class="line">    if [[ 0 != $(docker ps -a | grep $&#123;containername&#125; | wc -l) ]]; then</span><br><span class="line">        docker rm -f $&#123;containername&#125;</span><br><span class="line">    fi</span><br><span class="line">    docker run --restart=always --privileged=true --name $&#123;containername&#125; -d -p 0.0.0.0:3128:3128 -v /etc/docker_proxy_nginx/docker_mirror_certs:/ca -v /var/log/docker_proxy_nginx:/var/log/nginx/ -e DRAGONFLY_REGISTRIES=&quot;$&#123;registry&#125;,http://$&#123;localhostIp&#125;:65001&quot; -e REGISTRIES=&quot;$&#123;registry&#125;&quot; -e DNS_SERVER=$&#123;DNS_SERVER&#125; $&#123;docker_registry_proxy&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">changeDockerProxy</span><br><span class="line"></span><br><span class="line">systemctl daemon-reload</span><br><span class="line">systemctl restart docker</span><br><span class="line"></span><br><span class="line">dockerDockerProxyRun</span><br></pre></td></tr></table></figure>
+<h4 id="3、部署dragonfly"><a href="#3、部署dragonfly" class="headerlink" title="3、部署dragonfly"></a>3、部署dragonfly</h4><h5 id="部署Supernode"><a href="#部署Supernode" class="headerlink" title="部署Supernode"></a>部署Supernode</h5><p>supernode.sh<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/sh</span><br><span class="line"></span><br><span class="line">#   Separate deployment supernode</span><br><span class="line"></span><br><span class="line">supernode=&quot;registry.cn-hangzhou.aliyuncs.com/alidragonfly/supernode:0.2.0&quot;</span><br><span class="line">containername=supernode</span><br><span class="line"></span><br><span class="line">function superNode() &#123;</span><br><span class="line">    if [[ 0 != $(docker ps -a | grep $&#123;containername&#125; | wc -l) ]]; then</span><br><span class="line">        docker rm -f $&#123;containername&#125;</span><br><span class="line">    fi</span><br><span class="line">    docker run --name $&#123;containername&#125; --restart=always -d -p 8001:8001 -p 8002:8002 $&#123;supernode&#125;</span><br><span class="line">&#125;</span><br><span class="line">superNode</span><br></pre></td></tr></table></figure></p>
+<h5 id="部署dfclient"><a href="#部署dfclient" class="headerlink" title="部署dfclient"></a>部署dfclient</h5><p>dfclient.sh</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/sh</span><br><span class="line"></span><br><span class="line">#   Separate deployment docker_proxy</span><br><span class="line"></span><br><span class="line">dfclient=&quot;dockerhubwp/dfclient:latest&quot;</span><br><span class="line"></span><br><span class="line">#harbor 地址</span><br><span class="line">dfdaemon_registry=&quot;https://x.x.x&quot;</span><br><span class="line">containername=dfclient</span><br><span class="line"></span><br><span class="line"># supernode ips  example (10.0.0.160,10.0.0.162)</span><br><span class="line">supernodes=&quot;supernodeip&quot;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">ipaddr=$(ip addr | awk &apos;/^[0-9]+: / &#123;&#125;; /inet.*global/ &#123;print gensub(/(.*)\/(.*)/, &quot;\\1&quot;, &quot;g&quot;, $2)&#125;&apos;)</span><br><span class="line">localhostIp=$(echo $&#123;ipaddr&#125; | cut -d &quot; &quot; -f 1)</span><br><span class="line"></span><br><span class="line">cat &lt;&lt;EOD &gt;/etc/dragonfly.conf</span><br><span class="line">[node]</span><br><span class="line">address=$&#123;supernodes&#125;</span><br><span class="line">EOD</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">function startDfClient() &#123;</span><br><span class="line">    if [[ 0 != $(docker ps -a | grep $&#123;containername&#125; | wc -l) ]]; then</span><br><span class="line">        docker rm -f $&#123;containername&#125;</span><br><span class="line">    fi</span><br><span class="line">    docker run --name $&#123;containername&#125; --restart=always -d  -p 65001:65001 -v /root/.small-dragonfly:/root/.small-dragonfly -v /etc/dragonfly.conf:/etc/dragonfly.conf  -e dfdaemon_registry=$&#123;dfdaemon_registry&#125; -e localhostIp=$&#123;localhostIp&#125; $&#123;dfclient&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">startDfClient</span><br></pre></td></tr></table></figure>
+<p>最后</p>
+<p>trust.sh<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/sh</span><br><span class="line"></span><br><span class="line"># trust ca</span><br><span class="line"></span><br><span class="line">curl http://127.0.0.1:3128/ca.crt &gt;/etc/pki/ca-trust/source/anchors/docker_proxy_nginx.crt</span><br><span class="line"></span><br><span class="line">update-ca-trust</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull x.x.x/library/nginx:latest</span><br></pre></td></tr></table></figure>
+<p>参考：</p>
+<p>   <a href="https://d7y.io/zh-cn/" target="_blank" rel="noopener">https://d7y.io/zh-cn/</a></p>
+<p>   <a href="https://github.com/goharbor/harbor/" target="_blank" rel="noopener">https://github.com/goharbor/harbor/</a></p>
+<p>   <a href="https://github.com/rpardini/docker-registry-proxy" target="_blank" rel="noopener">https://github.com/rpardini/docker-registry-proxy</a></p>
+<p>   <a href="https://github.com/chobits/ngx_http_proxy_connect_module" target="_blank" rel="noopener">https://github.com/chobits/ngx_http_proxy_connect_module</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/25/nginx-https/" rel="next" title="搭建nginx-https">
+                <i class="fa fa-chevron-left"></i> 搭建nginx-https
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/02/26/fluentd/" rel="prev" title="容器化日志收集方案-EFK">
+                容器化日志收集方案-EFK <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">pengemailcom@163.com</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是dragonfly"><span class="nav-number">1.</span> <span class="nav-text">什么是dragonfly</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dragonfly-有何优势（具备以下特性）？"><span class="nav-number">2.</span> <span class="nav-text">Dragonfly 有何优势（具备以下特性）？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dragonfly原理"><span class="nav-number">3.</span> <span class="nav-text">dragonfly原理</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#下载普通文件"><span class="nav-number">3.0.1.</span> <span class="nav-text">下载普通文件</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#下载镜像文件"><span class="nav-number">3.1.</span> <span class="nav-text">下载镜像文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#下载文件分块"><span class="nav-number">3.2.</span> <span class="nav-text">下载文件分块</span></a></li></ol><li class="nav-item nav-level-3"><a class="nav-link" href="#dragonfly部署（参考dragonfly官网）"><span class="nav-number">4.</span> <span class="nav-text">dragonfly部署（参考dragonfly官网）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dragonfly-https的harbor"><span class="nav-number">5.</span> <span class="nav-text">dragonfly https的harbor</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、部署https-harbor"><span class="nav-number">5.1.</span> <span class="nav-text">1、部署https harbor</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、部署docker-proxy"><span class="nav-number">5.2.</span> <span class="nav-text">2、部署docker_proxy</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3、部署dragonfly"><span class="nav-number">5.3.</span> <span class="nav-text">3、部署dragonfly</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#部署Supernode"><span class="nav-number">5.3.1.</span> <span class="nav-text">部署Supernode</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#部署dfclient"><span class="nav-number">5.3.2.</span> <span class="nav-text">部署dfclient</span></a></li></ol></li></ol></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">pengemailcom@163.com</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
