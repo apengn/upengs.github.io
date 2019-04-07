@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="ps -ef |grep {fillter}kill -9 {pid} ss -tunlp|grep  7777ss -alnp |grep 7777netstat -tunlp|grep 777 netstat -alnp|grep 7777chmodu 代表用户.g 代表用户组.o 代表其他.a 代表所有. 这意味着chmod u+x somefile 只授予这个文件的所属者执行的权限而 ch">
+<meta name="description" content="ps -ef |grep {fillter}kill -9 {pid} ss -tunlp|grep  7777ss -alnp |grep 7777netstat -tunlp|grep 777netstat -alnp|grep 7777 lsof -i tcp:777chmodu 代表用户.g 代表用户组.o 代表其他.a 代表所有. 这意味着chmod u+x somefile 只授予这个">
 <meta property="og:type" content="article">
 <meta property="og:title" content="linux_cmd">
 <meta property="og:url" content="http://yoursite.com/2019/02/26/linux-cmd/index.html">
 <meta property="og:site_name" content="Peng">
-<meta property="og:description" content="ps -ef |grep {fillter}kill -9 {pid} ss -tunlp|grep  7777ss -alnp |grep 7777netstat -tunlp|grep 777 netstat -alnp|grep 7777chmodu 代表用户.g 代表用户组.o 代表其他.a 代表所有. 这意味着chmod u+x somefile 只授予这个文件的所属者执行的权限而 ch">
+<meta property="og:description" content="ps -ef |grep {fillter}kill -9 {pid} ss -tunlp|grep  7777ss -alnp |grep 7777netstat -tunlp|grep 777netstat -alnp|grep 7777 lsof -i tcp:777chmodu 代表用户.g 代表用户组.o 代表其他.a 代表所有. 这意味着chmod u+x somefile 只授予这个">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-02-28T11:08:17.316Z">
+<meta property="og:updated_time" content="2019-04-07T03:04:09.640Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linux_cmd">
-<meta name="twitter:description" content="ps -ef |grep {fillter}kill -9 {pid} ss -tunlp|grep  7777ss -alnp |grep 7777netstat -tunlp|grep 777 netstat -alnp|grep 7777chmodu 代表用户.g 代表用户组.o 代表其他.a 代表所有. 这意味着chmod u+x somefile 只授予这个文件的所属者执行的权限而 ch">
+<meta name="twitter:description" content="ps -ef |grep {fillter}kill -9 {pid} ss -tunlp|grep  7777ss -alnp |grep 7777netstat -tunlp|grep 777netstat -alnp|grep 7777 lsof -i tcp:777chmodu 代表用户.g 代表用户组.o 代表其他.a 代表所有. 这意味着chmod u+x somefile 只授予这个">
 
 
 
@@ -300,14 +300,20 @@
 
       
         <p>ps -ef |grep {fillter}<br>kill -9 {pid}</p>
-<p>ss -tunlp|grep  7777<br>ss -alnp |grep 7777<br>netstat -tunlp|grep 777</p>
-<h2 id="netstat-alnp-grep-7777"><a href="#netstat-alnp-grep-7777" class="headerlink" title="netstat -alnp|grep 7777"></a>netstat -alnp|grep 7777</h2><p>chmod<br>u 代表用户.<br>g 代表用户组.<br>o 代表其他.<br>a 代表所有.</p>
+<p>ss -tunlp|grep  7777<br>ss -alnp |grep 7777<br>netstat -tunlp|grep 777<br>netstat -alnp|grep 7777</p>
+<h2 id="lsof-i-tcp-777"><a href="#lsof-i-tcp-777" class="headerlink" title="lsof -i tcp:777"></a>lsof -i tcp:777</h2><p>chmod<br>u 代表用户.<br>g 代表用户组.<br>o 代表其他.<br>a 代表所有.</p>
 <p>这意味着chmod u+x somefile 只授予这个文件的所属者执行的权限<br>而 chmod +x somefile 和 chmod a+x somefile 是一样的 </p>
 <p>// 实现免密登陆<br>ssh-copy-id root@hostip</p>
 <h3 id="压缩文件"><a href="#压缩文件" class="headerlink" title="压缩文件"></a>压缩文件</h3><p>tar -czvf wisecloud-ingress-controller.gz ./wisecloud-ingress-controller</p>
 <h3 id="解压文件"><a href="#解压文件" class="headerlink" title="解压文件"></a>解压文件</h3><p>tar -zxvf wisecloud-ingress-controller.gz -o ./</p>
 <p>docker run –rm -it golang:1.10 sh<br><code>`</code><br>grep -A 50</p>
 <p>grep -B 50<br><code></code></p>
+<p>kcc get pod |grep orchestration | awk ‘{print $1}’</p>
+<p>screen 使用<br>screen<br>执行逻辑</p>
+<p>screen -list </p>
+<p>screen -r </p>
+<p>screen -r 30719.pts-4.dev-10<br>There is a screen on:<br>    30719.pts-4.dev-10    (Attached)<br>There is no screen to be resumed matching 30719.pts-4.dev-10.<br>[root@dev-10 ~]# screen -r 30719.pts-4.dev-</p>
+<p>netstat -an|wc -l   wc 统计行号</p>
 
       
     </div>
@@ -421,7 +427,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -467,7 +473,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#netstat-alnp-grep-7777"><span class="nav-number">1.</span> <span class="nav-text">netstat -alnp|grep 7777</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#压缩文件"><span class="nav-number">1.1.</span> <span class="nav-text">压缩文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解压文件"><span class="nav-number">1.2.</span> <span class="nav-text">解压文件</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#lsof-i-tcp-777"><span class="nav-number">1.</span> <span class="nav-text">lsof -i tcp:777</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#压缩文件"><span class="nav-number">1.1.</span> <span class="nav-text">压缩文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解压文件"><span class="nav-number">1.2.</span> <span class="nav-text">解压文件</span></a></li></ol></li></ol></div>
             
 
           </div>
