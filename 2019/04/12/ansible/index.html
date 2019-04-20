@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="kafka 集群搭建参考:https://hub.docker.com/r/wurstmeister/kafka/tags 123456789101112131415version: &amp;apos;2&amp;apos;services:  zookeeper:    image: wurstmeister/zookeeper    ports:      - &amp;quot;2181:2181&amp;quot;">
+<meta name="description" content="install ansible python  –versionPython 2.7.10sudo easy_install pipsudo pip install ansible dome :https://blog.csdn.net/pushiqiang/article/details/78126063 1ansible -i ./hosts local --connection=local">
 <meta property="og:type" content="article">
-<meta property="og:title" content="docker 版kafka集群搭建">
-<meta property="og:url" content="http://yoursite.com/2019/02/25/kafka/index.html">
+<meta property="og:title" content="ansible">
+<meta property="og:url" content="http://yoursite.com/2019/04/12/ansible/index.html">
 <meta property="og:site_name" content="Peng">
-<meta property="og:description" content="kafka 集群搭建参考:https://hub.docker.com/r/wurstmeister/kafka/tags 123456789101112131415version: &amp;apos;2&amp;apos;services:  zookeeper:    image: wurstmeister/zookeeper    ports:      - &amp;quot;2181:2181&amp;quot;">
+<meta property="og:description" content="install ansible python  –versionPython 2.7.10sudo easy_install pipsudo pip install ansible dome :https://blog.csdn.net/pushiqiang/article/details/78126063 1ansible -i ./hosts local --connection=local">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-02-25T02:31:13.771Z">
+<meta property="og:updated_time" content="2019-04-20T03:39:51.800Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="docker 版kafka集群搭建">
-<meta name="twitter:description" content="kafka 集群搭建参考:https://hub.docker.com/r/wurstmeister/kafka/tags 123456789101112131415version: &amp;apos;2&amp;apos;services:  zookeeper:    image: wurstmeister/zookeeper    ports:      - &amp;quot;2181:2181&amp;quot;">
+<meta name="twitter:title" content="ansible">
+<meta name="twitter:description" content="install ansible python  –versionPython 2.7.10sudo easy_install pipsudo pip install ansible dome :https://blog.csdn.net/pushiqiang/article/details/78126063 1ansible -i ./hosts local --connection=local">
 
 
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/02/25/kafka/">
+  <link rel="canonical" href="http://yoursite.com/2019/04/12/ansible/">
 
 
 
 
 
-  <title>docker 版kafka集群搭建 | Peng</title>
+  <title>ansible | Peng</title>
   
 
 
@@ -232,7 +232,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/25/kafka/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/12/ansible/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="pengemailcom@163.com">
@@ -249,7 +249,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">docker 版kafka集群搭建</h1>
+          <h1 class="post-title" itemprop="name headline">ansible</h1>
         
 
         <div class="post-meta">
@@ -261,8 +261,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-25T10:27:45+08:00">
-                2019-02-25
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-12T23:44:42+08:00">
+                2019-04-12
               </time>
             
 
@@ -299,9 +299,12 @@
       
 
       
-        <h2 id="kafka-集群搭建"><a href="#kafka-集群搭建" class="headerlink" title="kafka 集群搭建"></a>kafka 集群搭建</h2><p>参考:<a href="https://hub.docker.com/r/wurstmeister/kafka/tags" target="_blank" rel="noopener">https://hub.docker.com/r/wurstmeister/kafka/tags</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">version: &apos;2&apos;</span><br><span class="line">services:</span><br><span class="line">  zookeeper:</span><br><span class="line">    image: wurstmeister/zookeeper</span><br><span class="line">    ports:</span><br><span class="line">      - &quot;2181:2181&quot;</span><br><span class="line">  kafka:</span><br><span class="line">    image: wurstmeister/kafka</span><br><span class="line">    ports:</span><br><span class="line">      - &quot;9092&quot;</span><br><span class="line">    environment:</span><br><span class="line">      KAFKA_ADVERTISED_HOST_NAME: 10.0.0.159  #需要改成宿主ip</span><br><span class="line">      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181</span><br><span class="line">    volumes:</span><br><span class="line">      - /var/run/docker.sock:/var/run/docker.sock</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker-compose up -d</span><br><span class="line">docker-compose scale kafka=3</span><br></pre></td></tr></table></figure>
+        <p>install ansible</p>
+<p>python  –version<br>Python 2.7.10<br>sudo easy_install pip<br>sudo pip install ansible</p>
+<p>dome :<br><a href="https://blog.csdn.net/pushiqiang/article/details/78126063" target="_blank" rel="noopener">https://blog.csdn.net/pushiqiang/article/details/78126063</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ansible -i ./hosts local --connection=local -b --become-user=root -m shell -a &quot;ls&quot;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-b - “成为”，在运行命令时告诉可以成为另一个用户。</span><br><span class="line">--become-user=root - 以用户“root”运行以下命令（例如，使用命令使用“sudo”）。我们可以在此定义任何现有的用户。</span><br><span class="line">-a 用于将任何参数传递给定义的模块 -m</span><br></pre></td></tr></table></figure>
+<p>进行免密登陆<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh-agent</span><br><span class="line">ssh-copy-id root@127.0.0.1</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -326,8 +329,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/02/24/hello-world/" rel="next" title="Use Hexo">
-                <i class="fa fa-chevron-left"></i> Use Hexo
+              <a href="/2019/04/12/如何在-Linux-中不使用-CD-命令进入目录-文件夹/" rel="next" title="如何在 Linux 中不使用 CD 命令进入目录/文件夹">
+                <i class="fa fa-chevron-left"></i> 如何在 Linux 中不使用 CD 命令进入目录/文件夹
               </a>
             
           </div>
@@ -336,8 +339,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/02/25/nginx-https/" rel="prev" title="搭建nginx-https">
-                搭建nginx-https <i class="fa fa-chevron-right"></i>
+              <a href="/2019/04/13/yum/" rel="prev" title="yum  源加速设置">
+                yum  源加速设置 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -390,17 +393,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -451,22 +445,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#kafka-集群搭建"><span class="nav-number">1.</span> <span class="nav-text">kafka 集群搭建</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       

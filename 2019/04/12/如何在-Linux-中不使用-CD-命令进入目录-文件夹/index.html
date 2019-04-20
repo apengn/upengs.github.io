@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="kafka 集群搭建参考:https://hub.docker.com/r/wurstmeister/kafka/tags 123456789101112131415version: &amp;apos;2&amp;apos;services:  zookeeper:    image: wurstmeister/zookeeper    ports:      - &amp;quot;2181:2181&amp;quot;">
+<meta name="description" content="众所周知，如果没有 cd 命令，我们无法 Linux 中切换目录。这个没错，但我们有一个名为 shopt的 Linux 内置命令能帮助我们解决这个问题。 shopt[1] 是一个 shell 内置命令，用于设置和取消设置各种 bash shell 选项，由于它已安装，因此我们不需要再次安装它。 是的，我们可以在启用此选项后，可以不使用 cd 命令切换目录。 我们将在本文中向你展示如何操作。这是一个">
 <meta property="og:type" content="article">
-<meta property="og:title" content="docker 版kafka集群搭建">
-<meta property="og:url" content="http://yoursite.com/2019/02/25/kafka/index.html">
+<meta property="og:title" content="如何在 Linux 中不使用 CD 命令进入目录&#x2F;文件夹">
+<meta property="og:url" content="http://yoursite.com/2019/04/12/如何在-Linux-中不使用-CD-命令进入目录-文件夹/index.html">
 <meta property="og:site_name" content="Peng">
-<meta property="og:description" content="kafka 集群搭建参考:https://hub.docker.com/r/wurstmeister/kafka/tags 123456789101112131415version: &amp;apos;2&amp;apos;services:  zookeeper:    image: wurstmeister/zookeeper    ports:      - &amp;quot;2181:2181&amp;quot;">
+<meta property="og:description" content="众所周知，如果没有 cd 命令，我们无法 Linux 中切换目录。这个没错，但我们有一个名为 shopt的 Linux 内置命令能帮助我们解决这个问题。 shopt[1] 是一个 shell 内置命令，用于设置和取消设置各种 bash shell 选项，由于它已安装，因此我们不需要再次安装它。 是的，我们可以在启用此选项后，可以不使用 cd 命令切换目录。 我们将在本文中向你展示如何操作。这是一个">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-02-25T02:31:13.771Z">
+<meta property="og:updated_time" content="2019-04-20T03:39:51.803Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="docker 版kafka集群搭建">
-<meta name="twitter:description" content="kafka 集群搭建参考:https://hub.docker.com/r/wurstmeister/kafka/tags 123456789101112131415version: &amp;apos;2&amp;apos;services:  zookeeper:    image: wurstmeister/zookeeper    ports:      - &amp;quot;2181:2181&amp;quot;">
+<meta name="twitter:title" content="如何在 Linux 中不使用 CD 命令进入目录&#x2F;文件夹">
+<meta name="twitter:description" content="众所周知，如果没有 cd 命令，我们无法 Linux 中切换目录。这个没错，但我们有一个名为 shopt的 Linux 内置命令能帮助我们解决这个问题。 shopt[1] 是一个 shell 内置命令，用于设置和取消设置各种 bash shell 选项，由于它已安装，因此我们不需要再次安装它。 是的，我们可以在启用此选项后，可以不使用 cd 命令切换目录。 我们将在本文中向你展示如何操作。这是一个">
 
 
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/02/25/kafka/">
+  <link rel="canonical" href="http://yoursite.com/2019/04/12/如何在-Linux-中不使用-CD-命令进入目录-文件夹/">
 
 
 
 
 
-  <title>docker 版kafka集群搭建 | Peng</title>
+  <title>如何在 Linux 中不使用 CD 命令进入目录/文件夹 | Peng</title>
   
 
 
@@ -232,7 +232,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/25/kafka/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/12/如何在-Linux-中不使用-CD-命令进入目录-文件夹/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="pengemailcom@163.com">
@@ -249,7 +249,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">docker 版kafka集群搭建</h1>
+          <h1 class="post-title" itemprop="name headline">如何在 Linux 中不使用 CD 命令进入目录/文件夹</h1>
         
 
         <div class="post-meta">
@@ -261,8 +261,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-25T10:27:45+08:00">
-                2019-02-25
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-12T10:00:06+08:00">
+                2019-04-12
               </time>
             
 
@@ -299,9 +299,29 @@
       
 
       
-        <h2 id="kafka-集群搭建"><a href="#kafka-集群搭建" class="headerlink" title="kafka 集群搭建"></a>kafka 集群搭建</h2><p>参考:<a href="https://hub.docker.com/r/wurstmeister/kafka/tags" target="_blank" rel="noopener">https://hub.docker.com/r/wurstmeister/kafka/tags</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">version: &apos;2&apos;</span><br><span class="line">services:</span><br><span class="line">  zookeeper:</span><br><span class="line">    image: wurstmeister/zookeeper</span><br><span class="line">    ports:</span><br><span class="line">      - &quot;2181:2181&quot;</span><br><span class="line">  kafka:</span><br><span class="line">    image: wurstmeister/kafka</span><br><span class="line">    ports:</span><br><span class="line">      - &quot;9092&quot;</span><br><span class="line">    environment:</span><br><span class="line">      KAFKA_ADVERTISED_HOST_NAME: 10.0.0.159  #需要改成宿主ip</span><br><span class="line">      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181</span><br><span class="line">    volumes:</span><br><span class="line">      - /var/run/docker.sock:/var/run/docker.sock</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker-compose up -d</span><br><span class="line">docker-compose scale kafka=3</span><br></pre></td></tr></table></figure>
+        <p>众所周知，如果没有 cd 命令，我们无法 Linux 中切换目录。这个没错，但我们有一个名为 shopt的 Linux 内置命令能帮助我们解决这个问题。</p>
+<p>shopt[1] 是一个 shell 内置命令，用于设置和取消设置各种 bash shell 选项，由于它已安装，因此我们不需要再次安装它。</p>
+<p>是的，我们可以在启用此选项后，可以不使用 cd 命令切换目录。</p>
+<p>我们将在本文中向你展示如何操作。这是一个小的调整，但对于那些从 Windows 迁移到 Linux 的新手来说非常有用。</p>
+<p>这对 Linux 管理员没用，因为我们不会在没有 cd 命令的情况下切换到该目录，因为我们对此有经验。</p>
+<p>如果你尝试在没有 cd 命令的情况下切换 Linux 的目录/文件夹，你将看到以下错误消息。这在 Linux 中很常见。</p>
+<p>$ Documents/<br>bash: Documents/: Is a directory<br>为此，我们需要在用户 .bashrc 中追加以下值。</p>
+<p>什么是 .bashrc ？</p>
+<p>.bashrc 是一个 shell 脚本，每次用户以交互模式打开新 shell 时都会运行该脚本。</p>
+<p>你可以在该文件中添加要在命令提示符下输入的任何命令。</p>
+<p>.bashrc 文件本身包含终端会话的一系列配置。包括设置和启用：着色、补全，shell 历史，命令别名等。</p>
+<p>$ vi ~/.bashrc<br>加入这一行：</p>
+<p>shopt -s autocd<br>运行以下命令使更改生效。</p>
+<p>$ source ~/.bashrc<br>我们已完成所有配置。简单地对此进行测试以确认这是否有效。</p>
+<p>$ Documents/<br>cd – Documents/<br>$ daygeek/<br>cd – daygeek/<br>$ /home/daygeek/Documents/daygeek<br>cd – /home/daygeek/Documents/daygeek<br>$ pwd<br>/home/daygeek/Documents/daygeek</p>
+<p>是的，它正如预期的那样正常工作。</p>
+<p>而且，它在 fish shell 中工作正常，而无需对 .bashrc 进行任何更改。</p>
+<p>如果要暂时执行此操作，请使用以下命令（设置或取消设置）。重启系统时，它将消失。</p>
+<h1 id="shopt-s-autocd"><a href="#shopt-s-autocd" class="headerlink" title="shopt -s autocd"></a>shopt -s autocd</h1><h1 id="shopt-grep-autocd"><a href="#shopt-grep-autocd" class="headerlink" title="shopt | grep autocd"></a>shopt | grep autocd</h1><p>autocd  on</p>
+<h1 id="shopt-u-autocd"><a href="#shopt-u-autocd" class="headerlink" title="shopt -u autocd"></a>shopt -u autocd</h1><h1 id="shopt-grep-autocd-1"><a href="#shopt-grep-autocd-1" class="headerlink" title="shopt | grep autocd"></a>shopt | grep autocd</h1><p>autocd  off<br>shopt 命令提供了许多其他选项，如果要验证这些选项，请运行以下命令。</p>
+<p>$ shopt<br>autocd  on<br>assoc_expand_once   off<br>cdable_vars     off<br>cdspell     on<br>checkhash   off<br>checkjobs   off<br>checkwinsize    on<br>cmdhist     on<br>compat31    off<br>compat32    off<br>compat40    off<br>compat41    off<br>compat42    off<br>compat43    off<br>compat44    off<br>complete_fullquote  on<br>direxpand   off<br>dirspell    off<br>dotglob     off<br>execfail    off<br>expand_aliases  on<br>extdebug    off<br>extglob     off<br>extquote    on<br>failglob    off<br>force_fignore   on<br>globasciiranges on<br>globstar    off<br>gnu_errfmt  off<br>histappend  on<br>histreedit  off<br>histverify  off<br>hostcomplete    on<br>huponexit   off<br>inherit_errexit off<br>interactive_comments    on<br>lastpipe    off<br>lithist     off<br>localvar_inherit    off<br>localvar_unset  off<br>login_shell     off<br>mailwarn    off<br>no_empty_cmd_completion off<br>nocaseglob  off<br>nocasematch     off<br>nullglob    off<br>progcomp    on<br>progcomp_alias  off<br>promptvars  on<br>restricted_shell    off<br>shift_verbose   off<br>sourcepath  on<br>xpg_echo    off<br>此外，我找到了一些其他程序，它们可以帮助我们在 Linux 中比 cd 命令更快地切换目录。</p>
+<p>它们是 pushd、popd、up shell 脚本和 bd 工具。我们将在接下来的文章中介绍这些主题。</p>
+<p>via: <a href="https://www.2daygeek.com/navigate-switch-directory-without-using-cd-command-in-linux/" target="_blank" rel="noopener">https://www.2daygeek.com/navigate-switch-directory-without-using-cd-command-in-linux/</a></p>
 
       
     </div>
@@ -326,8 +346,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/02/24/hello-world/" rel="next" title="Use Hexo">
-                <i class="fa fa-chevron-left"></i> Use Hexo
+              <a href="/2019/04/08/vim/" rel="next" title="vim">
+                <i class="fa fa-chevron-left"></i> vim
               </a>
             
           </div>
@@ -336,8 +356,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/02/25/nginx-https/" rel="prev" title="搭建nginx-https">
-                搭建nginx-https <i class="fa fa-chevron-right"></i>
+              <a href="/2019/04/12/ansible/" rel="prev" title="ansible">
+                ansible <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -461,7 +481,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#kafka-集群搭建"><span class="nav-number">1.</span> <span class="nav-text">kafka 集群搭建</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#shopt-s-autocd"><span class="nav-number">1.</span> <span class="nav-text">shopt -s autocd</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#shopt-grep-autocd"><span class="nav-number">2.</span> <span class="nav-text">shopt | grep autocd</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#shopt-u-autocd"><span class="nav-number">3.</span> <span class="nav-text">shopt -u autocd</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#shopt-grep-autocd-1"><span class="nav-number">4.</span> <span class="nav-text">shopt | grep autocd</span></a></li></ol></div>
             
 
           </div>
