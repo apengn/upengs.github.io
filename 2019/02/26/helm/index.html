@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="helm  注意事项helm  install chats 与repo 有关 helm 获取删除chats release 只与config 有关 helm repo add  可以 重复，第二次添加类似update helm package wp –debug 启动helm repo  serve1nohup ./helm serve --address 0.0.0.0:8879 &amp;amp; 通">
+<meta name="description" content="helm  注意事项helm  install chats 与repo 有关 helm 获取删除chats release 只与config 有关 helm repo add  可以 重复，第二次添加类似updatehelm create wphelm package wp –debug 启动helm repo  serve1nohup ./helm serve --address 0.0.0.0">
 <meta property="og:type" content="article">
 <meta property="og:title" content="helm">
 <meta property="og:url" content="http://yoursite.com/2019/02/26/helm/index.html">
 <meta property="og:site_name" content="Peng">
-<meta property="og:description" content="helm  注意事项helm  install chats 与repo 有关 helm 获取删除chats release 只与config 有关 helm repo add  可以 重复，第二次添加类似update helm package wp –debug 启动helm repo  serve1nohup ./helm serve --address 0.0.0.0:8879 &amp;amp; 通">
+<meta property="og:description" content="helm  注意事项helm  install chats 与repo 有关 helm 获取删除chats release 只与config 有关 helm repo add  可以 重复，第二次添加类似updatehelm create wphelm package wp –debug 启动helm repo  serve1nohup ./helm serve --address 0.0.0.0">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-04-20T03:31:54.923Z">
+<meta property="og:updated_time" content="2019-06-11T08:20:29.827Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="helm">
-<meta name="twitter:description" content="helm  注意事项helm  install chats 与repo 有关 helm 获取删除chats release 只与config 有关 helm repo add  可以 重复，第二次添加类似update helm package wp –debug 启动helm repo  serve1nohup ./helm serve --address 0.0.0.0:8879 &amp;amp; 通">
+<meta name="twitter:description" content="helm  注意事项helm  install chats 与repo 有关 helm 获取删除chats release 只与config 有关 helm repo add  可以 重复，第二次添加类似updatehelm create wphelm package wp –debug 启动helm repo  serve1nohup ./helm serve --address 0.0.0.0">
 
 
 
@@ -301,12 +301,11 @@
       
         <h4 id="helm-注意事项"><a href="#helm-注意事项" class="headerlink" title="helm  注意事项"></a>helm  注意事项</h4><p>helm  install chats 与repo 有关</p>
 <p>helm 获取删除chats release 只与config 有关</p>
-<p>helm repo add  可以 重复，第二次添加类似update</p>
-<p>helm package wp –debug</p>
+<p>helm repo add  可以 重复，第二次添加类似update<br>helm create wp<br>helm package wp –debug</p>
 <h3 id="启动helm-repo-serve"><a href="#启动helm-repo-serve" class="headerlink" title="启动helm repo  serve"></a>启动helm repo  serve</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nohup ./helm serve --address 0.0.0.0:8879 &amp;</span><br></pre></td></tr></table></figure>
 <h3 id="通过harbor-启动helm-repo"><a href="#通过harbor-启动helm-repo" class="headerlink" title="通过harbor 启动helm repo"></a>通过harbor 启动helm repo</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ./install.sh   --with-clair --with-chartmuseum</span><br></pre></td></tr></table></figure>
-<h3 id="添加harbor-repo"><a href="#添加harbor-repo" class="headerlink" title="添加harbor repo"></a>添加harbor repo</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">helm repo add --username=admin --password=Passw0rd myrepo https://xx.xx.xx.xx/chartrepo</span><br></pre></td></tr></table></figure>
-<h3 id="添加特定仓库"><a href="#添加特定仓库" class="headerlink" title="添加特定仓库"></a>添加特定仓库</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">helm repo add --username=admin --password=Passw0rd myrepo https://xx.xx.xx.xx/chartrepo/myproject</span><br></pre></td></tr></table></figure>
+<h3 id="添加harbor-repo-需要密码"><a href="#添加harbor-repo-需要密码" class="headerlink" title="添加harbor repo  需要密码"></a>添加harbor repo  需要密码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">helm repo add --username=admin --password=Passw0rd myrepo https://xx.xx.xx.xx/chartrepo</span><br></pre></td></tr></table></figure>
+<h3 id="添加私有特定仓库-公有的无需密码"><a href="#添加私有特定仓库-公有的无需密码" class="headerlink" title="添加私有特定仓库  公有的无需密码"></a>添加私有特定仓库  公有的无需密码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">helm repo add --username=admin --password=Passw0rd myrepo https://xx.xx.xx.xx/chartrepo/myproject</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -420,7 +419,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-count">25</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -466,7 +465,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#helm-注意事项"><span class="nav-number">1.</span> <span class="nav-text">helm  注意事项</span></a></li></ol><li class="nav-item nav-level-3"><a class="nav-link" href="#启动helm-repo-serve"><span class="nav-number"></span> <span class="nav-text">启动helm repo  serve</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通过harbor-启动helm-repo"><span class="nav-number"></span> <span class="nav-text">通过harbor 启动helm repo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加harbor-repo"><span class="nav-number"></span> <span class="nav-text">添加harbor repo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加特定仓库"><span class="nav-number"></span> <span class="nav-text">添加特定仓库</span></a></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#helm-注意事项"><span class="nav-number">1.</span> <span class="nav-text">helm  注意事项</span></a></li></ol><li class="nav-item nav-level-3"><a class="nav-link" href="#启动helm-repo-serve"><span class="nav-number"></span> <span class="nav-text">启动helm repo  serve</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通过harbor-启动helm-repo"><span class="nav-number"></span> <span class="nav-text">通过harbor 启动helm repo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加harbor-repo-需要密码"><span class="nav-number"></span> <span class="nav-text">添加harbor repo  需要密码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加私有特定仓库-公有的无需密码"><span class="nav-number"></span> <span class="nav-text">添加私有特定仓库  公有的无需密码</span></a></li></div>
             
 
           </div>

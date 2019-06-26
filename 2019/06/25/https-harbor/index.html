@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="在使用makefile是如12docker:    ls 在当前目录下，不要有docker 文件夹  否则：会报 make: `docker’ is up to date.">
+<meta name="description" content="参考：https://github.com/goharbor/harbor/blob/master/docs/configure_https.md12345678910111213141516171819202122232425262728293031323334353637383940openssl genrsa -out ca.key 4096openssl req -x509 -new -n">
 <meta property="og:type" content="article">
-<meta property="og:title" content="makefile">
-<meta property="og:url" content="http://yoursite.com/2019/03/14/makefile/index.html">
+<meta property="og:title" content="https_harbor 搭建">
+<meta property="og:url" content="http://yoursite.com/2019/06/25/https-harbor/index.html">
 <meta property="og:site_name" content="Peng">
-<meta property="og:description" content="在使用makefile是如12docker:    ls 在当前目录下，不要有docker 文件夹  否则：会报 make: `docker’ is up to date.">
+<meta property="og:description" content="参考：https://github.com/goharbor/harbor/blob/master/docs/configure_https.md12345678910111213141516171819202122232425262728293031323334353637383940openssl genrsa -out ca.key 4096openssl req -x509 -new -n">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-04-20T03:39:51.802Z">
+<meta property="og:updated_time" content="2019-06-25T10:27:29.744Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="makefile">
-<meta name="twitter:description" content="在使用makefile是如12docker:    ls 在当前目录下，不要有docker 文件夹  否则：会报 make: `docker’ is up to date.">
+<meta name="twitter:title" content="https_harbor 搭建">
+<meta name="twitter:description" content="参考：https://github.com/goharbor/harbor/blob/master/docs/configure_https.md12345678910111213141516171819202122232425262728293031323334353637383940openssl genrsa -out ca.key 4096openssl req -x509 -new -n">
 
 
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/03/14/makefile/">
+  <link rel="canonical" href="http://yoursite.com/2019/06/25/https-harbor/">
 
 
 
 
 
-  <title>makefile | Peng</title>
+  <title>https_harbor 搭建 | Peng</title>
   
 
 
@@ -232,7 +232,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/14/makefile/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/25/https-harbor/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="pengemailcom@163.com">
@@ -249,7 +249,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">makefile</h1>
+          <h1 class="post-title" itemprop="name headline">https_harbor 搭建</h1>
         
 
         <div class="post-meta">
@@ -261,8 +261,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-14T10:54:19+08:00">
-                2019-03-14
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-06-25T18:19:53+08:00">
+                2019-06-25
               </time>
             
 
@@ -299,8 +299,7 @@
       
 
       
-        <p>在使用makefile是<br>如<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker:</span><br><span class="line">    ls</span><br></pre></td></tr></table></figure></p>
-<p>在当前目录下，不要有docker 文件夹  否则：会报 make: `docker’ is up to date.</p>
+        <p>参考：<a href="https://github.com/goharbor/harbor/blob/master/docs/configure_https.md" target="_blank" rel="noopener">https://github.com/goharbor/harbor/blob/master/docs/configure_https.md</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">openssl genrsa -out ca.key 4096</span><br><span class="line">openssl req -x509 -new -nodes -sha512 -days 3650 \</span><br><span class="line">    -subj &quot;/C=TW/ST=Taipei/L=Taipei/O=example/OU=Personal/CN=yourdomain.com&quot; \</span><br><span class="line">    -key ca.key \</span><br><span class="line">    -out ca.crt</span><br><span class="line">openssl genrsa -out yourdomain.com.key 4096</span><br><span class="line"></span><br><span class="line">openssl req -sha512 -new \</span><br><span class="line">    -subj &quot;/C=TW/ST=Taipei/L=Taipei/O=example/OU=Personal/CN=yourdomain.com&quot; \</span><br><span class="line">    -key yourdomain.com.key \</span><br><span class="line">    -out yourdomain.com.csr</span><br><span class="line">cat &gt; v3.ext &lt;&lt;-EOF</span><br><span class="line">authorityKeyIdentifier=keyid,issuer</span><br><span class="line">basicConstraints=CA:FALSE</span><br><span class="line">keyUsage = digitalSignature, nonRepudiation, keyEncipherment, dataEncipherment</span><br><span class="line">extendedKeyUsage = serverAuth</span><br><span class="line">subjectAltName = @alt_names</span><br><span class="line"></span><br><span class="line">[alt_names]</span><br><span class="line">DNS.1=yourdomain.com</span><br><span class="line">DNS.2=yourdomain</span><br><span class="line">DNS.3=https-harbor</span><br><span class="line">DNS.4=10.0.0.88</span><br><span class="line">EOF</span><br><span class="line">openssl x509 -req -sha512 -days 3650 \</span><br><span class="line">    -extfile v3.ext \</span><br><span class="line">    -CA ca.crt -CAkey ca.key -CAcreateserial \</span><br><span class="line">    -in yourdomain.com.csr \</span><br><span class="line">    -out yourdomain.com.crt</span><br><span class="line"></span><br><span class="line">mkdir -p /data/cert/</span><br><span class="line">cp yourdomain.com.crt /data/cert/</span><br><span class="line">cp yourdomain.com.key /data/cert/</span><br><span class="line"></span><br><span class="line">openssl x509 -inform PEM -in yourdomain.com.crt -out yourdomain.com.cert</span><br><span class="line"></span><br><span class="line">mkdir -p /etc/docker/certs.d/yourdomain.com/</span><br><span class="line">cp yourdomain.com.cert /etc/docker/certs.d/yourdomain.com/</span><br><span class="line">cp yourdomain.com.key /etc/docker/certs.d/yourdomain.com/</span><br><span class="line">cp ca.crt /etc/docker/certs.d/yourdomain.com/</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -325,8 +324,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/12/mac-idea-proxy/" rel="next" title="mac_idea_proxy">
-                <i class="fa fa-chevron-left"></i> mac_idea_proxy
+              <a href="/2019/06/23/ca/" rel="next" title=" 证书制作">
+                <i class="fa fa-chevron-left"></i>  证书制作
               </a>
             
           </div>
@@ -335,8 +334,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/03/27/kubernetes/" rel="prev" title="kubernetes">
-                kubernetes <i class="fa fa-chevron-right"></i>
+              <a href="/2019/06/25/kubeadm/" rel="prev" title="kubeadm">
+                kubeadm <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -405,7 +404,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-count">25</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

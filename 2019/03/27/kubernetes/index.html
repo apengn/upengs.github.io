@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="123pod 优先级调度参考：https://kubernetes.io/docs/concepts/configuration/pod-priority-preemption/ PriorityClass">
+<meta name="description" content="123456789101112131415161718192021222324252627282930313233343536cat &amp;lt;&amp;lt;EOF &amp;gt;  /etc/sysctl.d/k8s.confnet.bridge.bridge-nf-call-ip6tables = 1net.bridge.bridge-nf-call-iptables = 1EOFsysctl --syst">
 <meta property="og:type" content="article">
 <meta property="og:title" content="kubernetes">
 <meta property="og:url" content="http://yoursite.com/2019/03/27/kubernetes/index.html">
 <meta property="og:site_name" content="Peng">
-<meta property="og:description" content="123pod 优先级调度参考：https://kubernetes.io/docs/concepts/configuration/pod-priority-preemption/ PriorityClass">
+<meta property="og:description" content="123456789101112131415161718192021222324252627282930313233343536cat &amp;lt;&amp;lt;EOF &amp;gt;  /etc/sysctl.d/k8s.confnet.bridge.bridge-nf-call-ip6tables = 1net.bridge.bridge-nf-call-iptables = 1EOFsysctl --syst">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-04-20T03:39:51.801Z">
+<meta property="og:updated_time" content="2019-06-25T02:27:04.554Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="kubernetes">
-<meta name="twitter:description" content="123pod 优先级调度参考：https://kubernetes.io/docs/concepts/configuration/pod-priority-preemption/ PriorityClass">
+<meta name="twitter:description" content="123456789101112131415161718192021222324252627282930313233343536cat &amp;lt;&amp;lt;EOF &amp;gt;  /etc/sysctl.d/k8s.confnet.bridge.bridge-nf-call-ip6tables = 1net.bridge.bridge-nf-call-iptables = 1EOFsysctl --syst">
 
 
 
@@ -299,8 +299,28 @@
       
 
       
-        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pod 优先级调度</span><br><span class="line">参考：</span><br><span class="line">https://kubernetes.io/docs/concepts/configuration/pod-priority-preemption/</span><br></pre></td></tr></table></figure>
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">cat &lt;&lt;EOF &gt;  /etc/sysctl.d/k8s.conf</span><br><span class="line">net.bridge.bridge-nf-call-ip6tables = 1</span><br><span class="line">net.bridge.bridge-nf-call-iptables = 1</span><br><span class="line">EOF</span><br><span class="line">sysctl --system</span><br><span class="line">setenforce 0</span><br><span class="line">swapoff -a</span><br><span class="line">sed -i &apos;s/^SELINUX=enforcing$/SELINUX=permissive/&apos; /etc/selinux/config</span><br><span class="line"></span><br><span class="line">cat &lt;&lt;EOF &gt; /etc/yum.repos.d/kubernetes.repo</span><br><span class="line">[kubernetes]</span><br><span class="line">name=Kubernetes</span><br><span class="line">baseurl=https://mirrors.aliyun.com/kubernetes/yum/repos/kubernetes-el7-x86_64</span><br><span class="line">enabled=1</span><br><span class="line">gpgcheck=1</span><br><span class="line">repo_gpgcheck=1</span><br><span class="line">gpgkey=https://mirrors.aliyun.com/kubernetes/yum/doc/yum-key.gpg https://mirrors.aliyun.com/kubernetes/yum/doc/rpm-package-key.gpg</span><br><span class="line">EOF</span><br><span class="line"># 安装</span><br><span class="line">yum install -y kubectl kubelet kubeadm</span><br><span class="line"># 开机启动</span><br><span class="line">systemctl enable kubelet</span><br><span class="line"># 启动</span><br><span class="line">systemctl start kubelet</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">kubeadm init --kubernetes-version=1.15.0 --apiserver-advertise-address=10.0.0.101 --image-repository registry.aliyuncs.com/google_containers --service-cidr=10.1.0.0/16 --pod-network-cidr=10.244.0.0/16 -v=10</span><br><span class="line"></span><br><span class="line">https://www.jianshu.com/p/b58c85436f0a</span><br><span class="line"></span><br><span class="line">kubeadm init --kubernetes-version=1.15.0 --apiserver-advertise-address=10.0.0.106 --image-repository registry.aliyuncs.com/google_containers --service-cidr=10.1.0.0/16 --pod-network-cidr=10.244.0.0/16 -v=10</span><br><span class="line"></span><br><span class="line">install cni</span><br><span class="line">kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/a70459be0084506e4ec919aa1c114638878db11b/Documentation/kube-flannel.yml</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pod 优先级调度</span><br><span class="line">参考：</span><br><span class="line">https://kubernetes.io/docs/concepts/configuration/pod-priority-preemption/</span><br></pre></td></tr></table></figure>
 <p>PriorityClass</p>
+<p>crd<br><a href="https://sq.163yun.com/blog/article/174980128954048512" target="_blank" rel="noopener">https://sq.163yun.com/blog/article/174980128954048512</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Kubernetes 1.8开始要求关闭系统的Swap，如果不关闭，默认配置下kubelet将无法启动。可以通过kubelet的启动参数--fail-swap-on=false更改这个限制。</span><br><span class="line"></span><br><span class="line">全局关闭：</span><br><span class="line">关闭系统的Swap方法如下:</span><br><span class="line"></span><br><span class="line">swapoff -a</span><br><span class="line">  </span><br><span class="line">修改 /etc/fstab 文件，注释掉 SWAP 的自动挂载，使用free -m确认swap已经关闭。 &gt; swappiness参数调整，修改/etc/sysctl.d/k8s.conf添加下面一行：</span><br><span class="line"></span><br><span class="line">vm.swappiness=0</span><br><span class="line">  </span><br><span class="line">执行sysctl -p /etc/sysctl.d/k8s.conf使修改生效。</span><br></pre></td></tr></table></figure>
+<p>etcdctl –endpoints=https://[127.0.0.1]:2379 –cacert=/etc/kubernetes/pki/etcd/ca.crt –cert=/etc/kubernetes/pki/etcd/healthcheck-client.crt –key=/etc/kubernetes/pki/etcd/healthcheck-client.key get foo</p>
+<p>export HOST0=10.0.0.106<br>export HOST1=10.0.0.101<br>export HOST2=10.0.0.108</p>
+<p>mkdir -p /tmp/${HOST0}/ /tmp/${HOST1}/ /tmp/${HOST2}/</p>
+<p>ETCDHOSTS=(${HOST0} ${HOST1} ${HOST2})<br>NAMES=(“infra0” “infra1” “infra2”)</p>
+<p>for i in “${!ETCDHOSTS[@]}”; do<br>HOST=${ETCDHOSTS[$i]}<br>NAME=${NAMES[$i]}<br>cat &lt;&lt; EOF &gt; /tmp/${HOST}/kubeadmcfg.yaml<br>apiVersion: “kubeadm.k8s.io/v1beta2”<br>kind: ClusterConfiguration<br>etcd:<br>    local:<br>        serverCertSANs:</p>
+<pre><code>- &quot;${HOST}&quot;
+peerCertSANs:
+- &quot;${HOST}&quot;
+extraArgs:
+    initial-cluster: ${NAMES[0]}=https://${ETCDHOSTS[0]}:2380,${NAMES[1]}=https://${ETCDHOSTS[1]}:2380,${NAMES[2]}=https://${ETCDHOSTS[2]}:2380
+    initial-cluster-state: new
+    name: ${NAME}
+    listen-peer-urls: https://${HOST}:2380
+    listen-client-urls: https://${HOST}:2379
+    advertise-client-urls: https://${HOST}:2379
+    initial-advertise-peer-urls: https://${HOST}:2380
+</code></pre><p>EOF<br>done</p>
 
       
     </div>
@@ -325,8 +345,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/14/makefile/" rel="next" title="makefile">
-                <i class="fa fa-chevron-left"></i> makefile
+              <a href="/2019/03/12/go-mod/" rel="next" title="go-mod">
+                <i class="fa fa-chevron-left"></i> go-mod
               </a>
             
           </div>
@@ -405,7 +425,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-count">25</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

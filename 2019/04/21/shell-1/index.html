@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="#install ansible1234python  --versionPython 2.7.10sudo easy_install pipsudo pip install ansible dome :https://blog.csdn.net/pushiqiang/article/details/78126063 1ansible -i ./hosts local --connection=l">
+<meta name="description" content="shell基本命令把多个文件夹中的内容复制到同一个文件下1cp -r ./file1 ./file2  /root uname -r 获取系统版本12sh-4.2# uname -r3.10.0-957.10.1.el7.x86_64 unset重新设置变量内容1unset name date 格式化12345sh-4.2# date +%Y/%m/%d2019/04/21sh-4.2# date">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ansible">
-<meta property="og:url" content="http://yoursite.com/2019/04/12/ansible/index.html">
+<meta property="og:title" content="shell基本命令">
+<meta property="og:url" content="http://yoursite.com/2019/04/21/shell-1/index.html">
 <meta property="og:site_name" content="Peng">
-<meta property="og:description" content="#install ansible1234python  --versionPython 2.7.10sudo easy_install pipsudo pip install ansible dome :https://blog.csdn.net/pushiqiang/article/details/78126063 1ansible -i ./hosts local --connection=l">
+<meta property="og:description" content="shell基本命令把多个文件夹中的内容复制到同一个文件下1cp -r ./file1 ./file2  /root uname -r 获取系统版本12sh-4.2# uname -r3.10.0-957.10.1.el7.x86_64 unset重新设置变量内容1unset name date 格式化12345sh-4.2# date +%Y/%m/%d2019/04/21sh-4.2# date">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-04-20T03:45:52.330Z">
+<meta property="og:updated_time" content="2019-04-21T11:05:58.320Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ansible">
-<meta name="twitter:description" content="#install ansible1234python  --versionPython 2.7.10sudo easy_install pipsudo pip install ansible dome :https://blog.csdn.net/pushiqiang/article/details/78126063 1ansible -i ./hosts local --connection=l">
+<meta name="twitter:title" content="shell基本命令">
+<meta name="twitter:description" content="shell基本命令把多个文件夹中的内容复制到同一个文件下1cp -r ./file1 ./file2  /root uname -r 获取系统版本12sh-4.2# uname -r3.10.0-957.10.1.el7.x86_64 unset重新设置变量内容1unset name date 格式化12345sh-4.2# date +%Y/%m/%d2019/04/21sh-4.2# date">
 
 
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/04/12/ansible/">
+  <link rel="canonical" href="http://yoursite.com/2019/04/21/shell-1/">
 
 
 
 
 
-  <title>ansible | Peng</title>
+  <title>shell基本命令 | Peng</title>
   
 
 
@@ -232,7 +232,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/12/ansible/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/21/shell-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="pengemailcom@163.com">
@@ -249,7 +249,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">ansible</h1>
+          <h1 class="post-title" itemprop="name headline">shell基本命令</h1>
         
 
         <div class="post-meta">
@@ -261,8 +261,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-12T23:44:42+08:00">
-                2019-04-12
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-21T09:36:41+08:00">
+                2019-04-21
               </time>
             
 
@@ -299,11 +299,16 @@
       
 
       
-        <p>#install ansible<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">python  --version</span><br><span class="line">Python 2.7.10</span><br><span class="line">sudo easy_install pip</span><br><span class="line">sudo pip install ansible</span><br></pre></td></tr></table></figure></p>
-<p>dome :<br><a href="https://blog.csdn.net/pushiqiang/article/details/78126063" target="_blank" rel="noopener">https://blog.csdn.net/pushiqiang/article/details/78126063</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ansible -i ./hosts local --connection=local -b --become-user=root -m shell -a &quot;ls&quot;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-b - “成为”，在运行命令时告诉可以成为另一个用户。</span><br><span class="line">--become-user=root - 以用户“root”运行以下命令（例如，使用命令使用“sudo”）。我们可以在此定义任何现有的用户。</span><br><span class="line">-a 用于将任何参数传递给定义的模块 -m</span><br></pre></td></tr></table></figure>
-<p>进行免密登陆<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh-agent</span><br><span class="line">ssh-copy-id root@127.0.0.1</span><br></pre></td></tr></table></figure></p>
+        <h2 id="shell基本命令"><a href="#shell基本命令" class="headerlink" title="shell基本命令"></a>shell基本命令</h2><p>把多个文件夹中的内容复制到同一个文件下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp -r ./file1 ./file2  /root</span><br></pre></td></tr></table></figure></p>
+<p>uname -r 获取系统版本<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sh-4.2# uname -r</span><br><span class="line">3.10.0-957.10.1.el7.x86_64</span><br></pre></td></tr></table></figure></p>
+<p>unset重新设置变量内容<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">unset name</span><br></pre></td></tr></table></figure></p>
+<p>date 格式化<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sh-4.2# date +%Y/%m/%d</span><br><span class="line">2019/04/21</span><br><span class="line"></span><br><span class="line">sh-4.2# date +%H:%m</span><br><span class="line">08:04</span><br></pre></td></tr></table></figure></p>
+<p>cal 查看日历</p>
+<p>bc 计算器</p>
+<p>搜索：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/string  向上搜索N</span><br><span class="line">?string  向下搜索n</span><br></pre></td></tr></table></figure></p>
+<p>正确的关机方法<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">shutdown</span><br><span class="line">poweroff</span><br><span class="line">halt</span><br></pre></td></tr></table></figure></p>
+<p>重启方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reboot</span><br></pre></td></tr></table></figure></p>
+<p>添加用户和密码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">useradd wp</span><br><span class="line">passwd wp</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -328,8 +333,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/04/12/如何在-Linux-中不使用-CD-命令进入目录-文件夹/" rel="next" title="如何在 Linux 中不使用 CD 命令进入目录/文件夹">
-                <i class="fa fa-chevron-left"></i> 如何在 Linux 中不使用 CD 命令进入目录/文件夹
+              <a href="/2019/04/13/yum/" rel="next" title="yum  源加速设置">
+                <i class="fa fa-chevron-left"></i> yum  源加速设置
               </a>
             
           </div>
@@ -338,8 +343,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/04/13/yum/" rel="prev" title="yum  源加速设置">
-                yum  源加速设置 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/04/21/iterm2/" rel="prev" title="iterm2 快捷键">
+                iterm2 快捷键 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -392,8 +397,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -444,6 +458,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#shell基本命令"><span class="nav-number">1.</span> <span class="nav-text">shell基本命令</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
