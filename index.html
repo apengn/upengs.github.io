@@ -229,6 +229,399 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/webhook/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="pengemailcom@163.com">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Peng">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/06/28/webhook/" itemprop="url">kubernetes webhook</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-06-28T14:39:47+08:00">
+                2019-06-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Kubernetes中的Admission Controller是做什么的呢？有什么用呢？怎么自己定义一个呢？<br>Q: 什么是Admission Controller?<br>A: 官方定义：</p>
+<p>An admission controller is a piece of code that intercepts requests to the Kubernetes API server prior to persistence of the object, but after the request is authenticated and authorized.</p>
+<p>我理解的：</p>
+<p>Admission Controller是一个拦截器<br>拦截发送给Kuberenetes API Server的请求<br>什么时候拦截？在请求通过认证之后，请求被存储起来之前</p>
+<p>所以顺理成章，由于拦截的是发送给API Server的请求，所以Admission Controller存在于API Server内部，即compiled into the kube-apiserver binary（被编译进API Server的可执行文件里）。<br>kubernetes将AC分为三种：</p>
+<p>validating，验证型。用于验证k8s的资源定义是否符合规则<br>mutating，修改型。用于修改k8s的资源定义，比如加个label什么的<br>二者皆是，即同一个AC，既是验证型又是修改型</p>
+<p>多个Admission Controller会形成一个Admission Chain（链条），修改型的在前面先执行，验证型的在后面后执行，这样验证型的才能去验证修改的对不对。<br>K: interceptor, validating, mutating, Admission Chain<br>Q: Admission Controller有什么用？<br>A: API Server内置了一些AC，有各种各样的作用[1]。比如：</p>
+<p>EventRateLimit，用于限制事件的频率<br>LimitRanger，验证所有的请求都没有超出namespace中定义的LimitRange</p>
+<p>还有很多其他AC，具体请参考Kubernetes文档。<br>这些AC中，有两个对用户来说比较有用：</p>
+<p>MutatingAdmissionWebhook，这是一个webhook，即网络钩子，也就是说该AC会去请求服务端，并执行相应的逻辑<br>ValidatingAdmissionWebhook，也是一个webhook，只是用于验证</p>
+<p>Q: 怎么查看哪些AC是打开了的？<br>A: 文档上写的用：kube-apiserver -h | grep enable-admission-plugins。但是由于本地是minikube，进入虚拟机之后并没有发现kube-apiserver命令。<br>后来发现api-server是以pod的形式运行的：<br>kubectl get pods -n kube-system</p>
+<p>于是，使用kubectl exec登入pod，然后调用上述的指令，其结果为：<br>/ # kube-apiserver -h | grep enable-admission-plugins<br>      –admission-control strings              Admission is divided into two phases. In the first phase, only mutating admission plugins run. In the second phase, only validating admission plugins run. The names in the below list may represent a validating plugin, a mutating plugin, or both. The order of plugins in which they are passed to this flag does not matter. Comma-delimited list of: AlwaysAdmit, AlwaysDeny, AlwaysPullImages, DefaultStorageClass, DefaultTolerationSeconds, DenyEscalatingExec, DenyExecOnPrivileged, EventRateLimit, ExtendedResourceToleration, ImagePolicyWebhook, Initializers, LimitPodHardAntiAffinityTopology, LimitRanger, MutatingAdmissionWebhook, NamespaceAutoProvision, NamespaceExists, NamespaceLifecycle, NodeRestriction, OwnerReferencesPermissionEnforcement, PersistentVolumeClaimResize, PersistentVolumeLabel, PodNodeSelector, PodPreset, PodSecurityPolicy, PodTolerationRestriction, Priority, ResourceQuota, SecurityContextDeny, ServiceAccount, StorageObjectInUseProtection, ValidatingAdmissionWebhook. (DEPRECATED: Use –enable-admission-plugins or –disable-admission-plugins instead. Will be removed in a future version.)<br>      –enable-admission-plugins strings       admission plugins that should be enabled in addition to default enabled ones (NamespaceLifecycle, LimitRanger, ServiceAccount, Priority, DefaultTolerationSeconds, DefaultStorageClass, PersistentVolumeClaimResize, MutatingAdmissionWebhook, ValidatingAdmissionWebhook, ResourceQuota). Comma-delimited list of admission plugins: AlwaysAdmit, AlwaysDeny, AlwaysPullImages, DefaultStorageClass, DefaultTolerationSeconds, DenyEscalatingExec, DenyExecOnPrivileged, EventRateLimit, ExtendedResourceToleration, ImagePolicyWebhook, Initializers, LimitPodHardAntiAffinityTopology, LimitRanger, MutatingAdmissionWebhook, NamespaceAutoProvision, NamespaceExists, NamespaceLifecycle, NodeRestriction, OwnerReferencesPermissionEnforcement, PersistentVolumeClaimResize, PersistentVolumeLabel, PodNodeSelector, PodPreset, PodSecurityPolicy, PodTolerationRestriction, Priority, ResourceQuota, SecurityContextDeny, ServiceAccount, StorageObjectInUseProtection, ValidatingAdmissionWebhook. The order of plugins in this flag does not matter.</p>
+<p>Q: Admission webhook是啥？<br>A: 官方定义：</p>
+<p>Admission webhooks are HTTP callbacks that receive admission requests and do something with them.</p>
+<p>简单来说webhook就是一个HTTP回调，接收admission请求，处理并返回。<br>用户可以定义两种webhook:</p>
+<p>validating admission webhook<br>mutating admission webhook<br>一个用于验证，另一个用于修改。<br>webhook回调，接收API Server发送的admissionReview请求，并返回 admissionResponse。</p>
+<p>K: 回调，admissionReview请求，admissionResponse返回。<br>Q: 如何配置和查看WebhookConfiguration?<br>A: 以Validating为例，查看：<br>kubectl get ValidatingWebhookConfiguration</p>
+<p>ValidatingWebhookConfiguration的资源定义：<br>apiVersion: admissionregistration.k8s.io/v1beta1<br>kind: ValidatingWebhookConfiguration<br>metadata:<br>  name: <name of this configuration object><br>webhooks:</name></p>
+<ul>
+<li>name: <webhook name, e.g., pod-policy.example.io><br>rules:<ul>
+<li>apiGroups:<ul>
+<li>“”<br>apiVersions:</li>
+<li>v1<br>operations:</li>
+<li>CREATE<br>resources:</li>
+<li>pods<br>clientConfig:<br>service:<br>namespace: <namespace of the front-end service><br>name: <name of the front-end service><br>caBundle: <pem encoded ca cert that signs the server used by webhook></pem></name></namespace></li>
+</ul>
+</li>
+</ul>
+</webhook></li>
+</ul>
+<p>其中rules定义了匹配规则，当发给API Server的请求满足该规则的时候，API Server就会给clientConfig中配置的service发送Admission请求。<br>使用webhook有什么要求？<br>A: 几点：</p>
+<p>kubernetes版本最低是v1.9<br>api server使能（enable）了MutatingAdmissionWebhook和ValidatingAdmissionWebhook<br>admissionregistration.k8s.io/v1beta1 API处于enable状态，即使用kubectl api-versions | grep admissionregistration.k8s.io/v1beta1</p>
+<p>Q: 如何自己写一个webhook?<br>A: 需要完成几个事情：</p>
+<p>创建TLS Certificate，即证书<br>编写服务端代码，服务端代码需要使用证书<br>根据证书创建k8s sercret<br>创建k8s Deployment和Service<br>创建k8s WebhookConfiguration，其中需要使用之前创建的证书</p>
+<p>具体代码和流程参见[3]［4］<br>参考文献：<br>[1] <a href="https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/" target="_blank" rel="noopener">https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/</a><br>[2] <a href="https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/#admission-webhooks" target="_blank" rel="noopener">https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/#admission-webhooks</a><br>[3] <a href="https://banzaicloud.com/blog/k8s-admission-webhooks/" target="_blank" rel="noopener">https://banzaicloud.com/blog/k8s-admission-webhooks/</a><br>[4] <a href="https://github.com/morvencao/kube-mutating-webhook-tutorial" target="_blank" rel="noopener">https://github.com/morvencao/kube-mutating-webhook-tutorial</a><br>[5] <a href="https://github.com/banzaicloud/admission-webhook-example" target="_blank" rel="noopener">https://github.com/banzaicloud/admission-webhook-example</a></p>
+<p>作者：Mr_Hospital<br>链接：<a href="https://www.jianshu.com/p/39ae0b6fc907" target="_blank" rel="noopener">https://www.jianshu.com/p/39ae0b6fc907</a><br>来源：简书<br>简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/27/golang-ca/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="pengemailcom@163.com">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Peng">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/06/27/golang-ca/" itemprop="url">golang-ca</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-06-27T13:53:49+08:00">
+                2019-06-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/26/nats/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="pengemailcom@163.com">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Peng">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/06/26/nats/" itemprop="url">nats</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-06-26T11:31:42+08:00">
+                2019-06-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/25/kubeadm/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -248,7 +641,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/06/25/kubeadm/" itemprop="url">kubeadm</a></h1>
+                <a class="post-title-link" href="/2019/06/25/kubeadm/" itemprop="url">使用kubeam实现master高可用</a></h1>
         
 
         <div class="post-meta">
@@ -300,7 +693,18 @@
       
         
           
-            
+            <p>##kubeadm-config.yaml<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">apiVersion: kubeadm.k8s.io/v1beta2</span><br><span class="line">kind: ClusterConfiguration</span><br><span class="line">kubernetesVersion: 1.15.0</span><br><span class="line">controlPlaneEndpoint: &quot;10.0.0.101:8443&quot;</span><br><span class="line">imageRepository: registry.aliyuncs.com/google_containers</span><br><span class="line">networking:</span><br><span class="line">  podSubnet: 10.148.0.0/16</span><br><span class="line">  serviceSubnet: 10.196.0.0/12</span><br></pre></td></tr></table></figure></p>
+<p>##haproxy.cfg<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d --net host  --name haproxy2 -v $(pwd)/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg haproxy:2.0</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">global</span><br><span class="line">    maxconn 10000                   #默认最大连接数</span><br><span class="line">    log 127.0.0.1 local0            #[err warning info debug]</span><br><span class="line">    chroot /usr/local/sbin            #chroot运行的路径</span><br><span class="line">    daemon                          #以后台形式运行haproxy</span><br><span class="line">    pidfile /var/run/haproxy.pid</span><br><span class="line"></span><br><span class="line">defaults</span><br><span class="line">    log 127.0.0.1 local3</span><br><span class="line">    mode http                       #所处理的类别 (#7层 http;4层tcp  )</span><br><span class="line">    maxconn 10000                   #最大连接数</span><br><span class="line">    option dontlognull              #不记录健康检查的日志信息</span><br><span class="line">    option redispatch               #serverId对应的服务器挂掉后,强制定向到其他健康的服务器</span><br><span class="line">    #stats refresh 30                #统计页面刷新间隔</span><br><span class="line">    retries 3                       #3次连接失败就认为服务不可用，也可以通过后面设置</span><br><span class="line">    balance roundrobin              #默认的负载均衡的方式,轮询方式</span><br><span class="line">    #balance source                  #默认的负载均衡的方式,类似nginx的ip_hash</span><br><span class="line">    #balance leastconn               #默认的负载均衡的方式,最小连接</span><br><span class="line">    timeout connect 5000                 #连接超时</span><br><span class="line">    timeout client 50000                #客户端超时</span><br><span class="line">    timeout server 50000                #服务器超时</span><br><span class="line">    timeout check 2000              #心跳检测超时</span><br><span class="line"></span><br><span class="line">listen  admin_stats</span><br><span class="line">    bind 0.0.0.0:10080</span><br><span class="line">    mode http</span><br><span class="line">    log 127.0.0.1 local0 err</span><br><span class="line">    stats refresh 30s</span><br><span class="line">    stats uri /status</span><br><span class="line">    stats realm welcome login\ Haproxy</span><br><span class="line">    stats auth admin:123456</span><br><span class="line">    stats hide-version</span><br><span class="line">    stats admin if TRUE</span><br><span class="line"></span><br><span class="line">listen kube-master</span><br><span class="line">    bind 0.0.0.0:8443</span><br><span class="line">    mode tcp</span><br><span class="line">    option tcplog</span><br><span class="line">    balance source</span><br><span class="line">    server 10.0.0.106 10.0.0.106:6443 check inter 2000 fall 2 rise 2 weight 1</span><br><span class="line">    server 10.0.0.102 10.0.0.102:6443 check inter 2000 fall 2 rise 2 weight 1</span><br><span class="line">    server 10.0.0.101 10.0.0.101:6443 check inter 2000 fall 2 rise 2 weight 1</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">cat &lt;&lt;EOF &gt;  /etc/sysctl.d/k8s.conf</span><br><span class="line">net.bridge.bridge-nf-call-ip6tables = 1</span><br><span class="line">net.bridge.bridge-nf-call-iptables = 1</span><br><span class="line">EOF</span><br><span class="line">sysctl --system</span><br><span class="line">setenforce 0</span><br><span class="line">swapoff -a</span><br><span class="line">sed -i &apos;s/^SELINUX=enforcing$/SELINUX=permissive/&apos; /etc/selinux/config</span><br><span class="line"></span><br><span class="line">cat &lt;&lt;EOF &gt; /etc/yum.repos.d/kubernetes.repo</span><br><span class="line">[kubernetes]</span><br><span class="line">name=Kubernetes</span><br><span class="line">baseurl=https://mirrors.aliyun.com/kubernetes/yum/repos/kubernetes-el7-x86_64</span><br><span class="line">enabled=1</span><br><span class="line">gpgcheck=1</span><br><span class="line">repo_gpgcheck=1</span><br><span class="line">gpgkey=https://mirrors.aliyun.com/kubernetes/yum/doc/yum-key.gpg https://mirrors.aliyun.com/kubernetes/yum/doc/rpm-package-key.gpg</span><br><span class="line">EOF</span><br><span class="line"># 安装</span><br><span class="line">yum install -y kubectl kubelet kubeadm</span><br><span class="line"># 开机启动</span><br><span class="line">systemctl enable kubelet</span><br><span class="line"># 启动</span><br><span class="line">systemctl start kubelet</span><br></pre></td></tr></table></figure>
+<p>初始化第一套集群,完成之后按照提示 cp /etc/kubernetes/admin.conf ~/.kube/config<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubeadm init --config=kubeadm-config.yaml --upload-certs -v=10</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/a70459be0084506e4ec919aa1c114638878db11b/Documentation/kube-flannel.yml</span><br></pre></td></tr></table></figure>
+<p>添加master 节点<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">如果忘了--certificate-key 值就用这个命令去master 生成一个</span><br><span class="line">kubeadm init phase upload-certs --experimental-upload-certs</span><br><span class="line">或</span><br><span class="line">kubeadm alpha certs certificate-key</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">kubeadm join 10.0.0.101:8443 --token u20jmk.7cnbp7soe1e7vr4l \</span><br><span class="line">    --discovery-token-ca-cert-hash sha256:3a5206c743a9369c2386db8bf181b78765862c4eb9caf12e332b6868db20633a \</span><br><span class="line">    --experimental-control-plane --certificate-key 4af91f16c3997bc59a56cfc0e3061f6086c62012f4e7e4ed9da84b4622fc9d89</span><br></pre></td></tr></table></figure>
+<p>添加worker 节点<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">kubeadm join 10.0.0.101:8443 --token u20jmk.7cnbp7soe1e7vr4l \</span><br><span class="line">    --discovery-token-ca-cert-hash sha256:3a5206c743a9369c2386db8bf181b78765862c4eb9caf12e332b6868db20633a </span><br><span class="line"></span><br><span class="line">可以print一个 join cluster command</span><br><span class="line">kubeadm  token create --print-join-command</span><br></pre></td></tr></table></figure></p>
+<p>其他命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubeadm reset  //重置node</span><br></pre></td></tr></table></figure></p>
+<p>参考：<a href="https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/high-availability/" target="_blank" rel="noopener">https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/high-availability/</a></p>
+
           
         
       
@@ -1259,392 +1663,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/12/ansible/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="pengemailcom@163.com">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Peng">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/04/12/ansible/" itemprop="url">ansible</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-12T23:44:42+08:00">
-                2019-04-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>#install ansible<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">python  --version</span><br><span class="line">Python 2.7.10</span><br><span class="line">sudo easy_install pip</span><br><span class="line">sudo pip install ansible</span><br></pre></td></tr></table></figure></p>
-<p>dome :<br><a href="https://blog.csdn.net/pushiqiang/article/details/78126063" target="_blank" rel="noopener">https://blog.csdn.net/pushiqiang/article/details/78126063</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ansible -i ./hosts local --connection=local -b --become-user=root -m shell -a &quot;ls&quot;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-b - “成为”，在运行命令时告诉可以成为另一个用户。</span><br><span class="line">--become-user=root - 以用户“root”运行以下命令（例如，使用命令使用“sudo”）。我们可以在此定义任何现有的用户。</span><br><span class="line">-a 用于将任何参数传递给定义的模块 -m</span><br></pre></td></tr></table></figure>
-<p>进行免密登陆<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh-agent</span><br><span class="line">ssh-copy-id root@127.0.0.1</span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/12/如何在-Linux-中不使用-CD-命令进入目录-文件夹/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="pengemailcom@163.com">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Peng">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/04/12/如何在-Linux-中不使用-CD-命令进入目录-文件夹/" itemprop="url">如何在 Linux 中不使用 CD 命令进入目录/文件夹</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-12T10:00:06+08:00">
-                2019-04-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>众所周知，如果没有 cd 命令，我们无法 Linux 中切换目录。这个没错，但我们有一个名为 shopt的 Linux 内置命令能帮助我们解决这个问题。</p>
-<p>shopt[1] 是一个 shell 内置命令，用于设置和取消设置各种 bash shell 选项，由于它已安装，因此我们不需要再次安装它。</p>
-<p>是的，我们可以在启用此选项后，可以不使用 cd 命令切换目录。</p>
-<p>我们将在本文中向你展示如何操作。这是一个小的调整，但对于那些从 Windows 迁移到 Linux 的新手来说非常有用。</p>
-<p>这对 Linux 管理员没用，因为我们不会在没有 cd 命令的情况下切换到该目录，因为我们对此有经验。</p>
-<p>如果你尝试在没有 cd 命令的情况下切换 Linux 的目录/文件夹，你将看到以下错误消息。这在 Linux 中很常见。</p>
-<p>$ Documents/<br>bash: Documents/: Is a directory<br>为此，我们需要在用户 .bashrc 中追加以下值。</p>
-<p>什么是 .bashrc ？</p>
-<p>.bashrc 是一个 shell 脚本，每次用户以交互模式打开新 shell 时都会运行该脚本。</p>
-<p>你可以在该文件中添加要在命令提示符下输入的任何命令。</p>
-<p>.bashrc 文件本身包含终端会话的一系列配置。包括设置和启用：着色、补全，shell 历史，命令别名等。</p>
-<p>$ vi ~/.bashrc<br>加入这一行：</p>
-<p>shopt -s autocd<br>运行以下命令使更改生效。</p>
-<p>$ source ~/.bashrc<br>我们已完成所有配置。简单地对此进行测试以确认这是否有效。</p>
-<p>$ Documents/<br>cd – Documents/<br>$ daygeek/<br>cd – daygeek/<br>$ /home/daygeek/Documents/daygeek<br>cd – /home/daygeek/Documents/daygeek<br>$ pwd<br>/home/daygeek/Documents/daygeek</p>
-<p>是的，它正如预期的那样正常工作。</p>
-<p>而且，它在 fish shell 中工作正常，而无需对 .bashrc 进行任何更改。</p>
-<p>如果要暂时执行此操作，请使用以下命令（设置或取消设置）。重启系统时，它将消失。</p>
-<h1 id="shopt-s-autocd"><a href="#shopt-s-autocd" class="headerlink" title="shopt -s autocd"></a>shopt -s autocd</h1><h1 id="shopt-grep-autocd"><a href="#shopt-grep-autocd" class="headerlink" title="shopt | grep autocd"></a>shopt | grep autocd</h1><p>autocd  on</p>
-<h1 id="shopt-u-autocd"><a href="#shopt-u-autocd" class="headerlink" title="shopt -u autocd"></a>shopt -u autocd</h1><h1 id="shopt-grep-autocd-1"><a href="#shopt-grep-autocd-1" class="headerlink" title="shopt | grep autocd"></a>shopt | grep autocd</h1><p>autocd  off<br>shopt 命令提供了许多其他选项，如果要验证这些选项，请运行以下命令。</p>
-<p>$ shopt<br>autocd  on<br>assoc_expand_once   off<br>cdable_vars     off<br>cdspell     on<br>checkhash   off<br>checkjobs   off<br>checkwinsize    on<br>cmdhist     on<br>compat31    off<br>compat32    off<br>compat40    off<br>compat41    off<br>compat42    off<br>compat43    off<br>compat44    off<br>complete_fullquote  on<br>direxpand   off<br>dirspell    off<br>dotglob     off<br>execfail    off<br>expand_aliases  on<br>extdebug    off<br>extglob     off<br>extquote    on<br>failglob    off<br>force_fignore   on<br>globasciiranges on<br>globstar    off<br>gnu_errfmt  off<br>histappend  on<br>histreedit  off<br>histverify  off<br>hostcomplete    on<br>huponexit   off<br>inherit_errexit off<br>interactive_comments    on<br>lastpipe    off<br>lithist     off<br>localvar_inherit    off<br>localvar_unset  off<br>login_shell     off<br>mailwarn    off<br>no_empty_cmd_completion off<br>nocaseglob  off<br>nocasematch     off<br>nullglob    off<br>progcomp    on<br>progcomp_alias  off<br>promptvars  on<br>restricted_shell    off<br>shift_verbose   off<br>sourcepath  on<br>xpg_echo    off<br>此外，我找到了一些其他程序，它们可以帮助我们在 Linux 中比 cd 命令更快地切换目录。</p>
-<p>它们是 pushd、popd、up shell 脚本和 bd 工具。我们将在接下来的文章中介绍这些主题。</p>
-<p>via: <a href="https://www.2daygeek.com/navigate-switch-directory-without-using-cd-command-in-linux/" target="_blank" rel="noopener">https://www.2daygeek.com/navigate-switch-directory-without-using-cd-command-in-linux/</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/08/vim/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="pengemailcom@163.com">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Peng">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/04/08/vim/" itemprop="url">vim基本操作</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-08T21:49:32+08:00">
-                2019-04-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">w 或 W	光标移动至下一个单词的单词首</span><br><span class="line"></span><br><span class="line">b 或 B	光标移动至上一个单词的单词首</span><br><span class="line"></span><br><span class="line">e 或 E	光标移动至下一个单词的单词尾</span><br><span class="line"></span><br><span class="line">nw 或 nW	n 为数字，表示光标向右移动 n 个单词</span><br><span class="line"></span><br><span class="line">nb 或 nB	n 为数字，表示光标向左移动 n 个单词</span><br><span class="line"></span><br><span class="line">0 或 ^	光标移动至当前行的行首</span><br><span class="line"></span><br><span class="line">$	光标移动至当前行的行尾</span><br><span class="line"></span><br><span class="line">n$	光标移动至当前行只有 n 行的行尾，n为数字</span><br><span class="line"></span><br><span class="line">例如，在査看 /etc/passwd 时需要参考 /etc/shadow，有两种办法可以实现：</span><br><span class="line"></span><br><span class="line">先使用 Vim 打开第一个文件，接着输入命 令 &quot;:sp/etc/shadow&quot; 水平切分窗口，然后按回车键；如果想垂直切分窗口则可以输入 &quot;:vs/etc/shadow&quot;;</span><br><span class="line"></span><br><span class="line">可以直接执行命令&quot;vim -o 第一个文件名 第二个文件名&quot;，也就是 &quot;vim-o /etc/passwd /etc/shadow&quot;。</span><br><span class="line"></span><br><span class="line">如果想将一个文件的内容全部复制到另一个文件中，则可以输入命令 &quot;:r 被复制的文件名&quot;，即可将导入文件的全部内容复制到当前光标所在行下面。</span><br><span class="line"></span><br><span class="line">设置参数	含 义</span><br><span class="line">:set nu</span><br><span class="line">:set nonu	设置与取消行号。</span><br><span class="line">:syn on</span><br><span class="line">:syn off	是否依据语法显示相关的颜色帮助。在Vim中修改相关的配置文件或Shell脚本文件 时（如前面示例的脚本/etc/init.d/sshd)，默认会显示相应的颜色，用来帮助排错。如果觉得颜色产生了干扰，则可以取消此设置</span><br><span class="line">set hlsearch</span><br><span class="line">set nohlsearch	设置是否将査找的字符串高亮显示。默认是hlsearch高亮显示</span><br><span class="line">set nobackup</span><br><span class="line">set backup	是否保存自动备份文件。默认是nobackup不自动备份。如果设定了:set backup，则会产生“文件名〜”作为备份文件</span><br><span class="line">set ruler</span><br><span class="line">set noruler	设置是否显示右下角的状态栏。默认是ruler显示</span><br><span class="line">set showmode</span><br><span class="line">set noshowmode	设置是否在左下角显示如“一INSERT--”之类的状态栏。默认是showmode显示</span><br><span class="line"></span><br><span class="line">  x 删除当前光标下的字符(&quot;dl&quot;的快捷命令)</span><br><span class="line">  X 删除当前光标之前的字符(&quot;dh&quot;的快捷命令)</span><br><span class="line">  D 删除自当前光标至行尾的内容(&quot;d$&quot;的快捷命令)</span><br><span class="line">  dw 删除自当前光标至下一个word的开头</span><br><span class="line">  db 删除自当前光标至前一个word的开始</span><br><span class="line">  diw 删除当前光标所在的word(不包括空白字符)</span><br><span class="line">  daw 删除当前光标所在的word(包括空白字符)</span><br><span class="line">  dG 删除当前行至文件尾的内容</span><br><span class="line">  dgg 删除当前行至文件头的内容</span><br><span class="line">  如果你用&quot;c&quot;命令代替&quot;d&quot;这些命令就都变成更改命令。使用&quot;y&quot;就是yank命令，如此类推。</span><br><span class="line"></span><br><span class="line">  在文本中查找下一个word</span><br><span class="line">  把光标定位于这个word上然后按下&quot;*&quot;键。Vim将会取当前光标所在的word并将它作用目标字符串进行搜索。&quot;#&quot;命令是&quot;*&quot;的反向版。还可以在这两个命令前加一个命令计数:&quot;3*&quot;查找当前光标下的word的第三次出现。</span><br><span class="line"></span><br><span class="line"># 大小写转换</span><br><span class="line">guu                             : 行小写</span><br><span class="line">gUU                             : 行大写</span><br><span class="line">g~~                             : 行翻转</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1695,7 +1713,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-count">28</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
