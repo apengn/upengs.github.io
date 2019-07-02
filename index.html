@@ -1,1927 +1,725 @@
 <!DOCTYPE html>
-
-
-
-  
-
-
-<html class="theme-next muse use-motion" lang>
+<html>
 <head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="theme-color" content="#222">
-
-
-
-
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000">
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top">
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
-
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
-
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="Hexo, NexT">
-
-
-
-
-
-
-
-
-
-
-<meta property="og:type" content="website">
+  <title>Hexo</title>
+  <meta property="og:type" content="website">
 <meta property="og:title" content="Peng">
 <meta property="og:url" content="http://yoursite.com/index.html">
 <meta property="og:site_name" content="Peng">
 <meta property="og:locale" content="default">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Peng">
-
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Muse',
-    version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: 'Author'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-
-  <link rel="canonical" href="http://yoursite.com/">
-
-
-
-
-
-  <title>Peng</title>
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://yoursite.com/index.html">
   
-
-
-
-
-
-
-
-
+    <link rel="alternate" href="/atom.xml" title="Peng" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+  
+  
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="default">
 
-  
-  
-    
-  
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/upengs" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.png" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">upengs</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Golang Developer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> SiChuan, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
 
-  <div class="container sidebar-position-left 
-  page-home">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Peng</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search">
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech>
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
     </div>
-      
-        <p class="site-subtitle">Welcome to my Blogs!</p>
-      
-  </div>
-
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
   </div>
 </div>
 
-<nav class="site-nav">
-  
 
-  
-    <ul id="menu" class="menu">
-      
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
         
         <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
+          <a href="/.">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            <i class="icon icon-home-fill"></i>
             
-            Home
+            <span class="menu-title">Home</span>
           </a>
         </li>
-      
+        
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
+          <a href="/archives">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            <i class="icon icon-archives-fill"></i>
             
-            Archives
+            <span class="menu-title">Archives</span>
           </a>
         </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">Categories</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">Tags</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">Repository</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-books">
+          <a href="/books">
+            
+            <i class="icon icon-book-fill"></i>
+            
+            <span class="menu-title">Books</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">Links</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
       
-
-      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/upengs" target="_blank" title="Github" data-toggle="tooltip" data-placement="top"><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/upengs" target="_blank" title="Weibo" data-toggle="tooltip" data-placement="top"><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/upengs" target="_blank" title="Twitter" data-toggle="tooltip" data-placement="top"><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/upengs" target="_blank" title="Behance" data-toggle="tooltip" data-placement="top"><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle="tooltip" data-placement="top"><i class="icon icon-rss"></i></a></li>
+        
     </ul>
-  
 
-  
-</nav>
-
-
-
- </div>
-    </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-  <section id="posts" class="posts-expand">
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/golang/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="pengemailcom@163.com">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Peng">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/06/28/golang/" itemprop="url">golang</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-06-28T14:47:23+08:00">
-                2019-06-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
+    </nav>
   </div>
-  
-  
-  
-  </article>
+</header>
 
-
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/webhook/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="pengemailcom@163.com">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Peng">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/06/28/webhook/" itemprop="url">kubernetes webhook</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-06-28T14:39:47+08:00">
-                2019-06-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Kubernetes中的Admission-Controller是做什么的呢？有什么用呢？怎么自己定义一个呢？"><a href="#Kubernetes中的Admission-Controller是做什么的呢？有什么用呢？怎么自己定义一个呢？" class="headerlink" title="Kubernetes中的Admission Controller是做什么的呢？有什么用呢？怎么自己定义一个呢？"></a>Kubernetes中的Admission Controller是做什么的呢？有什么用呢？怎么自己定义一个呢？</h1><h2 id="Q-什么是Admission-Controller"><a href="#Q-什么是Admission-Controller" class="headerlink" title="Q: 什么是Admission Controller?"></a>Q: 什么是Admission Controller?</h2><p>A: 官方定义：</p>
-<p>An admission controller is a piece of code that intercepts requests to the Kubernetes API server prior to persistence of the object, but after the request is authenticated and authorized.</p>
-<p>我理解的：</p>
-<p>Admission Controller是一个拦截器<br>拦截发送给Kuberenetes API Server的请求<br>什么时候拦截？在请求通过认证之后，请求被存储起来之前</p>
-<p>所以顺理成章，由于拦截的是发送给API Server的请求，所以Admission Controller存在于API Server内部，即compiled into the kube-apiserver binary（被编译进API Server的可执行文件里）。<br>kubernetes将AC分为三种：</p>
-<p>validating，验证型。用于验证k8s的资源定义是否符合规则<br>mutating，修改型。用于修改k8s的资源定义，比如加个label什么的<br>二者皆是，即同一个AC，既是验证型又是修改型</p>
-<p>多个Admission Controller会形成一个Admission Chain（链条），修改型的在前面先执行，验证型的在后面后执行，这样验证型的才能去验证修改的对不对。<br>K: interceptor, validating, mutating, Admission Chain<br>Q: Admission Controller有什么用？<br>A: API Server内置了一些AC，有各种各样的作用[1]。比如：</p>
-<p>EventRateLimit，用于限制事件的频率<br>LimitRanger，验证所有的请求都没有超出namespace中定义的LimitRange</p>
-<p>还有很多其他AC，具体请参考Kubernetes文档。<br>这些AC中，有两个对用户来说比较有用：</p>
-<p>MutatingAdmissionWebhook，这是一个webhook，即网络钩子，也就是说该AC会去请求服务端，并执行相应的逻辑<br>ValidatingAdmissionWebhook，也是一个webhook，只是用于验证</p>
-<p>Q: 怎么查看哪些AC是打开了的？<br>A: 文档上写的用：kube-apiserver -h | grep enable-admission-plugins。但是由于本地是minikube，进入虚拟机之后并没有发现kube-apiserver命令。<br>后来发现api-server是以pod的形式运行的：<br>kubectl get pods -n kube-system</p>
-<p>于是，使用kubectl exec登入pod，然后调用上述的指令，其结果为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">kube-apiserver -h | grep enable-admission-plugins</span><br><span class="line">      --admission-control strings              Admission is divided into two phases. In the first phase, only mutating admission plugins run. In the second phase, only validating admission plugins run. The names in the below list may represent a validating plugin, a mutating plugin, or both. The order of plugins in which they are passed to this flag does not matter. Comma-delimited list of: AlwaysAdmit, AlwaysDeny, AlwaysPullImages, DefaultStorageClass, DefaultTolerationSeconds, DenyEscalatingExec, DenyExecOnPrivileged, EventRateLimit, ExtendedResourceToleration, ImagePolicyWebhook, Initializers, LimitPodHardAntiAffinityTopology, LimitRanger, MutatingAdmissionWebhook, NamespaceAutoProvision, NamespaceExists, NamespaceLifecycle, NodeRestriction, OwnerReferencesPermissionEnforcement, PersistentVolumeClaimResize, PersistentVolumeLabel, PodNodeSelector, PodPreset, PodSecurityPolicy, PodTolerationRestriction, Priority, ResourceQuota, SecurityContextDeny, ServiceAccount, StorageObjectInUseProtection, ValidatingAdmissionWebhook. (DEPRECATED: Use --enable-admission-plugins or --disable-admission-plugins instead. Will be removed in a future version.)</span><br><span class="line">      --enable-admission-plugins strings       admission plugins that should be enabled in addition to default enabled ones (NamespaceLifecycle, LimitRanger, ServiceAccount, Priority, DefaultTolerationSeconds, DefaultStorageClass, PersistentVolumeClaimResize, MutatingAdmissionWebhook, ValidatingAdmissionWebhook, ResourceQuota). Comma-delimited list of admission plugins: AlwaysAdmit, AlwaysDeny, AlwaysPullImages, DefaultStorageClass, DefaultTolerationSeconds, DenyEscalatingExec, DenyExecOnPrivileged, EventRateLimit, ExtendedResourceToleration, ImagePolicyWebhook, Initializers, LimitPodHardAntiAffinityTopology, LimitRanger, MutatingAdmissionWebhook, NamespaceAutoProvision, NamespaceExists, NamespaceLifecycle, NodeRestriction, OwnerReferencesPermissionEnforcement, PersistentVolumeClaimResize, PersistentVolumeLabel, PodNodeSelector, PodPreset, PodSecurityPolicy, PodTolerationRestriction, Priority, ResourceQuota, SecurityContextDeny, ServiceAccount, StorageObjectInUseProtection, ValidatingAdmissionWebhook. The order of plugins in this flag does not matter.</span><br></pre></td></tr></table></figure></p>
-<h2 id="Q-Admission-webhook是啥？"><a href="#Q-Admission-webhook是啥？" class="headerlink" title="Q: Admission webhook是啥？"></a>Q: Admission webhook是啥？</h2><p>A: 官方定义：</p>
-<p>Admission webhooks are HTTP callbacks that receive admission requests and do something with them.</p>
-<p>简单来说webhook就是一个HTTP回调，接收admission请求，处理并返回。<br>用户可以定义两种webhook:</p>
-<p>validating admission webhook<br>mutating admission webhook<br>一个用于验证，另一个用于修改。<br>webhook回调，接收API Server发送的admissionReview请求，并返回 admissionResponse。</p>
-<p>K: 回调，admissionReview请求，admissionResponse返回。<br>Q: 如何配置和查看WebhookConfiguration?<br>A: 以Validating为例，查看：<br>kubectl get ValidatingWebhookConfiguration</p>
-<h3 id="ValidatingWebhookConfiguration的资源定义："><a href="#ValidatingWebhookConfiguration的资源定义：" class="headerlink" title="ValidatingWebhookConfiguration的资源定义："></a>ValidatingWebhookConfiguration的资源定义：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">apiVersion: admissionregistration.k8s.io/v1beta1</span><br><span class="line">kind: ValidatingWebhookConfiguration</span><br><span class="line">metadata:</span><br><span class="line">  name: &lt;name of this configuration object&gt;</span><br><span class="line">webhooks:</span><br><span class="line">- name: &lt;webhook name, e.g., pod-policy.example.io&gt;</span><br><span class="line">  rules:</span><br><span class="line">  - apiGroups:</span><br><span class="line">    - &quot;&quot;</span><br><span class="line">    apiVersions:</span><br><span class="line">    - v1</span><br><span class="line">    operations:</span><br><span class="line">    - CREATE</span><br><span class="line">    resources:</span><br><span class="line">    - pods</span><br><span class="line">  clientConfig:</span><br><span class="line">    service:</span><br><span class="line">      namespace: &lt;namespace of the front-end service&gt;</span><br><span class="line">      name: &lt;name of the front-end service&gt;</span><br><span class="line">    caBundle: &lt;pem encoded ca cert that signs the server cert used by the webhook&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="其中rules定义了匹配规则，当发给API-Server的请求满足该规则的时候，API-Server就会给clientConfig中配置的service发送Admission请求。"><a href="#其中rules定义了匹配规则，当发给API-Server的请求满足该规则的时候，API-Server就会给clientConfig中配置的service发送Admission请求。" class="headerlink" title="其中rules定义了匹配规则，当发给API Server的请求满足该规则的时候，API Server就会给clientConfig中配置的service发送Admission请求。"></a>其中rules定义了匹配规则，当发给API Server的请求满足该规则的时候，API Server就会给clientConfig中配置的service发送Admission请求。</h3><p>使用webhook有什么要求？<br>A: 几点：</p>
-<p>kubernetes版本最低是v1.9<br>api server使能（enable）了MutatingAdmissionWebhook和ValidatingAdmissionWebhook<br>admissionregistration.k8s.io/v1beta1 API处于enable状态，即使用kubectl api-versions | grep admissionregistration.k8s.io/v1beta1</p>
-<p>###Q: 如何自己写一个webhook?</p>
-<h3 id="A-需要完成几个事情："><a href="#A-需要完成几个事情：" class="headerlink" title="A: 需要完成几个事情："></a>A: 需要完成几个事情：</h3><p>创建TLS Certificate，即证书<br>编写服务端代码，服务端代码需要使用证书<br>根据证书创建k8s sercret<br>创建k8s Deployment和Service<br>创建k8s WebhookConfiguration，其中需要使用之前创建的证书</p>
-<p>具体代码和流程参见[3]［4］<br>参考文献：<br>[1] <a href="https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/" target="_blank" rel="noopener">https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/</a><br>[2] <a href="https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/#admission-webhooks" target="_blank" rel="noopener">https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/#admission-webhooks</a><br>[3] <a href="https://banzaicloud.com/blog/k8s-admission-webhooks/" target="_blank" rel="noopener">https://banzaicloud.com/blog/k8s-admission-webhooks/</a><br>[4] <a href="https://github.com/morvencao/kube-mutating-webhook-tutorial" target="_blank" rel="noopener">https://github.com/morvencao/kube-mutating-webhook-tutorial</a><br>[5] <a href="https://github.com/banzaicloud/admission-webhook-example" target="_blank" rel="noopener">https://github.com/banzaicloud/admission-webhook-example</a></p>
-<p>作者：Mr_Hospital<br>链接：<a href="https://www.jianshu.com/p/39ae0b6fc907" target="_blank" rel="noopener">https://www.jianshu.com/p/39ae0b6fc907</a><br>来源：简书<br>简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。</p>
-
-          
-        
-      
     </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/27/golang-ca/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="pengemailcom@163.com">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Peng">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/06/27/golang-ca/" itemprop="url">golang-ca</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-06-27T13:53:49+08:00">
-                2019-06-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/26/nats/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="pengemailcom@163.com">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Peng">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/06/26/nats/" itemprop="url">nats</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-06-26T11:31:42+08:00">
-                2019-06-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/25/kubeadm/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="pengemailcom@163.com">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Peng">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/06/25/kubeadm/" itemprop="url">使用kubeam install kubernets v1.15.0 实现master高可用</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-06-25T18:27:03+08:00">
-                2019-06-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>确保每台node都安装了 docker<br>参考：<a href="https://docs.docker.com/install/linux/docker-ce/centos/" target="_blank" rel="noopener">https://docs.docker.com/install/linux/docker-ce/centos/</a></p>
-<h2 id="kubeadm-config-yaml"><a href="#kubeadm-config-yaml" class="headerlink" title="kubeadm-config.yaml"></a>kubeadm-config.yaml</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">apiVersion: kubeadm.k8s.io/v1beta2</span><br><span class="line">kind: ClusterConfiguration</span><br><span class="line">kubernetesVersion: 1.15.0</span><br><span class="line">controlPlaneEndpoint: &quot;10.0.0.101:8443&quot;  # haproxy host</span><br><span class="line">imageRepository: registry.aliyuncs.com/google_containers</span><br><span class="line">networking:</span><br><span class="line">  podSubnet: 10.148.0.0/16</span><br><span class="line">  serviceSubnet: 10.196.0.0/12</span><br></pre></td></tr></table></figure>
-<h2 id="haproxy-cfg"><a href="#haproxy-cfg" class="headerlink" title="haproxy.cfg"></a>haproxy.cfg</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d --net host  --name haproxy -v $(pwd)/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg haproxy:2.0</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">global</span><br><span class="line">    maxconn 10000                   #默认最大连接数</span><br><span class="line">    log 127.0.0.1 local0            #[err warning info debug]</span><br><span class="line">    chroot /usr/local/sbin            #chroot运行的路径</span><br><span class="line">    daemon                          #以后台形式运行haproxy</span><br><span class="line">    pidfile /var/run/haproxy.pid</span><br><span class="line"></span><br><span class="line">defaults</span><br><span class="line">    log 127.0.0.1 local3</span><br><span class="line">    mode http                       #所处理的类别 (#7层 http;4层tcp  )</span><br><span class="line">    maxconn 10000                   #最大连接数</span><br><span class="line">    option dontlognull              #不记录健康检查的日志信息</span><br><span class="line">    option redispatch               #serverId对应的服务器挂掉后,强制定向到其他健康的服务器</span><br><span class="line">    #stats refresh 30                #统计页面刷新间隔</span><br><span class="line">    retries 3                       #3次连接失败就认为服务不可用，也可以通过后面设置</span><br><span class="line">    balance roundrobin              #默认的负载均衡的方式,轮询方式</span><br><span class="line">    #balance source                  #默认的负载均衡的方式,类似nginx的ip_hash</span><br><span class="line">    #balance leastconn               #默认的负载均衡的方式,最小连接</span><br><span class="line">    timeout connect 5000                 #连接超时</span><br><span class="line">    timeout client 50000                #客户端超时</span><br><span class="line">    timeout server 50000                #服务器超时</span><br><span class="line">    timeout check 2000              #心跳检测超时</span><br><span class="line"></span><br><span class="line">listen  admin_stats</span><br><span class="line">    bind 0.0.0.0:10080</span><br><span class="line">    mode http</span><br><span class="line">    log 127.0.0.1 local0 err</span><br><span class="line">    stats refresh 30s</span><br><span class="line">    stats uri /status</span><br><span class="line">    stats realm welcome login\ Haproxy</span><br><span class="line">    stats auth admin:123456</span><br><span class="line">    stats hide-version</span><br><span class="line">    stats admin if TRUE</span><br><span class="line"></span><br><span class="line">listen kube-master</span><br><span class="line">    bind 0.0.0.0:8443</span><br><span class="line">    mode tcp</span><br><span class="line">    option tcplog</span><br><span class="line">    balance source</span><br><span class="line">    server 10.0.0.106 10.0.0.106:6443 check inter 2000 fall 2 rise 2 weight 1</span><br><span class="line">    server 10.0.0.102 10.0.0.102:6443 check inter 2000 fall 2 rise 2 weight 1</span><br><span class="line">    server 10.0.0.101 10.0.0.101:6443 check inter 2000 fall 2 rise 2 weight 1</span><br></pre></td></tr></table></figure>
-<p> 在每台node上执行，kubectl 建议只在在master 安装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">cat &lt;&lt;EOF &gt;  /etc/sysctl.d/k8s.conf</span><br><span class="line">net.bridge.bridge-nf-call-ip6tables = 1</span><br><span class="line">net.bridge.bridge-nf-call-iptables = 1</span><br><span class="line">EOF</span><br><span class="line">sysctl --system</span><br><span class="line">setenforce 0</span><br><span class="line">swapoff -a</span><br><span class="line">sed -i &apos;s/^SELINUX=enforcing$/SELINUX=permissive/&apos; /etc/selinux/config</span><br><span class="line"></span><br><span class="line">cat &lt;&lt;EOF &gt; /etc/yum.repos.d/kubernetes.repo</span><br><span class="line">[kubernetes]</span><br><span class="line">name=Kubernetes</span><br><span class="line">baseurl=https://mirrors.aliyun.com/kubernetes/yum/repos/kubernetes-el7-x86_64</span><br><span class="line">enabled=1</span><br><span class="line">gpgcheck=1</span><br><span class="line">repo_gpgcheck=1</span><br><span class="line">gpgkey=https://mirrors.aliyun.com/kubernetes/yum/doc/yum-key.gpg https://mirrors.aliyun.com/kubernetes/yum/doc/rpm-package-key.gpg</span><br><span class="line">EOF</span><br><span class="line"># 安装</span><br><span class="line">yum install -y kubectl kubelet kubeadm</span><br><span class="line"># 开机启动</span><br><span class="line">systemctl enable kubelet</span><br><span class="line"># 启动</span><br><span class="line">systemctl start kubelet</span><br></pre></td></tr></table></figure></p>
-<p>初始化第一套集群,完成之后按照提示 cp /etc/kubernetes/admin.conf ~/.kube/config<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubeadm init --config=kubeadm-config.yaml --upload-certs -v=10</span><br></pre></td></tr></table></figure></p>
-<h2 id="安装flannel网络"><a href="#安装flannel网络" class="headerlink" title="安装flannel网络"></a>安装flannel网络</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/a70459be0084506e4ec919aa1c114638878db11b/Documentation/kube-flannel.yml</span><br></pre></td></tr></table></figure>
-<h2 id="添加master-节点"><a href="#添加master-节点" class="headerlink" title="添加master 节点"></a>添加master 节点</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">如果忘了--certificate-key 值就用这个命令去master 生成一个</span><br><span class="line">kubeadm init phase upload-certs --experimental-upload-certs</span><br><span class="line">或</span><br><span class="line">kubeadm alpha certs certificate-key</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">kubeadm join 10.0.0.101:8443 --token u20jmk.7cnbp7soe1e7vr4l \</span><br><span class="line">    --discovery-token-ca-cert-hash sha256:3a5206c743a9369c2386db8bf181b78765862c4eb9caf12e332b6868db20633a \</span><br><span class="line">    --experimental-control-plane --certificate-key 4af91f16c3997bc59a56cfc0e3061f6086c62012f4e7e4ed9da84b4622fc9d89</span><br></pre></td></tr></table></figure>
-<h2 id="添加worker-节点"><a href="#添加worker-节点" class="headerlink" title="添加worker 节点"></a>添加worker 节点</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">kubeadm join 10.0.0.101:8443 --token u20jmk.7cnbp7soe1e7vr4l \</span><br><span class="line">    --discovery-token-ca-cert-hash sha256:3a5206c743a9369c2386db8bf181b78765862c4eb9caf12e332b6868db20633a </span><br><span class="line"></span><br><span class="line">可以print一个 join cluster command</span><br><span class="line">kubeadm  token create --print-join-command</span><br></pre></td></tr></table></figure>
-<h2 id="其他命令"><a href="#其他命令" class="headerlink" title="其他命令"></a>其他命令</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubeadm reset  //重置node</span><br></pre></td></tr></table></figure>
-<p>参考：<a href="https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/high-availability/" target="_blank" rel="noopener">https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/high-availability/</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/25/https-harbor/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="pengemailcom@163.com">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Peng">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/06/25/https-harbor/" itemprop="url">https_harbor 搭建</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-06-25T18:19:53+08:00">
-                2019-06-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">openssl genrsa -out ca.key 4096</span><br><span class="line">openssl req -x509 -new -nodes -sha512 -days 3650 \</span><br><span class="line">    -subj &quot;/C=TW/ST=Taipei/L=Taipei/O=example/OU=Personal/CN=yourdomain.com&quot; \</span><br><span class="line">    -key ca.key \</span><br><span class="line">    -out ca.crt</span><br><span class="line">openssl genrsa -out yourdomain.com.key 4096</span><br><span class="line"></span><br><span class="line">openssl req -sha512 -new \</span><br><span class="line">    -subj &quot;/C=TW/ST=Taipei/L=Taipei/O=example/OU=Personal/CN=yourdomain.com&quot; \</span><br><span class="line">    -key yourdomain.com.key \</span><br><span class="line">    -out yourdomain.com.csr</span><br><span class="line">cat &gt; v3.ext &lt;&lt;-EOF</span><br><span class="line">authorityKeyIdentifier=keyid,issuer</span><br><span class="line">basicConstraints=CA:FALSE</span><br><span class="line">keyUsage = digitalSignature, nonRepudiation, keyEncipherment, dataEncipherment</span><br><span class="line">extendedKeyUsage = serverAuth</span><br><span class="line">subjectAltName = @alt_names</span><br><span class="line"></span><br><span class="line">[alt_names]</span><br><span class="line">DNS.1=yourdomain.com</span><br><span class="line">DNS.2=yourdomain</span><br><span class="line">DNS.3=https-harbor</span><br><span class="line">DNS.4=10.0.0.88</span><br><span class="line">EOF</span><br><span class="line">openssl x509 -req -sha512 -days 3650 \</span><br><span class="line">    -extfile v3.ext \</span><br><span class="line">    -CA ca.crt -CAkey ca.key -CAcreateserial \</span><br><span class="line">    -in yourdomain.com.csr \</span><br><span class="line">    -out yourdomain.com.crt</span><br><span class="line"></span><br><span class="line">mkdir -p /data/cert/</span><br><span class="line">cp yourdomain.com.crt /data/cert/</span><br><span class="line">cp yourdomain.com.key /data/cert/</span><br><span class="line"></span><br><span class="line">openssl x509 -inform PEM -in yourdomain.com.crt -out yourdomain.com.cert</span><br><span class="line"></span><br><span class="line">mkdir -p /etc/docker/certs.d/yourdomain.com/</span><br><span class="line">cp yourdomain.com.cert /etc/docker/certs.d/yourdomain.com/</span><br><span class="line">cp yourdomain.com.key /etc/docker/certs.d/yourdomain.com/</span><br><span class="line">cp ca.crt /etc/docker/certs.d/yourdomain.com/</span><br></pre></td></tr></table></figure>
-<h4 id="参考：https-github-com-goharbor-harbor-blob-master-docs-configure-https-md"><a href="#参考：https-github-com-goharbor-harbor-blob-master-docs-configure-https-md" class="headerlink" title="参考：https://github.com/goharbor/harbor/blob/master/docs/configure_https.md"></a>参考：<a href="https://github.com/goharbor/harbor/blob/master/docs/configure_https.md" target="_blank" rel="noopener">https://github.com/goharbor/harbor/blob/master/docs/configure_https.md</a></h4>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/23/ca/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="pengemailcom@163.com">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Peng">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/06/23/ca/" itemprop="url"> 证书制作</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-06-23T22:53:42+08:00">
-                2019-06-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line"></span><br><span class="line"># step 1 为服务器端和客户端准备公钥、私钥</span><br><span class="line"># 生成服务器端私钥</span><br><span class="line">openssl genrsa -out server.key 1024</span><br><span class="line"># 生成服务器端公钥</span><br><span class="line">openssl rsa -in server.key -pubout -out server.pem</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># step 2 生成 CA 证书</span><br><span class="line"># 生成客户端私钥</span><br><span class="line">openssl genrsa -out client.key 1024</span><br><span class="line"># 生成客户端公钥</span><br><span class="line">openssl rsa -in client.key -pubout -out client.pem</span><br><span class="line"></span><br><span class="line"># 生成 CA 私钥</span><br><span class="line">openssl genrsa -out ca.key 1024</span><br><span class="line"># X.509 Certificate Signing Request (CSR) Management.</span><br><span class="line">openssl req -new -key ca.key -out ca.csr</span><br><span class="line"># X.509 Certificate Data Management.</span><br><span class="line">openssl x509 -req -in ca.csr -signkey ca.key -out ca.crt</span><br><span class="line"></span><br><span class="line"># ➜  keys  openssl req -new -key ca.key -out ca.csr</span><br><span class="line"># You are about to be asked to enter information that will be incorporated</span><br><span class="line"># into your certificate request.</span><br><span class="line"># What you are about to enter is what is called a Distinguished Name or a DN.</span><br><span class="line"># There are quite a few fields but you can leave some blank</span><br><span class="line"># For some fields there will be a default value,</span><br><span class="line"># If you enter &apos;.&apos;, the field will be left blank.</span><br><span class="line"># -----</span><br><span class="line"># Country Name (2 letter code) [AU]:CN</span><br><span class="line"># State or Province Name (full name) [Some-State]:Zhejiang</span><br><span class="line"># Locality Name (eg, city) []:Hangzhou</span><br><span class="line"># Organization Name (eg, company) [Internet Widgits Pty Ltd]:My CA</span><br><span class="line"># Organizational Unit Name (eg, section) []:</span><br><span class="line"># Common Name (e.g. server FQDN or YOUR name) []:localhost</span><br><span class="line"># Email Address []:</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># step 3 生成服务器端证书和客户端证书</span><br><span class="line"># 服务器端需要向 CA 机构申请签名证书，在申请签名证书之前依然是创建自己的 CSR 文件</span><br><span class="line">openssl req -new -key server.key -out server.csr</span><br><span class="line"># 向自己的 CA 机构申请证书，签名过程需要 CA 的证书和私钥参与，最终颁发一个带有 CA 签名的证书</span><br><span class="line">openssl x509 -req -CA ca.crt -CAkey ca.key -CAcreateserial -in server.csr -out server.crt</span><br><span class="line"></span><br><span class="line"># client 端</span><br><span class="line">openssl req -new -key client.key -out client.csr</span><br><span class="line"># client 端到 CA 签名</span><br><span class="line">openssl x509 -req -CA ca.crt -CAkey ca.key -CAcreateserial -in client.csr -out client.crt</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">获取服务端签名, 即server.crt的内容:</span><br><span class="line">openssl x509 -in &lt;(openssl s_client -showcerts -servername dfdaemon.com -connect dfdaemon.com:65001 -prexit 2&gt;/dev/null)</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">openssl x509部分命令</span><br><span class="line">打印出证书的内容：</span><br><span class="line">openssl x509 -in cert.pem -noout -text</span><br><span class="line">打印出证书的系列号</span><br><span class="line">openssl x509 -in cert.pem -noout -serial</span><br><span class="line">打印出证书的拥有者名字</span><br><span class="line">openssl x509 -in cert.pem -noout -subject</span><br><span class="line">以RFC2253规定的格式打印出证书的拥有者名字</span><br><span class="line">openssl x509 -in cert.pem -noout -subject -nameopt RFC2253</span><br><span class="line">在支持UTF8的终端一行过打印出证书的拥有者名字</span><br><span class="line">openssl x509 -in cert.pem -noout -subject -nameopt oneline -nameopt -escmsb</span><br><span class="line">打印出证书的MD5特征参数</span><br><span class="line">openssl x509 -in cert.pem -noout -fingerprint</span><br><span class="line">打印出证书的SHA特征参数</span><br><span class="line">openssl x509 -sha1 -in cert.pem -noout -fingerprint</span><br><span class="line">把PEM格式的证书转化成DER格式</span><br><span class="line">openssl x509 -in cert.pem -inform PEM -out cert.der -outform DER</span><br><span class="line">把一个证书转化成CSR</span><br><span class="line">openssl x509 -x509toreq -in cert.pem -out req.pem -signkey key.pem</span><br><span class="line">给一个CSR进行处理，颁发字签名证书，增加CA扩展项</span><br><span class="line">openssl x509 -req -in careq.pem -extfile openssl.cnf -extensions v3_ca -signkey key.pem -out cacert.pem</span><br><span class="line">给一个CSR签名，增加用户证书扩展项</span><br><span class="line">openssl x509 -req -in req.pem -extfile openssl.cnf -extensions v3_usr -CA cacert.pem -CAkey key.pem -CAcreateserial</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/21/mac-key/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="pengemailcom@163.com">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Peng">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/04/21/mac-key/" itemprop="url">Mac 键盘快捷键</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-21T09:58:27+08:00">
-                2019-04-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>##Mac 键盘快捷键<br>您可以按下某些组合键来实现通常需要鼠标、触控板或其他输入设备才能完成的操作。</p>
-<p>要使用键盘快捷键，请按住一个或多个修饰键，然后按快捷键的最后一个键。例如，要使用 Command-C（拷贝），请按住 Command 键并按 C 键，然后同时松开这两个键。Mac 菜单和键盘通常对某些按键使用符号，其中包括以下修饰键：</p>
-<p>Command（或 Cmd）⌘<br>Shift ⇧<br>Option（或 Alt）⌥<br>Control（或 Ctrl）⌃<br>Caps Lock ⇪<br>Fn</p>
-<p>在 Windows PC 专用键盘上，请用 Alt 键代替 Option 键，用 Windows 标志键代替 Command 键。</p>
-<p>Apple 键盘上的某些按键具有特殊符号和功能，例如显示屏亮度 、键盘亮度 、调度中心等。如果您的键盘上没有这些功能，您也许可以通过创建自己的键盘快捷键来实现其中的一些功能。要将这些键用作 F1、F2、F3 或其他标准功能键，请将它们与 Fn 键组合使用。</p>
-<p>剪切、拷贝、粘贴和其他常用快捷键</p>
-<p>Command-X：剪切所选项并拷贝到剪贴板。</p>
-<p>Command-C：将所选项拷贝到剪贴板。这同样适用于“访达”中的文件。</p>
-<p>Command-V：将剪贴板的内容粘贴到当前文稿或应用中。这同样适用于“访达”中的文件。</p>
-<p>Command-Z：撤销上一个命令。随后您可以按 Shift-Command-Z 来重做，从而反向执行撤销命令。在某些应用中，您可以撤销和重做多个命令。</p>
-<p>Command-A：全选各项。</p>
-<p>Command-F：查找文稿中的项目或打开“查找”窗口。</p>
-<p>Command-G：再次查找：查找之前所找到项目出现的下一个位置。要查找出现的上一个位置，请按 Shift-Command-G。</p>
-<p>Command-H：隐藏最前面的应用的窗口。要查看最前面的应用但隐藏所有其他应用，请按 Option-Command-H。</p>
-<p>Command-M：将最前面的窗口最小化至“程序坞”。要最小化最前面的应用的所有窗口，请按 Option-Command-M。</p>
-<p>Command-O：打开所选项，或打开一个对话框以选择要打开的文件。</p>
-<p>Command-P：打印当前文稿。</p>
-<p>Command-S：存储当前文稿。</p>
-<p>Command-T：打开新标签页。</p>
-<p>Command-W：关闭最前面的窗口。要关闭应用的所有窗口，请按下 Option-Command-W。</p>
-<p>Option-Command-Esc：强制退出应用。</p>
-<p>Command–空格键：显示或隐藏“聚焦”搜索栏。要从“访达”窗口执行“聚焦”搜索，请按 Command–Option–空格键。（如果您使用多个输入源以便用不同的语言键入内容，这些快捷键会更改输入源而非显示“聚焦”。了解如何更改冲突的键盘快捷键。）</p>
-<p>Control-Command–空格键：显示字符检视器，您可以从中选择表情符号和其他符号。</p>
-<p>Control-Command-F：全屏使用应用（如果应用支持）。</p>
-<p>空格键：使用快速查看来预览所选项。</p>
-<p>Command-Tab：在打开的应用中切换到下一个最近使用的应用。</p>
-<p>Shift-Command-5：在 macOS Mojave 中，拍摄屏幕快照或录制屏幕。在更早的 macOS 版本中，请使用 Shift-Command-3 或 Shift-Command-4 来拍摄屏幕快照。进一步了解屏幕快照。</p>
-<p>Shift-Command-N：在“访达”中创建一个新文件夹。</p>
-<p>Command-逗号 (,)：打开最前面的应用的偏好设置。</p>
-<p>睡眠、退出登录和关机快捷键<br>在这些快捷键中，您可能需要按住其中一些快捷键稍长时间。这样可以避免您无意中启用快捷键。</p>
-<p>电源按钮：按下可将 Mac 开机或将 Mac 从睡眠状态唤醒。按住这个按钮 1.5 秒可使 Mac 进入睡眠状态。*继续按住则会强制您的 Mac 关机。</p>
-<p>Option–Command–电源按钮*或 Option–Command–Media Eject（Option–Command–介质推出键）：将您的 Mac 置于睡眠状态。</p>
-<p>Control–Shift–电源按钮*或 Control–Shift–Media Eject（Control–Shift–介质推出键）：将显示器置于睡眠状态。</p>
-<p>Control–电源按钮*或 Control–Media Eject（Control–介质推出键）：显示一个对话框，询问您是要重新启动、睡眠还是关机。</p>
-<p>Control–Command–Power 电源按钮：*强制 Mac 重新启动，系统不会提示是否要存储任何打开且未存储的文稿。</p>
-<p>Control–Command–Media Eject（Control–Command–介质推出键）：退出所有应用，然后重新启动您的 Mac。如果任何打开的文稿有未存储的更改，系统会询问您是否要存储这些更改。</p>
-<p>Control–Option-Command–电源按钮*或 Control–Option–Command–Media Eject（Control–Option–Command–介质推出键）：退出所有应用，然后将您的 Mac 关机。如果任何打开的文稿有未存储的更改，系统会询问您是否要存储这些更改。</p>
-<p>Shift–Command–Q：退出登录您的 macOS 用户帐户。系统将提示您确认。要在不确认的情况下立即退出登录，请按下 Option-Shift-Command-Q。</p>
-<ul>
-<li>不适用于触控 ID 传感器。</li>
-</ul>
-<p>访达和系统快捷键</p>
-<p>Command-D：复制所选文件。</p>
-<p>Command-E：推出所选磁盘或宗卷。</p>
-<p>Command-F：在“访达”窗口中开始“聚焦”搜索。</p>
-<p>Command-I：显示所选文件的“显示简介”窗口。</p>
-<p>Command-R：(1) 如果在“访达”中选择了某个别名：显示所选别名对应的原始文件。(2) 在某些应用（如“日历”或 Safari 浏览器）中，刷新或重新载入页面。(3) 在“软件更新”偏好设置中，再次检查有没有软件更新。</p>
-<p>Shift-Command-C：打开“电脑”窗口。</p>
-<p>Shift-Command-D：打开“桌面”文件夹。</p>
-<p>Shift-Command-F：打开“最近使用”窗口，其中显示了您最近查看或更改过的所有文件。</p>
-<p>Shift-Command-G：打开“前往文件夹”窗口。</p>
-<p>Shift-Command-H：打开当前 macOS 用户帐户的个人文件夹。</p>
-<p>Shift-Command-I：打开 iCloud 云盘。</p>
-<p>Shift-Command-K：打开“网络”窗口。</p>
-<p>Option-Command-L：打开“下载”文件夹。</p>
-<p>Shift-Command-N：新建文件夹。</p>
-<p>Shift-Command-O：打开“文稿”文件夹。</p>
-<p>Shift-Command-P：在“访达”窗口中显示或隐藏预览面板。</p>
-<p>Shift-Command-R：打开“隔空投送”窗口。</p>
-<p>Shift-Command-T：显示或隐藏“访达”窗口中的标签页栏。</p>
-<p>Ctrl-Shift-Command-T：将所选的“访达”项目添加到“程序坞”（OS X Mavericks 或更高版本）</p>
-<p>Shift-Command-U：打开“实用工具”文件夹。</p>
-<p>Option-Command-D：显示或隐藏“程序坞”。</p>
-<p>Control-Command-T：将所选项添加到边栏（OS X Mavericks 或更高版本）。</p>
-<p>Option-Command-P：隐藏或显示“访达”窗口中的路径栏。</p>
-<p>Option-Command-S：隐藏或显示“访达”窗口中的边栏。</p>
-<p>Command–斜线 (/)：隐藏或显示“访达”窗口中的状态栏。</p>
-<p>Command-J：显示“显示”选项。</p>
-<p>Command-K：打开“连接服务器”窗口。</p>
-<p>Command-L：为所选项制作替身。</p>
-<p>Command-N：打开一个新的“访达”窗口。</p>
-<p>Option-Command-N：新建智能文件夹。</p>
-<p>Command-T：在当前“访达”窗口中有单个标签页开着的状态下显示或隐藏标签页栏。</p>
-<p>Option-Command-T：在当前“访达”窗口中有单个标签页开着的状态下显示或隐藏工具栏。</p>
-<p>Option-Command-V：移动：将剪贴板中的文件从原始位置移动到当前位置。</p>
-<p>Command-Y：使用“快速查看”预览所选文件。</p>
-<p>Option-Command-Y：显示所选文件的快速查看幻灯片显示。</p>
-<p>Command-1：以图标方式显示“访达”窗口中的项目。</p>
-<p>Command-2：以列表方式显示“访达”窗口中的项目。</p>
-<p>Command-3：以分栏方式显示“访达”窗口中的项目。</p>
-<p>Command-4：以封面流方式显示“访达”窗口中的项目。</p>
-<p>Command–左中括号 ([)：前往上一文件夹。</p>
-<p>Command–右中括号 (])：前往下一个文件夹。</p>
-<p>Command–上箭头：打开包含当前文件夹的文件夹。</p>
-<p>Command–Control–上箭头：在新窗口中打开包含当前文件夹的文件夹。</p>
-<p>Command–下箭头：打开所选项。</p>
-<p>右箭头：打开所选文件夹。这个快捷键仅在列表视图中有效。<br>左箭头：关闭所选文件夹。这个快捷键仅在列表视图中有效。<br>Command-Delete：将所选项移到废纸篓。</p>
-<p>Shift-Command-Delete：清倒废纸篓。</p>
-<p>Option-Shift-Command-Delete：清倒废纸篓而不显示确认对话框。</p>
-<p>Command–调高亮度：打开或关闭目标显示器模式。</p>
-<p>Command–调低亮度：当您的 Mac 连接到多台显示器时，打开或关闭视频镜像。</p>
-<p>Option–调高亮度：打开“显示器”偏好设置。这个快捷键可与任一亮度键搭配使用。</p>
-<p>Control–调高亮度或 Control–调低亮度：更改外部显示器的亮度（如果显示器支持）。</p>
-<p>Option-Shift–调高亮度或 Option-Shift–调低亮度：以较小的步幅调节显示器亮度。如果您的显示器支持，可以将 Control 键添加到此快捷键，以便在外置显示器上进行调节。</p>
-<p>Option–“调度中心”：打开“调度中心”偏好设置。</p>
-<p>Command–“调度中心”：显示桌面。</p>
-<p>Control–下箭头：显示最前面的应用的所有窗口。</p>
-<p>Option–调高音量：打开“声音”偏好设置。这个快捷键可与任一音量键搭配使用。</p>
-<p>Option-Shift–调高音量或 Option-Shift–调低音量：以较小的步幅调节音量。</p>
-<p>Option–键盘调高亮度：打开“键盘”偏好设置。这个快捷键可与任一键盘亮度键搭配使用。</p>
-<p>Option-Shift–键盘调高亮度或 Option-Shift–键盘调低亮度：以较小的步幅调节键盘亮度。</p>
-<p>连按 Option 键：在单独的窗口中打开项目，然后关闭原始窗口。</p>
-<p>连按 Command 键：在单独的标签页或窗口中打开文件夹。</p>
-<p>按住 Command 键拖移到另一个宗卷：将拖移的项目移到另一个宗卷，而不是拷贝它。</p>
-<p>按住 Option 键拖移：拷贝托移的项目。拖移项目时指针会随之变化。</p>
-<p>按住 Option-Command 键拖移：为拖移的项目制作替身。拖移项目时指针会随之变化。</p>
-<p>按住 Option 键点按开合三角：打开所选文件夹内的所有文件夹。此快捷键仅在列表视图中有效。</p>
-<p>按住 Command 键点按窗口标题：查看包含当前文件夹的文件夹。</p>
-<p>了解如何使用 Command 或 Shift 在“访达”中选择多个项目。</p>
-<p>点按“访达”菜单栏中的“前往”菜单查看用于打开许多常用文件夹（如“应用程序”、“文稿”、“下载”、“实用工具”和“iCloud 云盘”）的快捷键。</p>
-<p>文稿快捷键<br>这些快捷键的行为可能因您使用的应用而异。</p>
-<p>Command-B：以粗体显示所选文本，或者打开或关闭粗体显示功能。</p>
-<p>Command-I：以斜体显示所选文本，或者打开或关闭斜体显示功能。</p>
-<p>Command-K：添加网页链接。</p>
-<p>Command-U：对所选文本加下划线，或者打开或关闭加下划线功能。</p>
-<p>Command-T：显示或隐藏“字体”窗口。</p>
-<p>Command-D：从“打开”对话框或“存储”对话框内选择“桌面”文件夹。</p>
-<p>Control-Command-D：显示或隐藏所选字词的定义。</p>
-<p>Shift-Command–冒号 (:)：显示“拼写和语法”窗口。</p>
-<p>Command–分号 (;)：查找文稿中拼写错误的字词。</p>
-<p>Option-Delete：删除插入点左边的字词。</p>
-<p>Control-H：删除插入点左边的字符。也可以使用 Delete 键。</p>
-<p>Control-D：删除插入点右边的字符。也可以使用 Fn-Delete。</p>
-<p>Fn-Delete：在没有向前删除   键的键盘上向前删除。也可以使用 Control-D。</p>
-<p>Control-K：删除插入点与行或段落末尾处之间的文本。</p>
-<p>Fn–上箭头：Page Up：向上滚动一页。</p>
-<p>Fn–下箭头：Page Down：向下滚动一页。</p>
-<p>Fn–左箭头：Home：滚动到文稿开头。</p>
-<p>Fn–右箭头：End：滚动到文稿末尾。</p>
-<p>Command–上箭头：将插入点移至文稿开头。</p>
-<p>Command–下箭头：将插入点移至文稿末尾。</p>
-<p>Command–左箭头：将插入点移至当前行的行首。</p>
-<p>Command–右箭头：将插入点移至当前行的行尾。</p>
-<p>Option–左箭头：将插入点移至上一字词的词首。</p>
-<p>Option–右箭头：将插入点移至下一字词的词尾。</p>
-<p>Shift-Command–上箭头：选中插入点与文稿开头之间的文本。</p>
-<p>Shift-Command–下箭头：选中插入点与文稿末尾之间的文本。</p>
-<p>Shift-Command–左箭头：选中插入点与当前行行首之间的文本。</p>
-<p>Shift-Command–右箭头：选中插入点与当前行行尾之间的文本。</p>
-<p>Shift–上箭头：将文本选择范围扩展到上一行相同水平位置的最近字符处。</p>
-<p>Shift–下箭头：将文本选择范围扩展到下一行相同水平位置的最近字符处。</p>
-<p>Shift–左箭头：将文本选择范围向左扩展一个字符。</p>
-<p>Shift–右箭头：将文本选择范围向右扩展一个字符。</p>
-<p>Option–Shift–上箭头：将文本选择范围扩展到当前段落的段首，再按一次则扩展到下一段落的段首。</p>
-<p>Option–Shift–下箭头：将文本选择范围扩展到当前段落的段尾，再按一次则扩展到下一段落的段尾。</p>
-<p>Option–Shift–左箭头：将文本选择范围扩展到当前字词的词首，再按一次则扩展到后一字词的词首。</p>
-<p>Option–Shift–左箭头：将文本选择范围扩展到当前字词的词尾，再按一次则扩展到后一字词的词尾。</p>
-<p>Control–A：移至行或段落的开头。</p>
-<p>Control–E：移至行或段落的末尾。</p>
-<p>Control–F：向前移动一个字符。</p>
-<p>Control–B：向后移动一个字符。</p>
-<p>Control–L：将光标或所选内容置于可见区域中央。</p>
-<p>Control–P：上移一行。</p>
-<p>Control–N：下移一行。</p>
-<p>Control–O：在插入点后新插入一行。</p>
-<p>Control–T：将插入点后面的字符与插入点前面的字符交换。</p>
-<p>Command–左花括号 ({)：左对齐。</p>
-<p>Command–右花括号 (})：右对齐。</p>
-<p>Shift-Command–竖线 (|)：居中对齐。</p>
-<p>Option-Command-F：前往搜索栏。</p>
-<p>Option-Command-T：显示或隐藏应用中的工具栏。</p>
-<p>Option-Command-C：拷贝样式：将所选项的格式设置拷贝到剪贴板。</p>
-<p>Option-Command-V：粘贴样式：将拷贝的样式应用到所选项。</p>
-<p>Option-Shift-Command-V：粘贴并匹配样式：将周围内容的样式应用到粘贴在该内容中的项目。</p>
-<p>Option-Command-I：显示或隐藏检查器窗口。</p>
-<p>Shift-Command-P：页面设置：显示用于选择文稿设置的窗口。</p>
-<p>Shift-Command-S：显示“存储为”对话框或复制当前文稿。</p>
-<p>Shift-Command-减号 (-)：缩小所选项。</p>
-<p>Shift-Command-加号 (+)：放大所选项。Command–等号 (=) 可实现相同的功能。</p>
-<p>Shift-Command–问号 (?)：打开“帮助”菜单。</p>
-<p> 参考：<a href="https://support.apple.com/zh-cn/HT201236" target="_blank" rel="noopener">https://support.apple.com/zh-cn/HT201236</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/21/iterm2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="pengemailcom@163.com">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Peng">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/04/21/iterm2/" itemprop="url">iterm2 快捷键</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-21T09:50:59+08:00">
-                2019-04-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>command + t    新建标签</p>
-<p>command + w    关闭标签</p>
-<p>command + 数字 command + 左右方向键    切换标签</p>
-<p>command + enter    切换全屏</p>
-<p>command + f    查找</p>
-<p>command + d    垂直分屏</p>
-<p>command + shift + d    水平分屏</p>
-<p>command + option + 方向键 command + [ 或 command + ]    切换屏幕</p>
-<p>command + ;    查看历史命令</p>
-<p>command + shift + h    查看剪贴板历史</p>
-<p>ctrl + u    清除当前行</p>
-<p>ctrl + l    清屏</p>
-<p>ctrl + a    到行首</p>
-<p>ctrl + e    到行尾</p>
-<p>ctrl + f/b    前进后退</p>
-<p>ctrl + p    上一条命令</p>
-<p>ctrl + r    搜索命令历史</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/21/shell-1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="pengemailcom@163.com">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Peng">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/04/21/shell-1/" itemprop="url">shell基本命令</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-21T09:36:41+08:00">
-                2019-04-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="shell基本命令"><a href="#shell基本命令" class="headerlink" title="shell基本命令"></a>shell基本命令</h2><p>把多个文件夹中的内容复制到同一个文件下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp -r ./file1 ./file2  /root</span><br></pre></td></tr></table></figure></p>
-<p>uname -r 获取系统版本<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sh-4.2# uname -r</span><br><span class="line">3.10.0-957.10.1.el7.x86_64</span><br></pre></td></tr></table></figure></p>
-<p>unset重新设置变量内容<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">unset name</span><br></pre></td></tr></table></figure></p>
-<p>date 格式化<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sh-4.2# date +%Y/%m/%d</span><br><span class="line">2019/04/21</span><br><span class="line"></span><br><span class="line">sh-4.2# date +%H:%m</span><br><span class="line">08:04</span><br></pre></td></tr></table></figure></p>
-<p>cal 查看日历</p>
-<p>bc 计算器</p>
-<p>搜索：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/string  向上搜索N</span><br><span class="line">?string  向下搜索n</span><br></pre></td></tr></table></figure></p>
-<p>正确的关机方法<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">shutdown</span><br><span class="line">poweroff</span><br><span class="line">halt</span><br></pre></td></tr></table></figure></p>
-<p>重启方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reboot</span><br></pre></td></tr></table></figure></p>
-<p>添加用户和密码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">useradd wp</span><br><span class="line">passwd wp</span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
-
-
-
-          </div>
-          
-
-
-          
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    
-    <div class="sidebar-inner">
-
-      
-
-      
-
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <p class="site-author-name" itemprop="name">pengemailcom@163.com</p>
-              <p class="site-description motion-element" itemprop="description"></p>
-          </div>
-
-          <nav class="site-state motion-element">
-
-            
-              <div class="site-state-item site-state-posts">
-              
-                <a href="/archives/">
-              
-                  <span class="site-state-item-count">29</span>
-                  <span class="site-state-item-name">posts</span>
-                </a>
-              </div>
-            
-
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                
-                  <span class="site-state-item-count">3</span>
-                  <span class="site-state-item-name">tags</span>
-                
-              </div>
-            
-
-          </nav>
-
-          
-
-          
-
-          
-          
-
-          
-          
-
-          
-
-        </div>
-      </section>
-
-      
-
-      
-
-    </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
-  <span class="with-love">
-    <i class="fa fa-user"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">pengemailcom@163.com</span>
-
-  
 </div>
 
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/helm/">helm</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/helm/kubernetes/">kubernetes</a><span class="category-list-count">1</span></li></ul></li></ul>
+    </div>
+  </div>
 
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
-
-
-
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
-
-
-
-
-        
-
-
-
-
-
-
-
-        
-      </div>
-    </footer>
 
     
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
+      
+  <div class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-body">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/golang/">golang</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/helm/">helm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kubernetes/">kubernetes</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/log/">log</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/git/" style="font-size: 13px;">git</a> <a href="/tags/golang/" style="font-size: 13px;">golang</a> <a href="/tags/helm/" style="font-size: 13px;">helm</a> <a href="/tags/hexo/" style="font-size: 13px;">hexo</a> <a href="/tags/kubernetes/" style="font-size: 13px;">kubernetes</a> <a href="/tags/log/" style="font-size: 13px;">log</a> <a href="/tags/nginx/" style="font-size: 13px;">nginx</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">10</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
         
-      </div>
-    
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2019/07/02/pvc-pv/" class="title">pvc-pv</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-07-02T02:18:31.000Z" itemprop="datePublished">2019-07-02</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2019/06/29/dragonfly-0-4-0/" class="title">dragonfly_0.4.0</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-06-29T03:39:35.000Z" itemprop="datePublished">2019-06-29</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2019/06/28/golang/" class="title">golang</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-06-28T06:47:23.000Z" itemprop="datePublished">2019-06-28</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2019/06/28/webhook/" class="title">kubernetes webhook</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-06-28T06:39:47.000Z" itemprop="datePublished">2019-06-28</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2019/06/27/golang-ca/" class="title">golang-ca</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-06-27T05:53:49.000Z" itemprop="datePublished">2019-06-27</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
 
     
+  </div>
+</aside>
 
+  
+  <main class="main" role="main">
+  
+  <div class="content article-list">
+    
+      <article class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="article-header">
+    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/02/pvc-pv/">pvc-pv</a>
+    </h1>
+  
+
+  </div>
+  
+  <p class="article-meta">
+    <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2019/07/02/pvc-pv/" class="article-date">
+	  <time datetime="2019-07-02T02:18:31.000Z" itemprop="datePublished">Jul 2</time>
+	</a>
+</span>
+    
+    
+
+    <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/07/02/pvc-pv/#comments" class="article-comment-link">Comments</a></span>
+    
+  </p>
+</article>
+
+    
+      <article class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="article-header">
+    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/06/29/dragonfly-0-4-0/">dragonfly_0.4.0</a>
+    </h1>
+  
+
+  </div>
+  
+  <p class="article-meta">
+    <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2019/06/29/dragonfly-0-4-0/" class="article-date">
+	  <time datetime="2019-06-29T03:39:35.000Z" itemprop="datePublished">Jun 29</time>
+	</a>
+</span>
+    
+    
+
+    <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/06/29/dragonfly-0-4-0/#comments" class="article-comment-link">Comments</a></span>
+    
+  </p>
+</article>
+
+    
+      <article class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="article-header">
+    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/06/28/golang/">golang</a>
+    </h1>
+  
+
+  </div>
+  
+  <p class="article-meta">
+    <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2019/06/28/golang/" class="article-date">
+	  <time datetime="2019-06-28T06:47:23.000Z" itemprop="datePublished">Jun 28</time>
+	</a>
+</span>
+    
+    
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/golang/">golang</a>
+  </span>
+
+
+    <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/06/28/golang/#comments" class="article-comment-link">Comments</a></span>
+    
+  </p>
+</article>
+
+    
+      <article class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="article-header">
+    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/06/28/webhook/">kubernetes webhook</a>
+    </h1>
+  
+
+  </div>
+  
+  <p class="article-meta">
+    <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2019/06/28/webhook/" class="article-date">
+	  <time datetime="2019-06-28T06:39:47.000Z" itemprop="datePublished">Jun 28</time>
+	</a>
+</span>
+    
+    
+
+    <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/06/28/webhook/#comments" class="article-comment-link">Comments</a></span>
+    
+  </p>
+</article>
+
+    
+      <article class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="article-header">
+    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/06/27/golang-ca/">golang-ca</a>
+    </h1>
+  
+
+  </div>
+  
+  <p class="article-meta">
+    <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2019/06/27/golang-ca/" class="article-date">
+	  <time datetime="2019-06-27T05:53:49.000Z" itemprop="datePublished">Jun 27</time>
+	</a>
+</span>
+    
+    
+
+    <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/06/27/golang-ca/#comments" class="article-comment-link">Comments</a></span>
+    
+  </p>
+</article>
+
+    
+      <article class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="article-header">
+    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/06/26/nats/">nats</a>
+    </h1>
+  
+
+  </div>
+  
+  <p class="article-meta">
+    <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2019/06/26/nats/" class="article-date">
+	  <time datetime="2019-06-26T03:31:42.000Z" itemprop="datePublished">Jun 26</time>
+	</a>
+</span>
+    
+    
+
+    <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/06/26/nats/#comments" class="article-comment-link">Comments</a></span>
+    
+  </p>
+</article>
+
+    
+      <article class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="article-header">
+    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/06/25/kubeadm/">使用kubeam install kubernets v1.15.0 实现master高可用</a>
+    </h1>
+  
+
+  </div>
+  
+  <p class="article-meta">
+    <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2019/06/25/kubeadm/" class="article-date">
+	  <time datetime="2019-06-25T10:27:03.000Z" itemprop="datePublished">Jun 25</time>
+	</a>
+</span>
+    
+    
+
+    <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/06/25/kubeadm/#comments" class="article-comment-link">Comments</a></span>
+    
+  </p>
+</article>
+
+    
+      <article class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="article-header">
+    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/06/25/https-harbor/">https_harbor 搭建</a>
+    </h1>
+  
+
+  </div>
+  
+  <p class="article-meta">
+    <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2019/06/25/https-harbor/" class="article-date">
+	  <time datetime="2019-06-25T10:19:53.000Z" itemprop="datePublished">Jun 25</time>
+	</a>
+</span>
+    
+    
+
+    <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/06/25/https-harbor/#comments" class="article-comment-link">Comments</a></span>
+    
+  </p>
+</article>
+
+    
+      <article class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="article-header">
+    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/06/23/ca/"> 证书制作</a>
+    </h1>
+  
+
+  </div>
+  
+  <p class="article-meta">
+    <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2019/06/23/ca/" class="article-date">
+	  <time datetime="2019-06-23T14:53:42.000Z" itemprop="datePublished">Jun 23</time>
+	</a>
+</span>
+    
+    
+
+    <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/06/23/ca/#comments" class="article-comment-link">Comments</a></span>
+    
+  </p>
+</article>
+
+    
+      <article class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="article-header">
+    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/21/mac-key/">Mac 键盘快捷键</a>
+    </h1>
+  
+
+  </div>
+  
+  <p class="article-meta">
+    <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2019/04/21/mac-key/" class="article-date">
+	  <time datetime="2019-04-21T01:58:27.000Z" itemprop="datePublished">Apr 21</time>
+	</a>
+</span>
+    
+    
+
+    <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/04/21/mac-key/#comments" class="article-comment-link">Comments</a></span>
+    
+  </p>
+</article>
+
+    
   </div>
 
   
+    
+    <nav class="bar bar-footer clearfix" data-stick-bottom>
+        <div class="bar-inner">
+        <ul class="pager pull-left">
+            
+            <li class="prev disabled">
+                <a href="javascript:;">
+                    <i class="icon icon-angle-left"></i>
+                    Prev
+                </a>
+            </li>
+            
+            
+            <li class="next">
+                <a href="/page/2/">
+                    Next
+                    <i class="icon icon-angle-right"></i>
+                </a>
+            </li>
+            
+        </ul>
+        <div class="total-article bar-right">Page 1 of 4</div>
+        </div>
+    </nav>
+    
+ 
+</main>
 
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/upengs" target="_blank" title="Github" data-toggle="tooltip" data-placement="top"><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/upengs" target="_blank" title="Weibo" data-toggle="tooltip" data-placement="top"><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/upengs" target="_blank" title="Twitter" data-toggle="tooltip" data-placement="top"><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/upengs" target="_blank" title="Behance" data-toggle="tooltip" data-placement="top"><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle="tooltip" data-placement="top"><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script src="/js/plugin.min.js"></script>
+<script src="/js/application.js"></script>
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+
+    <script>
+(function ($) {
+    $('.search-form').on('submit', function (e) {
+        var keyword = $('.search-form-input[name="wd"]').val();
+        window.location = 'https://www.baidu.com/s?wd=site:yoursite.com ' + keyword;
+        return false;
+    });
+})(jQuery);
 </script>
 
 
 
 
+   
 
 
 
 
 
-  
 
 
 
-
-
-
-
-
-
-
-
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
-
-
-
-  
-  
-
-  
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
 
 </body>
 </html>
