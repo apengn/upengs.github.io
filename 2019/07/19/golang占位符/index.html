@@ -17,20 +17,21 @@
   <meta http-equiv="window-target" content="_top">
   
   
-  <title>dragonfly_0.4.0 | Hexo</title>
-  <meta name="description" content="install https harbor保证docker login xx.xx   login successinstall supernode–advertiseIp host ip1docker run -d --name supernode --restart=always --net host dragonflyoss/supernode:0.3.0 -Dsupernode.advert">
+  <title>golang中的格式化输入输出 | Upengs</title>
+  <meta name="description" content="简介】 　　fmt 包实现了格式化 I/O 函数，类似于 C 的 printf 和 scanf。格式“占位符”衍生自 C，但比 C 更简单。 【打印】 占位符： [一般] 　　%v    相应值的默认格式。在打印结构体时，“加号”标记（%+v）会添加字段名 　　%#v    相应值的 Go 语法表示 　　%T    相应值的类型的 Go 语法表示 　　%%    字面上的百分号，并非值的占位符 [">
+<meta name="keywords" content="golang">
 <meta property="og:type" content="article">
-<meta property="og:title" content="dragonfly_0.4.0">
-<meta property="og:url" content="http://yoursite.com/2019/06/29/dragonfly-0-4-0/index.html">
+<meta property="og:title" content="golang中的格式化输入输出">
+<meta property="og:url" content="https://upengs.github.io/2019/07/19/golang占位符/index.html">
 <meta property="og:site_name" content="Peng">
-<meta property="og:description" content="install https harbor保证docker login xx.xx   login successinstall supernode–advertiseIp host ip1docker run -d --name supernode --restart=always --net host dragonflyoss/supernode:0.3.0 -Dsupernode.advert">
+<meta property="og:description" content="简介】 　　fmt 包实现了格式化 I/O 函数，类似于 C 的 printf 和 scanf。格式“占位符”衍生自 C，但比 C 更简单。 【打印】 占位符： [一般] 　　%v    相应值的默认格式。在打印结构体时，“加号”标记（%+v）会添加字段名 　　%#v    相应值的 Go 语法表示 　　%T    相应值的类型的 Go 语法表示 　　%%    字面上的百分号，并非值的占位符 [">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-07-02T12:53:49.610Z">
+<meta property="og:updated_time" content="2019-07-19T07:24:44.927Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="dragonfly_0.4.0">
-<meta name="twitter:description" content="install https harbor保证docker login xx.xx   login successinstall supernode–advertiseIp host ip1docker run -d --name supernode --restart=always --net host dragonflyoss/supernode:0.3.0 -Dsupernode.advert">
+<meta name="twitter:title" content="golang中的格式化输入输出">
+<meta name="twitter:description" content="简介】 　　fmt 包实现了格式化 I/O 函数，类似于 C 的 printf 和 scanf。格式“占位符”衍生自 C，但比 C 更简单。 【打印】 占位符： [一般] 　　%v    相应值的默认格式。在打印结构体时，“加号”标记（%+v）会添加字段名 　　%#v    相应值的 Go 语法表示 　　%T    相应值的类型的 Go 语法表示 　　%%    字面上的百分号，并非值的占位符 [">
   <!-- Canonical links -->
-  <link rel="canonical" href="http://yoursite.com/2019/06/29/dragonfly-0-4-0/index.html">
+  <link rel="canonical" href="https://upengs.github.io/2019/07/19/golang占位符/index.html">
   
     <link rel="alternate" href="/atom.xml" title="Peng" type="application/atom+xml">
   
@@ -226,7 +227,7 @@
   <div class="widget">
     <h3 class="widget-title">Tags</h3>
     <div class="widget-body">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/">docker</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/golang/">golang</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/harbor/">harbor</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/helm/">helm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kafka/">kafka</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kubernetes/">kubernetes</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/log/">log</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/">docker</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/golang/">golang</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/harbor/">harbor</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/helm/">helm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kafka/">kafka</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kubernetes/">kubernetes</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/log/">log</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -236,7 +237,7 @@
   <div class="widget">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget-body tagcloud">
-      <a href="/tags/docker/" style="font-size: 13.33px;">docker</a> <a href="/tags/git/" style="font-size: 13px;">git</a> <a href="/tags/golang/" style="font-size: 13.33px;">golang</a> <a href="/tags/harbor/" style="font-size: 13px;">harbor</a> <a href="/tags/helm/" style="font-size: 13px;">helm</a> <a href="/tags/hexo/" style="font-size: 13px;">hexo</a> <a href="/tags/kafka/" style="font-size: 13px;">kafka</a> <a href="/tags/kubernetes/" style="font-size: 13.67px;">kubernetes</a> <a href="/tags/linux/" style="font-size: 14px;">linux</a> <a href="/tags/log/" style="font-size: 13px;">log</a> <a href="/tags/nginx/" style="font-size: 13px;">nginx</a> <a href="/tags/python/" style="font-size: 13px;">python</a> <a href="/tags/redis/" style="font-size: 13px;">redis</a>
+      <a href="/tags/docker/" style="font-size: 13.33px;">docker</a> <a href="/tags/git/" style="font-size: 13px;">git</a> <a href="/tags/golang/" style="font-size: 13.67px;">golang</a> <a href="/tags/harbor/" style="font-size: 13px;">harbor</a> <a href="/tags/helm/" style="font-size: 13px;">helm</a> <a href="/tags/hexo/" style="font-size: 13px;">hexo</a> <a href="/tags/kafka/" style="font-size: 13px;">kafka</a> <a href="/tags/kubernetes/" style="font-size: 13.67px;">kubernetes</a> <a href="/tags/linux/" style="font-size: 14px;">linux</a> <a href="/tags/log/" style="font-size: 13px;">log</a> <a href="/tags/nginx/" style="font-size: 13px;">nginx</a> <a href="/tags/python/" style="font-size: 13px;">python</a> <a href="/tags/redis/" style="font-size: 13px;">redis</a>
     </div>
   </div>
 
@@ -245,7 +246,7 @@
   <div class="widget">
     <h3 class="widget-title">Archive</h3>
     <div class="widget-body">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">10</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">10</span></li></ul>
     </div>
   </div>
 
@@ -264,10 +265,10 @@
                 
               </p>
               <p class="item-title">
-                <a href="/2019/07/02/pvc-pv/" class="title">kubernetes 创建 pvc-pv</a>
+                <a href="/2019/07/19/golang占位符/" class="title">golang中的格式化输入输出</a>
               </p>
               <p class="item-date">
-                <time datetime="2019-07-02T02:18:31.000Z" itemprop="datePublished">2019-07-02</time>
+                <time datetime="2019-07-19T07:23:02.000Z" itemprop="datePublished">2019-07-19</time>
               </p>
             </div>
           </li>
@@ -279,10 +280,10 @@
                 
               </p>
               <p class="item-title">
-                <a href="/2019/06/29/dragonfly-0-4-0/" class="title">dragonfly_0.4.0</a>
+                <a href="/2019/07/02/pvc-pv/" class="title">kubernetes 创建 pvc-pv</a>
               </p>
               <p class="item-date">
-                <time datetime="2019-06-29T03:39:35.000Z" itemprop="datePublished">2019-06-29</time>
+                <time datetime="2019-07-02T02:18:31.000Z" itemprop="datePublished">2019-07-02</time>
               </p>
             </div>
           </li>
@@ -345,14 +346,14 @@
   
 <main class="main" role="main">
   <div class="content">
-  <article id="post-dragonfly-0-4-0" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <article id="post-golang占位符" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
       
         
   
     <h1 class="article-title" itemprop="name">
-      dragonfly_0.4.0
+      golang中的格式化输入输出
     </h1>
   
 
@@ -360,23 +361,112 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/2019/06/29/dragonfly-0-4-0/" class="article-date">
-	  <time datetime="2019-06-29T03:39:35.000Z" itemprop="datePublished">2019-06-29</time>
+	<a href="/2019/07/19/golang占位符/" class="article-date">
+	  <time datetime="2019-07-19T07:23:02.000Z" itemprop="datePublished">2019-07-19</time>
 	</a>
 </span>
         
         
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/golang/">golang</a>
+  </span>
+
 
         
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/06/29/dragonfly-0-4-0/#comments" class="article-comment-link">Comments</a></span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/07/19/golang占位符/#comments" class="article-comment-link">Comments</a></span>
         
       </div>
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        <h2 id="install-https-harbor"><a href="#install-https-harbor" class="headerlink" title="install https harbor"></a>install https harbor</h2><h3 id="保证docker-login-xx-xx-login-success"><a href="#保证docker-login-xx-xx-login-success" class="headerlink" title="保证docker login xx.xx   login success"></a>保证docker login xx.xx   login success</h3><h2 id="install-supernode"><a href="#install-supernode" class="headerlink" title="install supernode"></a>install supernode</h2><p>–advertiseIp host ip<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d --name supernode --restart=always --net host dragonflyoss/supernode:0.3.0 -Dsupernode.advertiseIp=10.0.0.124</span><br></pre></td></tr></table></figure></p>
-<h2 id="install-dfdaemon"><a href="#install-dfdaemon" class="headerlink" title="install dfdaemon"></a>install dfdaemon</h2><p>准备工作<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /etc/systemd/system/docker.service.d</span><br><span class="line">cat &lt;&lt;EOD &gt;/etc/systemd/system/docker.service.d/http-proxy.conf</span><br><span class="line">[Service]</span><br><span class="line">Environment=&quot;HTTP_PROXY=http://127.0.0.1:65001&quot;</span><br><span class="line">Environment=&quot;HTTPS_PROXY=http://127.0.0.1:65001&quot;</span><br><span class="line">EOD</span><br><span class="line"></span><br><span class="line">systemctl daemon-reload</span><br><span class="line">systemctl restart docker</span><br></pre></td></tr></table></figure></p>
+        <p>简介】</p>
+<p>　　fmt 包实现了格式化 I/O 函数，类似于 C 的 printf 和 scanf。格式“占位符”衍生自 C，但比 C 更简单。</p>
+<p>【打印】</p>
+<p>占位符：</p>
+<p>[一般]</p>
+<p>　　%v    相应值的默认格式。在打印结构体时，“加号”标记（%+v）会添加字段名</p>
+<p>　　%#v    相应值的 Go 语法表示</p>
+<p>　　%T    相应值的类型的 Go 语法表示</p>
+<p>　　%%    字面上的百分号，并非值的占位符</p>
+<p>[布尔]</p>
+<p>　　%t    单词 true 或 false。</p>
+<p>[整数]</p>
+<p>　　%b    二进制表示</p>
+<p>　　%c    相应 Unicode 码点所表示的字符</p>
+<p>　　%d    十进制表示</p>
+<p>　　%o    八进制表示</p>
+<p>　　%q    单引号围绕的字符字面值，由 Go 语法安全地转义</p>
+<p>　　%x    十六进制表示，字母形式为小写 a-f</p>
+<p>　　%X    十六进制表示，字母形式为大写 A-F</p>
+<p>　　%U    Unicode 格式：U+1234，等同于 “U+%04X”</p>
+<p>[浮点数及其复合构成]</p>
+<p>　　%b    无小数部分的，指数为二的幂的科学计数法，与 strconv.FormatFloat 的 ‘b’ 转换格式一致。例如 -123456p-78</p>
+<p>　　%e    科学计数法，例如 -1234.456e+78</p>
+<p>　　%E    科学计数法，例如 -1234.456E+78</p>
+<p>　　%f    有小数点而无指数，例如 123.456</p>
+<p>　　%g    根据情况选择 %e 或 %f 以产生更紧凑的（无末尾的 0）输出</p>
+<p>　　%G    根据情况选择 %E 或 %f 以产生更紧凑的（无末尾的 0）输出</p>
+<p>[字符串与字节切片]</p>
+<p>　　%s    字符串或切片的无解译字节</p>
+<p>　　%q    双引号围绕的字符串，由 Go 语法安全地转义</p>
+<p>　　%x    十六进制，小写字母，每字节两个字符</p>
+<p>　　%X    十六进制，大写字母，每字节两个字符</p>
+<p>[指针]</p>
+<p>　　%p    十六进制表示，前缀 0x</p>
+<p>[注意]</p>
+<p>　　这里没有 ‘u’ 标记。若整数为无符号类型，他们就会被打印成无符号的。类似地， 这里也不需要指定操作数的大小（int8，int64）。</p>
+<p>　　宽度与精度的控制格式以 Unicode 码点为单位。（这点与 C 的 printf 不同， 它以字节数为单位。）二者或其中之一均可用字符 ‘*’ 表示， 此时它们的值会从下一个操作数中获取，该操作数的类型必须为 int。</p>
+<p>// 宽度与精度的控制以 Unicode 码点为单位<br>fmt.Printf(“\”%8s\”\n”, “123456”) // 最大长度为 8<br>// “  123456”<br>fmt.Printf(“\”%8s\”\n”, “你好”)   // 最大长度为 8<br>// “      你好”</p>
+<p>// 宽度与精度均可用字符 ‘<em>‘ 表示<br>fmt.Printf(“%0</em>.*f \n”, 8, 3, 13.25) // 总长度 8，小数位数 3<br>fmt.Printf(“%08.3f \n”, 13.25)       // 总长度 8，小数位数 3<br>// 0013.250</p>
+<p>　　对数值而言，宽度为该数值占用区域的最小宽度；精度为小数点之后的位数。 但对于 %g/%G 而言，精度为所有数字的总数。例如，对于 123.45，格式 %6.2f 会打印 123.45，而 %.4g 会打印 123.5。%e 和 %f 的默认精度为 6；但对于 %g 而言，它的默认精度为确定该值所必须的最小位数。</p>
+<p>　　对大多数值而言，宽度为输出的最小字符数，如果必要的话会为已格式化的形式填充空格。对字符串而言，精度为输出的最大字符数，如果必要的话会直接截断。</p>
+<p>// 宽度与精度标记字符串<br>fmt.Printf(“%8q”, “ABC”)         // 最小长度为 8（包括 %q 的引号字符）<br>//    “ABC”<br>fmt.Printf(“%.8q”, “1234567890”) // 最大长度为 8（不包括 %q 的引号字符）<br>// “12345678”</p>
+<p>[其它标记]</p>
+<p>　　+    总打印数值的正负号；对于 %q（%+q）保证只输出 ASCII 编码的字符。</p>
+<p>　　-    在右侧而非左侧填充空格（左对齐该区域）</p>
+<p>　　#    备用格式：为八进制添加前导 0（%#o），为十六进制添加前导 0x（%#x）或</p>
+<p>　　0X（%#X），为 %p（%#p）去掉前导 0x；如果可能的话，%q（%#q）会打印原始（即反引号围绕的）字符串；如果是可打印字符，%U（%#U）会写出该字符的 Unicode 编码形式（如字符 x 会被打印成 U+0078 ‘x’）。</p>
+<p>　　‘ ‘    （空格）为数值中省略的正负号留出空白（% d）；以十六进制（% x, % X）打印字符串或切片时，在字节之间用空格隔开：</p>
+<p>fmt.Printf(“% x\n”, “Hello”)<br>// 48 65 6c 6c 6f</p>
+<p>　　0    填充前导的 0 而非空格；对于数字，这会将填充移到正负号之后</p>
+<p>[注意]</p>
+<p>　　标记有时会被占位符忽略，所以不要指望它们。例如十进制没有备用格式，因此 %#d 与 %d 的行为相同。</p>
+<p>　　对于每一个 Printf 类的函数，都有一个 Print 函数，该函数不接受任何格式化， 它等价于对每一个操作数都应用 %v。另一个变参函数 Println 会在操作数之间插入空白， 并在末尾追加一个换行符。</p>
+<p>　　不考虑占位符的话，如果操作数是接口值，就会使用其内部的具体值，而非接口本身。 因此：</p>
+<p>var i interface{} = 23<br>fmt.Printf(“%v\n”, i)<br>// 会打印 23</p>
+<p>　　若一个操作数实现了 Formatter 接口，该接口就能更好地用于控制格式化。</p>
+<p>　　若其格式（它对于 Println 等函数是隐式的 %v）对于字符串是有效的（%s %q %v %x %X），以下两条规则也适用：</p>
+<p>　　1、若一个操作数实现了 error 接口，Error 方法就能将该对象转换为字符串，随后会根据占位符的需要进行格式化。</p>
+<p>　　2、若一个操作数实现了 String() string 方法，该方法能将该对象转换为字符串，随后会根据占位符的需要进行格式化。</p>
+<p>　　为避免以下这类递归的情况：</p>
+<p>　　type X string<br>　　func (x X) String() string { return Sprintf(“&lt;%s&gt;”, x) }</p>
+<p>　　需要在递归前转换该值：<br>　　func (x X) String() string { return Sprintf(“&lt;%s&gt;”, string(x)) }</p>
+<p>[格式化错误]</p>
+<p>　　如果给占位符提供了无效的实参（例如将一个字符串提供给 %d），所生成的字符串会包含该问题的描述，如下例所示：</p>
+<p>　　类型错误或占位符未知：%!verb(type=value)</p>
+<p>Printf(“%d”, hi)<br>// %!d(string=hi)</p>
+<p>　　实参太多：%!(EXTRA type=value)</p>
+<p>Printf(“hi”, “guys”)<br>// hi%!(EXTRA string=guys)</p>
+<p>　　实参太少：%!verb(MISSING)</p>
+<p>Printf(“hi%d”)<br>// hi %!d(MISSING)</p>
+<p>　　宽度或精度不是 int 类型：%!(BADWIDTH）或 %!(BADPREC)</p>
+<p>Printf(“%*s”, 4.5, “hi”)<br>// %!(BADWIDTH)hi</p>
+<p>Printf(“%.*s”, 4.5, “hi”)<br>// %!(BADPREC)hi</p>
+<p>　　所有错误都始于“%!”，有时紧跟着单个字符（占位符），并以小括号括住的描述结尾。</p>
+<p>【扫描】</p>
+<p>　　一组类似的函数通过扫描已格式化的文本来产生值。Scan、Scanf 和 Scanln 从 os.Stdin 中读取；Fscan、Fscanf 和 Fscanln 从指定的 io.Reader 中读取； Sscan、Sscanf 和 Sscanln 从实参字符串中读取。Scanln、Fscanln 和 Sscanln 在换行符处停止扫描，且需要条目紧随换行符之后；Scanf、Fscanf 和 Sscanf 需要输入换行符来匹配格式中的换行符；其它函数则将换行符视为空格。</p>
+<p>　　Scanf、Fscanf 和 Sscanf 根据格式字符串解析实参，类似于 Printf。例如，%x 会将一个整数扫描为十六进制数，而 %v 则会扫描该值的默认表现格式。</p>
+<p>　　格式化行为类似于 Printf，但也有如下例外：</p>
+<p>　　%p 没有实现<br>　　%T 没有实现<br>　　%e %E %f %F %g %G 都完全等价，且可扫描任何浮点数或复合数值<br>　　%s 和 %v 在扫描字符串时会将其中的空格作为分隔符<br>　　标记 # 和 + 没有实现</p>
+<p>　　在使用 %v 占位符扫描整数时，可接受友好的进制前缀 0（八进制）和 0x（十六进制）。</p>
+<p>　　宽度被解释为输入的文本（%5s 意为最多从输入中读取 5 个符文来扫描成字符串），而扫描函数则没有精度的语法（没有 %5.2f，只有 %5f）。</p>
+<p>　　当以某种格式进行扫描时，无论在格式中还是在输入中，所有非空的连续空白字符 （除换行符外）都等价于单个空格。由于这种限制，格式字符串文本必须匹配输入的文本，如果不匹配，扫描过程就会停止，并返回已扫描的实参数。</p>
+<p>　　在所有的扫描参数中，若一个操作数实现了 Scan 方法（即它实现了 Scanner 接口），该操作数将使用该方法扫描其文本。此外，若已扫描的实参数少于所提供的实参数，就会返回一个错误。</p>
+<p>　　所有需要被扫描的实参都必须是基本类型或实现了 Scanner 接口的类型。</p>
+<p>　　注意：Fscan 等函数会从输入中多读取一个字符（符文），因此，如果循环调用扫描函数，可能会跳过输入中的某些数据。一般只有在输入的数据中没有空白符时该问题才会出现。若提供给 Fscan 的读取器实现了 ReadRune，就会用该方法读取字符。若此读取器还实现了 UnreadRune 方法，就会用该方法保存字符，而连续的调用将不会丢失数据。若要为没有 ReadRune 和 UnreadRune 方法的读取器加上这些功能，需使用 bufio.NewReader。</p>
+<p>转载：<a href="https://blog.csdn.net/xiaoyida11/article/details/51554022" target="_blank" rel="noopener">https://blog.csdn.net/xiaoyida11/article/details/51554022</a></p>
 
       
     </div>
@@ -386,7 +476,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="http://yoursite.com/2019/06/29/dragonfly-0-4-0/" title="dragonfly_0.4.0" target="_blank" rel="external">http://yoursite.com/2019/06/29/dragonfly-0-4-0/</a>
+      <a href="https://upengs.github.io/2019/07/19/golang占位符/" title="golang中的格式化输入输出" target="_blank" rel="external">https://upengs.github.io/2019/07/19/golang占位符/</a>
     </li>
     
     <li class="post-copyright-license">
@@ -432,13 +522,9 @@
   
   <ul class="pager pull-left">
     
-    <li class="prev">
-      <a href="/2019/07/02/pvc-pv/" title="kubernetes 创建 pvc-pv"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
-    </li>
-    
     
     <li class="next">
-      <a href="/2019/06/28/golang/" title="golang相关资料"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+      <a href="/2019/07/02/pvc-pv/" title="kubernetes 创建 pvc-pv"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
     </li>
     
     
@@ -560,7 +646,7 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
 (function ($) {
     $('.search-form').on('submit', function (e) {
         var keyword = $('.search-form-input[name="wd"]').val();
-        window.location = 'https://www.baidu.com/s?wd=site:yoursite.com ' + keyword;
+        window.location = 'https://www.baidu.com/s?wd=site:upengs.github.io ' + keyword;
         return false;
     });
 })(jQuery);
