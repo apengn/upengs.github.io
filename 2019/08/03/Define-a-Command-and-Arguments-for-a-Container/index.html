@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000">
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top">
+  
+  
+  <title>通过kubernetes将数据注入应用程序 | Upengs</title>
+  <meta name="description" content="定义容器的命令和参数创建Pod时，可以为Pod中运行的容器定义命令和参数。要定义命令，请command 在配置文件中包含该字段。要定义命令的参数，请args在配置文件中包含该字段。创建Pod后，无法更改您定义的命令和参数12345678910111213apiVersion: v1kind: Podmetadata:  name: command-demo  labels:    purpose:">
+<meta name="keywords" content="kubernetes">
+<meta property="og:type" content="article">
+<meta property="og:title" content="通过kubernetes将数据注入应用程序">
+<meta property="og:url" content="https://upengs.github.io/2019/08/03/Define-a-Command-and-Arguments-for-a-Container/index.html">
+<meta property="og:site_name" content="Peng">
+<meta property="og:description" content="定义容器的命令和参数创建Pod时，可以为Pod中运行的容器定义命令和参数。要定义命令，请command 在配置文件中包含该字段。要定义命令的参数，请args在配置文件中包含该字段。创建Pod后，无法更改您定义的命令和参数12345678910111213apiVersion: v1kind: Podmetadata:  name: command-demo  labels:    purpose:">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://upengs.github.io/images/image-20190803125046460.png">
+<meta property="og:updated_time" content="2019-08-03T10:16:01.735Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="通过kubernetes将数据注入应用程序">
+<meta name="twitter:description" content="定义容器的命令和参数创建Pod时，可以为Pod中运行的容器定义命令和参数。要定义命令，请command 在配置文件中包含该字段。要定义命令的参数，请args在配置文件中包含该字段。创建Pod后，无法更改您定义的命令和参数12345678910111213apiVersion: v1kind: Podmetadata:  name: command-demo  labels:    purpose:">
+<meta name="twitter:image" content="https://upengs.github.io/images/image-20190803125046460.png">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://upengs.github.io/2019/08/03/Define-a-Command-and-Arguments-for-a-Container/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Peng" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+  
+  
+</head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/upengs" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.png" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">upengs</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Golang Developer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> SiChuan, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">Categories</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">Tags</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">Repository</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-books">
+          <a href="/books">
+            
+            <i class="icon icon-book-fill"></i>
+            
+            <span class="menu-title">Books</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">Links</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/upengs" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/upengs" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/upengs" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/upengs" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/helm/">helm</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/helm/kubernetes/">kubernetes</a><span class="category-list-count">1</span></li></ul></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-body">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/">docker</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/golang/">golang</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/harbor/">harbor</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/helm/">helm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kafka/">kafka</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kubernetes/">kubernetes</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/log/">log</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/makefile/">makefile</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/docker/" style="font-size: 13.5px;">docker</a> <a href="/tags/git/" style="font-size: 13px;">git</a> <a href="/tags/golang/" style="font-size: 13.5px;">golang</a> <a href="/tags/harbor/" style="font-size: 13px;">harbor</a> <a href="/tags/helm/" style="font-size: 13px;">helm</a> <a href="/tags/hexo/" style="font-size: 13px;">hexo</a> <a href="/tags/kafka/" style="font-size: 13px;">kafka</a> <a href="/tags/kubernetes/" style="font-size: 14px;">kubernetes</a> <a href="/tags/linux/" style="font-size: 14px;">linux</a> <a href="/tags/log/" style="font-size: 13px;">log</a> <a href="/tags/makefile/" style="font-size: 13px;">makefile</a> <a href="/tags/nginx/" style="font-size: 13px;">nginx</a> <a href="/tags/python/" style="font-size: 13px;">python</a> <a href="/tags/redis/" style="font-size: 13px;">redis</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">10</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2019/08/03/Define-a-Command-and-Arguments-for-a-Container/" class="title">通过kubernetes将数据注入应用程序</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-08-03T04:08:53.000Z" itemprop="datePublished">2019-08-03</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2019/08/03/Access-Clusters-Using-the-Kubernetes-API/" class="title">使用Kubernetes API访问群集</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-08-03T02:32:31.000Z" itemprop="datePublished">2019-08-03</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2019/07/20/dockerfile/" class="title">dockerfile编写文档</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-07-20T03:21:52.000Z" itemprop="datePublished">2019-07-20</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2019/07/20/tmux/" class="title">Tmux常用快捷键以及我会常到的一些问题汇总</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-07-20T02:45:53.000Z" itemprop="datePublished">2019-07-20</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2019/07/19/makefile/" class="title">makefile相关资料</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-07-19T07:45:18.000Z" itemprop="datePublished">2019-07-19</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-Define-a-Command-and-Arguments-for-a-Container" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      通过kubernetes将数据注入应用程序
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2019/08/03/Define-a-Command-and-Arguments-for-a-Container/" class="article-date">
+	  <time datetime="2019-08-03T04:08:53.000Z" itemprop="datePublished">2019-08-03</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/kubernetes/">kubernetes</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/08/03/Define-a-Command-and-Arguments-for-a-Container/#comments" class="article-comment-link">Comments</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h3 id="定义容器的命令和参数"><a href="#定义容器的命令和参数" class="headerlink" title="定义容器的命令和参数"></a>定义容器的命令和参数</h3><p>创建Pod时，可以为Pod中运行的容器定义命令和参数。要定义命令，请command 在配置文件中包含该字段。要定义命令的参数，请args在配置文件中包含该字段。创建Pod后，无法更改您定义的命令和参数<br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Pod</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line"><span class="attr">  name:</span> <span class="string">command-demo</span></span><br><span class="line"><span class="attr">  labels:</span></span><br><span class="line"><span class="attr">    purpose:</span> <span class="string">demonstrate-command</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line"><span class="attr">  containers:</span></span><br><span class="line"><span class="attr">  - name:</span> <span class="string">command-demo-container</span></span><br><span class="line"><span class="attr">    image:</span> <span class="string">debian</span></span><br><span class="line"><span class="attr">    command:</span> <span class="string">["printenv"]</span></span><br><span class="line"><span class="attr">    args:</span> <span class="string">["HOSTNAME",</span> <span class="string">"KUBERNETES_PORT"</span><span class="string">]</span></span><br><span class="line"><span class="attr">  restartPolicy:</span> <span class="string">OnFailure</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="使用环境变量来定义参数"><a href="#使用环境变量来定义参数" class="headerlink" title="使用环境变量来定义参数"></a>使用环境变量来定义参数</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">env:</span></span><br><span class="line"><span class="attr">- name:</span> <span class="string">MESSAGE</span></span><br><span class="line"><span class="attr">  value:</span> <span class="string">"hello world"</span></span><br><span class="line"><span class="attr">command:</span> <span class="string">["/bin/echo"]</span></span><br><span class="line"><span class="attr">args:</span> <span class="string">["$(MESSAGE)"]</span></span><br></pre></td></tr></table></figure>
+<h3 id="在shell中运行命令"><a href="#在shell中运行命令" class="headerlink" title="在shell中运行命令"></a>在shell中运行命令</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">command:</span> <span class="string">["/bin/sh"]</span></span><br><span class="line"><span class="attr">args:</span> <span class="string">["-c",</span> <span class="string">"while true; do echo hello; sleep 10;done"</span><span class="string">]</span></span><br></pre></td></tr></table></figure>
+<p>此表总结了Docker和Kubernetes使用的字段名称。</p>
+<table>
+<thead>
+<tr>
+<th>描述</th>
+<th>Docker字段名称</th>
+<th>Kubernetes字段名称</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>该命令由容器运行</td>
+<td>ENTRYPONT</td>
+<td>command</td>
+</tr>
+<tr>
+<td>传递给命令的参数</td>
+<td>CMD</td>
+<td>args</td>
+</tr>
+</tbody>
+</table>
+<p>当您覆盖默认的Entrypoint和Cmd时，这些规则适用：</p>
+<ul>
+<li>如果您不提供Container <code>command</code>或<code>args</code>使用Container，则使用Docker镜像中定义的默认值。</li>
+<li>如果为Container提供<code>command</code>但不<code>args</code>提供，则仅使用提供 <code>command</code>的。默认的EntryPoint和Docker镜像中定义的默认Cmd将被忽略。</li>
+<li>如果仅为<code>args</code>Container提供，则Docker镜像中定义的默认入口点将与<code>args</code>您提供的一起运行。</li>
+<li>如果提供<code>command</code>和<code>args</code>，则默认的入口点和Docker镜像中定义的默认Cmd将被忽略。你<code>command</code>和你一起跑 <code>args</code>。</li>
+</ul>
+<p><img src="/images/image-20190803125046460.png" alt="image-20190803125046460"></p>
+<h3 id="定义容器的环境变量"><a href="#定义容器的环境变量" class="headerlink" title="定义容器的环境变量"></a>定义容器的环境变量</h3><p>创建Pod时，可以为Pod中运行的容器设置环境变量。要设置环境变量，请在配置文件中包含env或 envFrom字段。</p>
+<p>在本练习中，您将创建一个运行一个容器的Pod。Pod的配置文件定义了一个具有名称DEMO_GREETING和值的环境变量”Hello from the environment”。这是Pod的配置文件：<br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Pod</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line"><span class="attr">  name:</span> <span class="string">envar-demo</span></span><br><span class="line"><span class="attr">  labels:</span></span><br><span class="line"><span class="attr">    purpose:</span> <span class="string">demonstrate-envars</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line"><span class="attr">  containers:</span></span><br><span class="line"><span class="attr">  - name:</span> <span class="string">envar-demo-container</span></span><br><span class="line"><span class="attr">    image:</span> <span class="string">gcr.io/google-samples/node-hello:1.0</span></span><br><span class="line"><span class="attr">    env:</span></span><br><span class="line"><span class="attr">    - name:</span> <span class="string">DEMO_GREETING</span></span><br><span class="line"><span class="attr">      value:</span> <span class="string">"Hello from the environment"</span></span><br><span class="line"><span class="attr">    - name:</span> <span class="string">DEMO_FAREWELL</span></span><br><span class="line"><span class="attr">      value:</span> <span class="string">"Such a sweet sorrow"</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="在配置中使用环境变量"><a href="#在配置中使用环境变量" class="headerlink" title="在配置中使用环境变量"></a>在配置中使用环境变量</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Pod</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line"><span class="attr">  name:</span> <span class="string">print-greeting</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line"><span class="attr">  containers:</span></span><br><span class="line"><span class="attr">  - name:</span> <span class="string">env-print-demo</span></span><br><span class="line"><span class="attr">    image:</span> <span class="string">bash</span></span><br><span class="line"><span class="attr">    env:</span></span><br><span class="line"><span class="attr">    - name:</span> <span class="string">GREETING</span></span><br><span class="line"><span class="attr">      value:</span> <span class="string">"Warm greetings to"</span></span><br><span class="line"><span class="attr">    - name:</span> <span class="string">HONORIFIC</span></span><br><span class="line"><span class="attr">      value:</span> <span class="string">"The Most Honorable"</span></span><br><span class="line"><span class="attr">    - name:</span> <span class="string">NAME</span></span><br><span class="line"><span class="attr">      value:</span> <span class="string">"Kubernetes"</span></span><br><span class="line"><span class="attr">    command:</span> <span class="string">["echo"]</span></span><br><span class="line"><span class="attr">    args:</span> <span class="string">["$(GREETING)</span> <span class="string">$(HONORIFIC)</span> <span class="string">$(NAME)"]</span></span><br></pre></td></tr></table></figure>
+<h3 id="通过环境变量将Pod信息暴露给容器"><a href="#通过环境变量将Pod信息暴露给容器" class="headerlink" title="通过环境变量将Pod信息暴露给容器"></a>通过环境变量将Pod信息暴露给容器</h3><h4 id="有两种方法可以将Pod和Container字段公开给正在运行的Container："><a href="#有两种方法可以将Pod和Container字段公开给正在运行的Container：" class="headerlink" title="有两种方法可以将Pod和Container字段公开给正在运行的Container："></a>有两种方法可以将Pod和Container字段公开给正在运行的Container：</h4><p>1、环境变量</p>
+<p>2、DownwardAPIVolumeFiles</p>
+<p>这两种暴露Pod和Container字段的方式一起称为 Downward API。</p>
+<p>参考：<br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Pod</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line"><span class="attr">  name:</span> <span class="string">dapi-envars-fieldref</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line"><span class="attr">  containers:</span></span><br><span class="line"><span class="attr">    - name:</span> <span class="string">test-container</span></span><br><span class="line"><span class="attr">      image:</span> <span class="string">k8s.gcr.io/busybox</span></span><br><span class="line"><span class="attr">      command:</span> <span class="string">[</span> <span class="string">"sh"</span><span class="string">,</span> <span class="string">"-c"</span><span class="string">]</span></span><br><span class="line"><span class="attr">      args:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">while</span> <span class="literal">true</span><span class="string">;</span> <span class="string">do</span></span><br><span class="line">          <span class="string">echo</span> <span class="bullet">-en</span> <span class="string">'\n'</span><span class="string">;</span></span><br><span class="line">          <span class="string">printenv</span> <span class="string">MY_NODE_NAME</span> <span class="string">MY_POD_NAME</span> <span class="string">MY_POD_NAMESPACE;</span></span><br><span class="line">          <span class="string">printenv</span> <span class="string">MY_POD_IP</span> <span class="string">MY_POD_SERVICE_ACCOUNT;</span></span><br><span class="line">          <span class="string">sleep</span> <span class="number">10</span><span class="string">;</span></span><br><span class="line">        <span class="string">done;</span></span><br><span class="line"><span class="attr">      env:</span></span><br><span class="line"><span class="attr">        - name:</span> <span class="string">MY_NODE_NAME</span></span><br><span class="line"><span class="attr">          valueFrom:</span></span><br><span class="line"><span class="attr">            fieldRef:</span></span><br><span class="line"><span class="attr">              fieldPath:</span> <span class="string">spec.nodeName</span></span><br><span class="line"><span class="attr">        - name:</span> <span class="string">MY_POD_NAME</span></span><br><span class="line"><span class="attr">          valueFrom:</span></span><br><span class="line"><span class="attr">            fieldRef:</span></span><br><span class="line"><span class="attr">              fieldPath:</span> <span class="string">metadata.name</span></span><br><span class="line"><span class="attr">        - name:</span> <span class="string">MY_POD_NAMESPACE</span></span><br><span class="line"><span class="attr">          valueFrom:</span></span><br><span class="line"><span class="attr">            fieldRef:</span></span><br><span class="line"><span class="attr">              fieldPath:</span> <span class="string">metadata.namespace</span></span><br><span class="line"><span class="attr">        - name:</span> <span class="string">MY_POD_IP</span></span><br><span class="line"><span class="attr">          valueFrom:</span></span><br><span class="line"><span class="attr">            fieldRef:</span></span><br><span class="line"><span class="attr">              fieldPath:</span> <span class="string">status.podIP</span></span><br><span class="line"><span class="attr">        - name:</span> <span class="string">MY_POD_SERVICE_ACCOUNT</span></span><br><span class="line"><span class="attr">          valueFrom:</span></span><br><span class="line"><span class="attr">            fieldRef:</span></span><br><span class="line"><span class="attr">              fieldPath:</span> <span class="string">spec.serviceAccountName</span></span><br><span class="line"><span class="attr">  restartPolicy:</span> <span class="string">Never</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="通过文件mount的形式将pod-信息暴露给container"><a href="#通过文件mount的形式将pod-信息暴露给container" class="headerlink" title="通过文件mount的形式将pod  信息暴露给container"></a>通过文件mount的形式将pod  信息暴露给container</h4><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Pod</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line"><span class="attr">  name:</span> <span class="string">kubernetes-downwardapi-volume-example</span></span><br><span class="line"><span class="attr">  labels:</span></span><br><span class="line"><span class="attr">    zone:</span> <span class="string">us-est-coast</span></span><br><span class="line"><span class="attr">    cluster:</span> <span class="string">test-cluster1</span></span><br><span class="line"><span class="attr">    rack:</span> <span class="string">rack-22</span></span><br><span class="line"><span class="attr">  annotations:</span></span><br><span class="line"><span class="attr">    build:</span> <span class="string">two</span></span><br><span class="line"><span class="attr">    builder:</span> <span class="string">john-doe</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line"><span class="attr">  containers:</span></span><br><span class="line"><span class="attr">    - name:</span> <span class="string">client-container</span></span><br><span class="line"><span class="attr">      image:</span> <span class="string">k8s.gcr.io/busybox</span></span><br><span class="line"><span class="attr">      command:</span> <span class="string">["sh",</span> <span class="string">"-c"</span><span class="string">]</span></span><br><span class="line"><span class="attr">      args:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">while</span> <span class="literal">true</span><span class="string">;</span> <span class="string">do</span></span><br><span class="line">          <span class="string">if</span> <span class="string">[[</span> <span class="bullet">-e</span> <span class="string">/etc/podinfo/labels</span> <span class="string">]];</span> <span class="string">then</span></span><br><span class="line">            <span class="string">echo</span> <span class="bullet">-en</span> <span class="string">'\n\n'</span><span class="string">;</span> <span class="string">cat</span> <span class="string">/etc/podinfo/labels;</span> <span class="string">fi;</span></span><br><span class="line">          <span class="string">if</span> <span class="string">[[</span> <span class="bullet">-e</span> <span class="string">/etc/podinfo/annotations</span> <span class="string">]];</span> <span class="string">then</span></span><br><span class="line">            <span class="string">echo</span> <span class="bullet">-en</span> <span class="string">'\n\n'</span><span class="string">;</span> <span class="string">cat</span> <span class="string">/etc/podinfo/annotations;</span> <span class="string">fi;</span></span><br><span class="line">          <span class="string">sleep</span> <span class="number">5</span><span class="string">;</span></span><br><span class="line">        <span class="string">done;</span></span><br><span class="line"><span class="attr">      volumeMounts:</span></span><br><span class="line"><span class="attr">        - name:</span> <span class="string">podinfo</span></span><br><span class="line"><span class="attr">          mountPath:</span> <span class="string">/etc/podinfo</span></span><br><span class="line"><span class="attr">          readOnly:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">  volumes:</span></span><br><span class="line"><span class="attr">    - name:</span> <span class="string">podinfo</span></span><br><span class="line"><span class="attr">      downwardAPI:</span></span><br><span class="line"><span class="attr">        items:</span></span><br><span class="line"><span class="attr">          - path:</span> <span class="string">"labels"</span></span><br><span class="line"><span class="attr">            fieldRef:</span></span><br><span class="line"><span class="attr">              fieldPath:</span> <span class="string">metadata.labels</span></span><br><span class="line"><span class="attr">          - path:</span> <span class="string">"annotations"</span></span><br><span class="line"><span class="attr">            fieldRef:</span></span><br><span class="line"><span class="attr">              fieldPath:</span> <span class="string">metadata.annotations</span></span><br></pre></td></tr></table></figure>
+<h3 id="使用secrets安全地注入数据到container"><a href="#使用secrets安全地注入数据到container" class="headerlink" title="使用secrets安全地注入数据到container"></a>使用secrets安全地注入数据到container</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl create secret generic my-secret --from-literal=username=username --from-literal=password=12345</span><br></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">data:</span></span><br><span class="line"><span class="attr">  password:</span> <span class="string">MTIzNDU=</span></span><br><span class="line"><span class="attr">  username:</span> <span class="string">dXNlcm5hbWU=</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Secret</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line"><span class="attr">  name:</span> <span class="string">my-secret</span></span><br><span class="line"><span class="attr">  namespace:</span> <span class="string">default</span></span><br><span class="line"><span class="attr">type:</span> <span class="string">Opaque</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Pod</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line"><span class="attr">  name:</span> <span class="string">secret-test-pod</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line"><span class="attr">  containers:</span></span><br><span class="line"><span class="attr">    - name:</span> <span class="string">test-container</span></span><br><span class="line"><span class="attr">      image:</span> <span class="string">nginx</span></span><br><span class="line"><span class="attr">      volumeMounts:</span></span><br><span class="line">        <span class="comment"># name must match the volume name below</span></span><br><span class="line"><span class="attr">        - name:</span> <span class="string">secret-volume</span></span><br><span class="line"><span class="attr">          mountPath:</span> <span class="string">/etc/secret-volume</span></span><br><span class="line">  <span class="comment"># The secret data is exposed to Containers in the Pod through a Volume.</span></span><br><span class="line"><span class="attr">  volumes:</span></span><br><span class="line"><span class="attr">    - name:</span> <span class="string">secret-volume</span></span><br><span class="line"><span class="attr">      secret:</span></span><br><span class="line"><span class="attr">        secretName:</span> <span class="string">my-secret</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Pod</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line"><span class="attr">  name:</span> <span class="string">envvars-multiple-secrets</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line"><span class="attr">  containers:</span></span><br><span class="line"><span class="attr">  - name:</span> <span class="string">envars-test-container</span></span><br><span class="line"><span class="attr">    image:</span> <span class="string">nginx</span></span><br><span class="line"><span class="attr">    env:</span></span><br><span class="line"><span class="attr">    - name:</span> <span class="string">DB_PASSWORD</span></span><br><span class="line"><span class="attr">      valueFrom:</span></span><br><span class="line"><span class="attr">        secretKeyRef:</span></span><br><span class="line"><span class="attr">          name:</span> <span class="string">my-secret</span></span><br><span class="line"><span class="attr">          key:</span> <span class="string">password</span></span><br><span class="line"><span class="attr">    - name:</span> <span class="string">DB_USERNAME</span></span><br><span class="line"><span class="attr">      valueFrom:</span></span><br><span class="line"><span class="attr">        secretKeyRef:</span></span><br><span class="line"><span class="attr">          name:</span> <span class="string">my-secret</span></span><br><span class="line"><span class="attr">          key:</span> <span class="string">username</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Pod</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line"><span class="attr">  name:</span> <span class="string">envvars-multiple-secrets</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line"><span class="attr">  containers:</span></span><br><span class="line"><span class="attr">  - name:</span> <span class="string">envars-test-container</span></span><br><span class="line"><span class="attr">    image:</span> <span class="string">nginx</span></span><br><span class="line"><span class="attr">    envFrom:</span></span><br><span class="line"><span class="attr">      secretRef:</span></span><br><span class="line"><span class="attr">        name:</span> <span class="string">my-secret</span></span><br></pre></td></tr></table></figure>
+<p>参考：<a href="https://kubernetes.io/docs/tasks/inject-data-application/distribute-credentials-secure/" target="_blank" rel="noopener">https://kubernetes.io/docs/tasks/inject-data-application/distribute-credentials-secure/</a></p>
+<h3 id="使用PodPreset将信息注入Pod"><a href="#使用PodPreset将信息注入Pod" class="headerlink" title="使用PodPreset将信息注入Pod"></a>使用PodPreset将信息注入Pod</h3><p>参考：<br><a href="https://kubernetes.io/docs/tasks/inject-data-application/podpreset/" target="_blank" rel="noopener">https://kubernetes.io/docs/tasks/inject-data-application/podpreset/</a></p>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://upengs.github.io/2019/08/03/Define-a-Command-and-Arguments-for-a-Container/" title="通过kubernetes将数据注入应用程序" target="_blank" rel="external">https://upengs.github.io/2019/08/03/Define-a-Command-and-Arguments-for-a-Container/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/upengs" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.png" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/upengs" target="_blank"><span class="text-dark">upengs</span><small class="ml-1x">Golang Developer</small></a></h3>
+        <div></div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    
+    <li class="next">
+      <a href="/2019/08/03/Access-Clusters-Using-the-Kubernetes-API/" title="使用Kubernetes API访问群集"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/upengs" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/upengs" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/upengs" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/upengs" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script src="/js/plugin.min.js"></script>
+<script src="/js/application.js"></script>
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+
+    <script>
+(function ($) {
+    $('.search-form').on('submit', function (e) {
+        var keyword = $('.search-form-input[name="wd"]').val();
+        window.location = 'https://www.baidu.com/s?wd=site:upengs.github.io ' + keyword;
+        return false;
+    });
+})(jQuery);
+</script>
+
+
+
+
+   
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+</body>
+</html>
