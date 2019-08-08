@@ -18,18 +18,18 @@
   
   
   <title>kubernetes排除应用程序故障 | Upengs</title>
-  <meta name="description" content="访问上一个容器崩溃的日志 1kubernetes logs --previous pod_name  container_name 修改image1kubectl set image deployments/deploy_name container_name=image kcc delete po -n default $(kcc get po -n defalut |grep nginx |a">
+  <meta name="description" content="访问上一个容器崩溃的日志 1kubernetes logs --previous pod_name  container_name 修改image1kubectl set image deployments/deploy_name container_name=image delete po -n default $(kcc get po -n defalut |grep nginx |awk &apos;">
 <meta name="keywords" content="kubernetes">
 <meta property="og:type" content="article">
 <meta property="og:title" content="kubernetes排除应用程序故障">
 <meta property="og:url" content="https://upengs.github.io/2019/02/27/排除应用程序故障/index.html">
 <meta property="og:site_name" content="Peng">
-<meta property="og:description" content="访问上一个容器崩溃的日志 1kubernetes logs --previous pod_name  container_name 修改image1kubectl set image deployments/deploy_name container_name=image kcc delete po -n default $(kcc get po -n defalut |grep nginx |a">
+<meta property="og:description" content="访问上一个容器崩溃的日志 1kubernetes logs --previous pod_name  container_name 修改image1kubectl set image deployments/deploy_name container_name=image delete po -n default $(kcc get po -n defalut |grep nginx |awk &apos;">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-07-02T13:19:11.197Z">
+<meta property="og:updated_time" content="2019-08-06T03:12:32.697Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="kubernetes排除应用程序故障">
-<meta name="twitter:description" content="访问上一个容器崩溃的日志 1kubernetes logs --previous pod_name  container_name 修改image1kubectl set image deployments/deploy_name container_name=image kcc delete po -n default $(kcc get po -n defalut |grep nginx |a">
+<meta name="twitter:description" content="访问上一个容器崩溃的日志 1kubernetes logs --previous pod_name  container_name 修改image1kubectl set image deployments/deploy_name container_name=image delete po -n default $(kcc get po -n defalut |grep nginx |awk &apos;">
   <!-- Canonical links -->
   <link rel="canonical" href="https://upengs.github.io/2019/02/27/排除应用程序故障/index.html">
   
@@ -227,7 +227,7 @@
   <div class="widget">
     <h3 class="widget-title">Tags</h3>
     <div class="widget-body">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/">docker</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/golang/">golang</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/harbor/">harbor</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/helm/">helm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kafka/">kafka</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kubernetes/">kubernetes</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/log/">log</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/makefile/">makefile</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/">docker</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/golang/">golang</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/harbor/">harbor</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/helm/">helm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kafka/">kafka</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kubernetes/">kubernetes</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/log/">log</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/makefile/">makefile</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rust/">rust</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -237,7 +237,7 @@
   <div class="widget">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget-body tagcloud">
-      <a href="/tags/docker/" style="font-size: 13.5px;">docker</a> <a href="/tags/git/" style="font-size: 13px;">git</a> <a href="/tags/golang/" style="font-size: 13.5px;">golang</a> <a href="/tags/harbor/" style="font-size: 13px;">harbor</a> <a href="/tags/helm/" style="font-size: 13px;">helm</a> <a href="/tags/hexo/" style="font-size: 13px;">hexo</a> <a href="/tags/kafka/" style="font-size: 13px;">kafka</a> <a href="/tags/kubernetes/" style="font-size: 14px;">kubernetes</a> <a href="/tags/linux/" style="font-size: 14px;">linux</a> <a href="/tags/log/" style="font-size: 13px;">log</a> <a href="/tags/makefile/" style="font-size: 13px;">makefile</a> <a href="/tags/nginx/" style="font-size: 13px;">nginx</a> <a href="/tags/python/" style="font-size: 13px;">python</a> <a href="/tags/redis/" style="font-size: 13px;">redis</a>
+      <a href="/tags/docker/" style="font-size: 13.33px;">docker</a> <a href="/tags/git/" style="font-size: 13px;">git</a> <a href="/tags/golang/" style="font-size: 13.33px;">golang</a> <a href="/tags/harbor/" style="font-size: 13px;">harbor</a> <a href="/tags/helm/" style="font-size: 13px;">helm</a> <a href="/tags/hexo/" style="font-size: 13px;">hexo</a> <a href="/tags/kafka/" style="font-size: 13px;">kafka</a> <a href="/tags/kubernetes/" style="font-size: 14px;">kubernetes</a> <a href="/tags/linux/" style="font-size: 13.67px;">linux</a> <a href="/tags/log/" style="font-size: 13px;">log</a> <a href="/tags/makefile/" style="font-size: 13px;">makefile</a> <a href="/tags/nginx/" style="font-size: 13px;">nginx</a> <a href="/tags/python/" style="font-size: 13px;">python</a> <a href="/tags/redis/" style="font-size: 13px;">redis</a> <a href="/tags/rust/" style="font-size: 13px;">rust</a>
     </div>
   </div>
 
@@ -246,7 +246,7 @@
   <div class="widget">
     <h3 class="widget-title">Archive</h3>
     <div class="widget-body">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">10</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">11</span></li></ul>
     </div>
   </div>
 
@@ -258,6 +258,21 @@
     <div class="widget-body">
       <ul class="recent-post-list list-unstyled no-thumbnail">
         
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2019/08/07/kubectl-config/" class="title">配置kubectl  通过Apiserver Token/用户名密码的方式进行访问kubernetes</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-08-07T01:34:21.000Z" itemprop="datePublished">2019-08-07</time>
+              </p>
+            </div>
+          </li>
+          
           <li>
             
             <div class="item-inner">
@@ -318,21 +333,6 @@
             </div>
           </li>
           
-          <li>
-            
-            <div class="item-inner">
-              <p class="item-category">
-                
-              </p>
-              <p class="item-title">
-                <a href="/2019/07/19/makefile/" class="title">makefile相关资料</a>
-              </p>
-              <p class="item-date">
-                <time datetime="2019-07-19T07:45:18.000Z" itemprop="datePublished">2019-07-19</time>
-              </p>
-            </div>
-          </li>
-          
       </ul>
     </div>
   </div>
@@ -384,11 +384,12 @@
         <p>访问上一个容器崩溃的日志</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubernetes logs --previous pod_name  container_name</span><br></pre></td></tr></table></figure>
 <p>修改image<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl set image deployments/deploy_name container_name=image</span><br></pre></td></tr></table></figure></p>
-<p>kcc delete po -n default $(kcc get po -n defalut |grep nginx |awk ‘{print $1}’) –force –grace-period=0</p>
-<p>docker rm -f $(docker ps -aq –filter exited=1)</p>
-<p>可以直接进入容器终端<br>kubectl run curl –image=radial/busyboxplus:curl -i –tty -n wp</p>
-<p>kubectl exec podname -c containername – printenv</p>
-
+<figure class="highlight plain"><figcaption><span>delete po -n default $(kcc get po -n defalut |grep nginx |awk '&#123;print $1&#125;') --force --grace-period</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">```</span><br></pre></td></tr></table></figure>
+<p>docker rm -f $(docker ps -aq –filter exited=1)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">可以直接进入容器终端</span><br><span class="line">```kubectl run curl --image=radial/busyboxplus:curl -i --tty -n wp</span><br><span class="line">kubectl run --rm -it curl --image=nginx -- /bash/sh</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl exec podname -c containername -- printenv</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl  get deploy --all-namespaces -l io.wise2c.stack -o  jsonpath=&quot;&#123;range .items[*]&#125;&#123;.metadata.namespace&#125;&#123;\&quot;\n\&quot;&#125;&quot;</span><br></pre></td></tr></table></figure>
+<p>// grep -v  反向过滤<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl get pod --all-namespaces -l io.wise2c.stack -o custom-columns=NameSpace:.metadata.namespace|grep -v ns-team</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl  get pod  --all-namespaces -l io.wise2c.stack -o  jsonpath=<span class="string">"&#123;range .items[*]&#125;&#123;.status[?(@.phase=="</span>Running<span class="string">")].metadata.namespace&#125;&#123;\"\n\"&#125;&#123;end&#125;"</span></span><br></pre></td></tr></table></figure>
       
     </div>
     <div class="article-footer">
@@ -444,7 +445,7 @@
   <ul class="pager pull-left">
     
     <li class="prev">
-      <a href="/2019/03/06/pprof/" title="pprof"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+      <a href="/2019/03/05/rust/" title="rust错误"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
     </li>
     
     
