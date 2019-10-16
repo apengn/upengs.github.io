@@ -161,7 +161,7 @@ var themeMenus = {};
         
           <section id="main">
   
-    <article id="post-linux-cmd"  class="article article-type-post" itemscope itemprop="blogPost" >
+    <article id="post-nats"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
@@ -169,7 +169,7 @@ var themeMenus = {};
         
   
     <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/02/26/linux-cmd/">linux基本命令</a>
+      <a class="article-title" href="/2019/06/26/nats/">nats与go-micro  微服务服务之间进行通信</a>
     </h1>
   
 
@@ -177,36 +177,148 @@ var themeMenus = {};
     
     <div class="article-meta">
       
-	Posted on <a href="/2019/02/26/linux-cmd/" class="article-date">
-	  <time datetime="2019-02-26T14:02:28.000Z" itemprop="datePublished">February 26, 2019</time>
+	Posted on <a href="/2019/06/26/nats/" class="article-date">
+	  <time datetime="2019-06-26T03:31:42.000Z" itemprop="datePublished">June 26, 2019</time>
 	</a>
 
       
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <p>ps -ef |grep {fillter}<br>kill -9 {pid}<br>mkdir -p roles/{common,install}/{handlers,files,meta,tasks,templates,vars<br>ss -tunlp|grep  7777<br>ss -alnp |grep 7777<br>netstat -tunlp|grep 777<br>netstat -alnp|grep 7777</p>
-<h2 id="lsof-i-tcp-777"><a href="#lsof-i-tcp-777" class="headerlink" title="lsof -i tcp:777"></a>lsof -i tcp:777</h2><p>chmod<br>u 代表用户.<br>g 代表用户组.<br>o 代表其他.<br>a 代表所有.</p>
-<p>这意味着chmod u+x somefile 只授予这个文件的所属者执行的权限<br>而 chmod +x somefile 和 chmod a+x somefile 是一样的 </p>
-<p>// 实现免密登陆<br>ssh-copy-id root@hostip</p>
-<h3 id="压缩文件"><a href="#压缩文件" class="headerlink" title="压缩文件"></a>压缩文件</h3><p>tar -czvf wisecloud-ingress-controller.gz ./wisecloud-ingress-controller</p>
-<h3 id="解压文件"><a href="#解压文件" class="headerlink" title="解压文件"></a>解压文件</h3><p>tar -zxvf wisecloud-ingress-controller.gz -o ./</p>
-<p>docker run –rm -it golang:1.10 sh<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line">grep -A 50</span><br><span class="line"></span><br><span class="line">grep -B 50</span><br><span class="line">``</span><br><span class="line"></span><br><span class="line">kcc get pod |grep orchestration | awk &apos;&#123;print $1&#125;&apos;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">screen 使用</span><br><span class="line">screen </span><br><span class="line">执行逻辑</span><br><span class="line"></span><br><span class="line">screen -list </span><br><span class="line"></span><br><span class="line">screen -r </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">screen -r 30719.pts-4.dev-10</span><br><span class="line">There is a screen on:</span><br><span class="line">	30719.pts-4.dev-10	(Attached)</span><br><span class="line">There is no screen to be resumed matching 30719.pts-4.dev-10.</span><br><span class="line">[root@dev-10 ~]# screen -r 30719.pts-4.dev-</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">netstat -an|wc -l   wc 统计行号</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">kubectl get -o template node/dev-9 --template=&#123;&#123;.spec&#125;&#125;</span><br><span class="line"></span><br><span class="line">linux 部分快捷键</span><br><span class="line">1. Tab</span><br><span class="line">这是你不能没有的 Linux 快捷键。它将节省你 Linux 命令行中的大量时间。</span><br><span class="line"></span><br><span class="line">只需要输入一个命令，文件名，目录名甚至是命令选项的开头，并敲击 tab 键。 它将自动完成你输入的内容，或为你显示全部可能的结果。</span><br><span class="line"></span><br><span class="line">如果你只记一个快捷键，这将是必选的一个。</span><br><span class="line"></span><br><span class="line">2. Ctrl + C</span><br><span class="line">这些是为了在终端上中断命令或进程该按的键。它将立刻终止运行的程序。</span><br><span class="line"></span><br><span class="line">如果你想要停止使用一个正在后台运行的程序，只需按下这对组合键。</span><br><span class="line"></span><br><span class="line">3. Ctrl + Z</span><br><span class="line">该快捷键将正在运行的程序送到后台。 通常，你可以在使用 &amp; 选项运行程序前之完成该操作， 但是如果你忘记使用选项运行程序，就使用这对组合键。</span><br><span class="line"></span><br><span class="line">4. Ctrl + D</span><br><span class="line">这对键盘快捷键将使你退出当前终端。如果你使用 SSH 连接，它将会关闭。 如果你直接使用一个终端，该应用将会立刻关闭。</span><br><span class="line"></span><br><span class="line">把它当成“退出”命令。</span><br><span class="line"></span><br><span class="line">5. Ctrl + L</span><br><span class="line">你怎么清空你的终端屏幕？我猜是用 clear 命令。</span><br><span class="line"></span><br><span class="line">你可以使用 Ctrl+L 清空终端，代替输入 C-L-E-A-R。得心应手，不是吗？</span><br><span class="line"></span><br><span class="line">6. Ctrl + A</span><br><span class="line">该快捷键将移动光标到所在行首。</span><br><span class="line"></span><br><span class="line">假设你在终端输入了一个很长的命令或路径，并且你想要回到它的开头， 使用方向键移动光标将花费大量时间。注意你无法使用鼠标移动光标到行首。</span><br><span class="line"></span><br><span class="line">这是 Ctrl+A 节省时间的地方。</span><br><span class="line"></span><br><span class="line">7. Ctrl + E</span><br><span class="line">这对快捷键与 Ctrl+A 相反。 Ctrl+A 送光标到行首，反之 Ctrl+E 移动光标到行尾。</span><br><span class="line"></span><br><span class="line">8. Ctrl + U</span><br><span class="line">输入了错误的命令？ 代替用退格键来丢弃当前命令，使用 Linux 终端中的 Ctrl+U 快捷键。 该快捷键会擦除从当前光标位置到行首的全部内容。</span><br><span class="line"></span><br><span class="line">9. Ctrl + K</span><br><span class="line">这对和 Ctrl+U 快捷键有点像。 唯一的不同在于不是行首，它擦除的是从当前光标位置到行尾的全部内容。</span><br><span class="line"></span><br><span class="line">10. Ctrl + W</span><br><span class="line">你刚才了解了擦除到行首和行尾的文本。 但如果你只需要删除一个单词呢？使用 Ctrl+W 快捷键。</span><br><span class="line"></span><br><span class="line">使用 Ctrl+W 快捷键，你可以擦除光标位置前的单词。 如果光标在一个单词本身上，它将擦除从光标位置到词首的全部字母。</span><br><span class="line"></span><br><span class="line">最好的方法是用它移动光标到要删除单词后的一个空格上， 然后使用 Ctrl+W 键盘快捷键。</span><br><span class="line"></span><br><span class="line">11. Ctrl + Y</span><br><span class="line">这将粘贴使用 Ctrl+W，Ctrl+U 和 Ctrl+K 快捷键擦除的文本。 如果你删除了错误的文本或需要在某处使用已擦除的文本，这将派上用场。</span><br><span class="line"></span><br><span class="line">12. Ctrl + P</span><br><span class="line">你可以使用该快捷键来查看上一个命令。 你可以反复按该键来返回到历史命令。 在很多终端里，使用 PgUp 键来实现相同的功能。</span><br><span class="line"></span><br><span class="line">13. Ctrl + N</span><br><span class="line">你可以结合 Ctrl+P 使用该快捷键。Ctrl+N 显示下一个命令。 如果使用 Ctrl+P 查看上一条命令，你可以使用 Ctrl+N 来回导航。 许多终端都把此快捷键映射到 PgDn 键。</span><br><span class="line"></span><br><span class="line">14. Ctrl + R</span><br><span class="line">你可以使用该快捷键来搜索历史命令。``</span><br></pre></td></tr></table></figure></p>
-<p>通过m命令。讲光标放在你要移动的行，输入:m +1向下移动一行，输入:m -2向上移动一行。</p>
-<p>面的命令设置最低空闲内存，立即生效，但系统重启会失效。永久生效则要写到配置文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/sysctl.conf</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sysctl set vm.min_free_kbytes=1024000</span><br></pre></td></tr></table></figure>
-<p>ESC + f – 向右移动一个单词，MAC下建议用ALT + →<br>Esc + . –    获取上一条命令的最后部分（空格分隔）<br>ESC + b – 向左移动一个单词，MAC下建议用ALT + ←</p>
-<p>echo -n xxx|base64</p>
-<p>echo xxx|base64 -d</p>
+        <p>client1<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import (</span><br><span class="line">	&quot;awesomeProject/micro_nats_dome/wp/debug&quot;</span><br><span class="line">	&quot;context&quot;</span><br><span class="line">	&quot;encoding/json&quot;</span><br><span class="line">	&quot;fmt&quot;</span><br><span class="line">	&quot;time&quot;</span><br><span class="line"></span><br><span class="line">	micro &quot;github.com/micro/go-micro&quot;</span><br><span class="line">	&quot;github.com/micro/go-plugins/broker/nats&quot;</span><br><span class="line"></span><br><span class="line">	nats2 &quot;github.com/nats-io/go-nats&quot;</span><br><span class="line"></span><br><span class="line">	natsRegistry &quot;github.com/micro/go-plugins/registry/nats&quot;</span><br><span class="line">	natsTransport &quot;github.com/micro/go-plugins/transport/nats&quot;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">var (</span><br><span class="line">	addrs                     = []string&#123;&quot;nats://dev-7:4222&quot;, &quot;nats://dev-8:4222&quot;, &quot;nats://dev-9:4222&quot;&#125;</span><br><span class="line">	NATS_STREAMING_CLUSTER_ID = &quot;test-cluster&quot;</span><br><span class="line">	NATS_TOKEN                = &quot;NATS12345&quot;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">func main() &#123;</span><br><span class="line">	ctx, cancel := context.WithCancel(context.Background())</span><br><span class="line">	defer cancel()</span><br><span class="line">	natsServers := addrs</span><br><span class="line">	defaultOptions := nats2.GetDefaultOptions()</span><br><span class="line"></span><br><span class="line">	defaultOptions.ClosedCB = func(conn *nats2.Conn) &#123;</span><br><span class="line">		fmt.Println(&quot;closed&quot;)</span><br><span class="line">	&#125;</span><br><span class="line">	defaultOptions.Servers = natsServers</span><br><span class="line">	defaultOptions.Token = NATS_TOKEN</span><br><span class="line"></span><br><span class="line">	defaultOptions.ReconnectedCB = func(conn *nats2.Conn) &#123;</span><br><span class="line">		fmt.Println(&quot;reconnected&quot;)</span><br><span class="line">	&#125;</span><br><span class="line">	defaultOptions.DisconnectedCB = func(conn *nats2.Conn) &#123;</span><br><span class="line">		fmt.Println(&quot;disconnected&quot;)</span><br><span class="line">	&#125;</span><br><span class="line">	defaultOptions.DiscoveredServersCB = func(conn *nats2.Conn) &#123;</span><br><span class="line">		fmt.Println(&quot;disccoveredservice&quot;)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	// var err error</span><br><span class="line">	registry := natsRegistry.NewRegistry(natsRegistry.Options(defaultOptions))</span><br><span class="line">	transport := natsTransport.NewTransport(natsTransport.Options(defaultOptions))</span><br><span class="line">	broker := nats.NewBroker(nats.Options(defaultOptions))</span><br><span class="line">	service := micro.NewService(</span><br><span class="line">		micro.Name(&quot;greeter&quot;),</span><br><span class="line">		micro.Registry(registry),</span><br><span class="line">		micro.Broker(broker),</span><br><span class="line">		micro.Transport(transport),</span><br><span class="line">		micro.Context(ctx),</span><br><span class="line">	)</span><br><span class="line"></span><br><span class="line">	c := service.Client()</span><br><span class="line"></span><br><span class="line">	time.Sleep(1 * time.Second)</span><br><span class="line"></span><br><span class="line">	response, err := debug.NewGreeterService(&quot;greeter&quot;, c).Hello(context.TODO(), &amp;debug.Request&#123;Name: &quot;xxxxxx&quot;&#125;)</span><br><span class="line"></span><br><span class="line">	if err != nil &#123;</span><br><span class="line">		return</span><br><span class="line">	&#125;</span><br><span class="line">	b, _ := json.Marshal(response)</span><br><span class="line">	fmt.Println(string(b))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>client2<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import (</span><br><span class="line">	&quot;awesomeProject/micro_nats_dome/wp/debug&quot;</span><br><span class="line">	&quot;context&quot;</span><br><span class="line">	&quot;fmt&quot;</span><br><span class="line">	&quot;time&quot;</span><br><span class="line"></span><br><span class="line">	micro &quot;github.com/micro/go-micro&quot;</span><br><span class="line">	&quot;github.com/micro/go-plugins/broker/nats&quot;</span><br><span class="line"></span><br><span class="line">	gonats &quot;github.com/nats-io/go-nats&quot;</span><br><span class="line"></span><br><span class="line">	// nats &quot;github.com/nats-io/nats.go&quot;</span><br><span class="line"></span><br><span class="line">	natsRegistry &quot;github.com/micro/go-plugins/registry/nats&quot;</span><br><span class="line">	natsTransport &quot;github.com/micro/go-plugins/transport/nats&quot;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">var (</span><br><span class="line">	addrs1                     = []string&#123;&quot;nats://dev-7:4222&quot;, &quot;nats://dev-8:4222&quot;, &quot;nats://dev-9:4222&quot;&#125;</span><br><span class="line">	NATS_STREAMING_CLUSTER_ID1 = &quot;test-cluster&quot;</span><br><span class="line">	NATS_TOKEN1                = &quot;NATS12345&quot;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">type Greeter struct&#123;&#125;</span><br><span class="line"></span><br><span class="line">func (g *Greeter) Hello(ctx context.Context, req *debug.Request, rsp *debug.Response) error &#123;</span><br><span class="line">	rsp.Msg = &quot;Hello 3&quot; + req.Name</span><br><span class="line">	fmt.Println(rsp.Msg)</span><br><span class="line">	return nil</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func main() &#123;</span><br><span class="line">	ctx, cancel := context.WithCancel(context.Background())</span><br><span class="line">	defer cancel()</span><br><span class="line">	natsServers := addrs1</span><br><span class="line">	defaultOptions := gonats.GetDefaultOptions()</span><br><span class="line"></span><br><span class="line">	defaultOptions.ClosedCB = func(conn *gonats.Conn) &#123;</span><br><span class="line">		fmt.Println(&quot;closed&quot;)</span><br><span class="line">	&#125;</span><br><span class="line">	defaultOptions.Servers = natsServers</span><br><span class="line">	defaultOptions.Token = NATS_TOKEN1</span><br><span class="line">	defaultOptions.ReconnectedCB = func(conn *gonats.Conn) &#123;</span><br><span class="line">		fmt.Println(&quot;reconnected&quot;)</span><br><span class="line">	&#125;</span><br><span class="line">	defaultOptions.DisconnectedCB = func(conn *gonats.Conn) &#123;</span><br><span class="line">		fmt.Println(&quot;disconnected&quot;)</span><br><span class="line">	&#125;</span><br><span class="line">	defaultOptions.DiscoveredServersCB = func(conn *gonats.Conn) &#123;</span><br><span class="line">		fmt.Println(&quot;disccoveredservice&quot;)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	registry := natsRegistry.NewRegistry(natsRegistry.Options(defaultOptions))</span><br><span class="line">	transport := natsTransport.NewTransport(natsTransport.Options(defaultOptions))</span><br><span class="line"></span><br><span class="line">	broker := nats.NewBroker(</span><br><span class="line">		nats.Options(defaultOptions),</span><br><span class="line">	)</span><br><span class="line"></span><br><span class="line">	var err error</span><br><span class="line">	service := micro.NewService(</span><br><span class="line">		micro.Name(&quot;greeter&quot;),</span><br><span class="line">		micro.Registry(registry),</span><br><span class="line">		micro.Broker(broker),</span><br><span class="line">		micro.Transport(transport),</span><br><span class="line">		micro.Context(ctx),</span><br><span class="line">	)</span><br><span class="line"></span><br><span class="line">	time.Sleep(2 * time.Second)</span><br><span class="line">	debug.RegisterGreeterHandler(service.Server(), &amp;Greeter&#123;&#125;)</span><br><span class="line">	err = service.Run()</span><br><span class="line">	if err != nil &#123;</span><br><span class="line">		fmt.Println(err)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>hello.proto<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">syntax = &quot;proto3&quot;;</span><br><span class="line"></span><br><span class="line">service Greeter &#123;</span><br><span class="line">	rpc Hello(Request) returns (Response) &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">message Request &#123;</span><br><span class="line">	string name = 1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">message Response &#123;</span><br><span class="line">	string msg = 1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+      
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
+    <article id="post-kubeadm"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/06/25/kubeadm/">使用kubeam install kubernets v1.15.0 实现master高可用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/06/25/kubeadm/" class="article-date">
+	  <time datetime="2019-06-25T10:27:03.000Z" itemprop="datePublished">June 25, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>确保每台node都安装了 docker<br>参考：<a href="https://docs.docker.com/install/linux/docker-ce/centos/" target="_blank" rel="noopener">https://docs.docker.com/install/linux/docker-ce/centos/</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># step 1: 安装必要的一些系统工具</span></span><br><span class="line">sudo yum install -y yum-utils device-mapper-persistent-data lvm2</span><br><span class="line"> </span><br><span class="line"><span class="comment"># Step 2: 添加软件源信息</span></span><br><span class="line">sudo yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo</span><br><span class="line"> </span><br><span class="line"><span class="comment"># Step 3: 更新并安装Docker-CE</span></span><br><span class="line">sudo yum makecache fast</span><br><span class="line">sudo yum -y install docker-ce-18.09.1</span><br></pre></td></tr></table></figure>
+<h2 id="kubeadm-config-yaml"><a href="#kubeadm-config-yaml" class="headerlink" title="kubeadm-config.yaml"></a>kubeadm-config.yaml</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">apiVersion: kubeadm.k8s.io/v1beta2</span><br><span class="line">kind: ClusterConfiguration</span><br><span class="line">kubernetesVersion: 1.15.3</span><br><span class="line">controlPlaneEndpoint: &quot;10.0.0.101:8443&quot;  # haproxy host</span><br><span class="line">imageRepository: registry.aliyuncs.com/google_containers</span><br><span class="line">networking:</span><br><span class="line">  podSubnet: 10.148.0.0/16</span><br><span class="line">  serviceSubnet: 10.196.0.0/12</span><br></pre></td></tr></table></figure>
+<h2 id="haproxy-cfg"><a href="#haproxy-cfg" class="headerlink" title="haproxy.cfg"></a>haproxy.cfg</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d --net host  --name haproxy -v $(pwd)/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg haproxy:2.0</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">global</span><br><span class="line">    maxconn 10000                   #默认最大连接数</span><br><span class="line">    log 127.0.0.1 local0            #[err warning info debug]</span><br><span class="line">    chroot /usr/local/sbin            #chroot运行的路径</span><br><span class="line">    daemon                          #以后台形式运行haproxy</span><br><span class="line">    pidfile /var/run/haproxy.pid</span><br><span class="line"></span><br><span class="line">defaults</span><br><span class="line">    log 127.0.0.1 local3</span><br><span class="line">    mode http                       #所处理的类别 (#7层 http;4层tcp  )</span><br><span class="line">    maxconn 10000                   #最大连接数</span><br><span class="line">    option dontlognull              #不记录健康检查的日志信息</span><br><span class="line">    option redispatch               #serverId对应的服务器挂掉后,强制定向到其他健康的服务器</span><br><span class="line">    #stats refresh 30                #统计页面刷新间隔</span><br><span class="line">    retries 3                       #3次连接失败就认为服务不可用，也可以通过后面设置</span><br><span class="line">    balance roundrobin              #默认的负载均衡的方式,轮询方式</span><br><span class="line">    #balance source                  #默认的负载均衡的方式,类似nginx的ip_hash</span><br><span class="line">    #balance leastconn               #默认的负载均衡的方式,最小连接</span><br><span class="line">    timeout connect 5000                 #连接超时</span><br><span class="line">    timeout client 50000                #客户端超时</span><br><span class="line">    timeout server 50000                #服务器超时</span><br><span class="line">    timeout check 2000              #心跳检测超时</span><br><span class="line"></span><br><span class="line">listen  admin_stats</span><br><span class="line">    bind 0.0.0.0:10080</span><br><span class="line">    mode http</span><br><span class="line">    log 127.0.0.1 local0 err</span><br><span class="line">    stats refresh 30s</span><br><span class="line">    stats uri /status</span><br><span class="line">    stats realm welcome login\ Haproxy</span><br><span class="line">    stats auth admin:123456</span><br><span class="line">    stats hide-version</span><br><span class="line">    stats admin if TRUE</span><br><span class="line"></span><br><span class="line">listen kube-master</span><br><span class="line">    bind 0.0.0.0:8443</span><br><span class="line">    mode tcp</span><br><span class="line">    option tcplog</span><br><span class="line">    balance source</span><br><span class="line">    server 10.0.0.106 10.0.0.106:6443 check inter 2000 fall 2 rise 2 weight 1</span><br><span class="line">    server 10.0.0.102 10.0.0.102:6443 check inter 2000 fall 2 rise 2 weight 1</span><br><span class="line">    server 10.0.0.101 10.0.0.101:6443 check inter 2000 fall 2 rise 2 weight 1</span><br></pre></td></tr></table></figure>
+<p> 在每台node上执行，kubectl 建议只在在master 安装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">cat &lt;&lt;EOF &gt;  /etc/sysctl.d/k8s.conf</span><br><span class="line">net.bridge.bridge-nf-call-ip6tables = 1</span><br><span class="line">net.bridge.bridge-nf-call-iptables = 1</span><br><span class="line">EOF</span><br><span class="line">sysctl --system</span><br><span class="line">setenforce 0</span><br><span class="line">swapoff -a</span><br><span class="line">sed -i &apos;s/^SELINUX=enforcing$/SELINUX=permissive/&apos; /etc/selinux/config</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">cat &gt; /etc/docker/daemon.json &lt;&lt;EOF</span><br><span class="line">&#123;</span><br><span class="line">  &quot;exec-opts&quot;: [&quot;native.cgroupdriver=cgroupfs&quot;],</span><br><span class="line">  &quot;log-driver&quot;: &quot;json-file&quot;,</span><br><span class="line">  &quot;log-opts&quot;: &#123;</span><br><span class="line">    &quot;max-size&quot;: &quot;100m&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;storage-driver&quot;: &quot;overlay2&quot;,</span><br><span class="line">  &quot;storage-opts&quot;: [</span><br><span class="line">    &quot;overlay2.override_kernel_check=true&quot;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br><span class="line">EOF</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">cat &lt;&lt;EOF &gt; /etc/yum.repos.d/kubernetes.repo</span><br><span class="line">[kubernetes]</span><br><span class="line">name=Kubernetes</span><br><span class="line">baseurl=https://mirrors.aliyun.com/kubernetes/yum/repos/kubernetes-el7-x86_64</span><br><span class="line">enabled=1</span><br><span class="line">gpgcheck=1</span><br><span class="line">repo_gpgcheck=1</span><br><span class="line">gpgkey=https://mirrors.aliyun.com/kubernetes/yum/doc/yum-key.gpg https://mirrors.aliyun.com/kubernetes/yum/doc/rpm-package-key.gpg</span><br><span class="line">EOF</span><br><span class="line"># 安装</span><br><span class="line">yum install -y kubectl kubelet kubeadm</span><br><span class="line"># 开机启动</span><br><span class="line">systemctl enable kubelet</span><br><span class="line"># 启动</span><br><span class="line">systemctl start kubelet</span><br></pre></td></tr></table></figure></p>
+<p>初始化第一套集群,完成之后按照提示 cp /etc/kubernetes/admin.conf ~/.kube/config<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubeadm init --config=kubeadm-config.yaml --upload-certs -v=10</span><br></pre></td></tr></table></figure></p>
+<h2 id="安装flannel网络"><a href="#安装flannel网络" class="headerlink" title="安装flannel网络"></a>安装flannel网络</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/a70459be0084506e4ec919aa1c114638878db11b/Documentation/kube-flannel.yml</span><br></pre></td></tr></table></figure>
+<h2 id="添加master-节点"><a href="#添加master-节点" class="headerlink" title="添加master 节点"></a>添加master 节点</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">如果忘了--certificate-key 值就用这个命令去master 生成一个</span><br><span class="line">kubeadm init phase upload-certs --experimental-upload-certs</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">kubeadm join 10.0.0.101:8443 --token u20jmk.7cnbp7soe1e7vr4l \</span><br><span class="line">    --discovery-token-ca-cert-hash sha256:3a5206c743a9369c2386db8bf181b78765862c4eb9caf12e332b6868db20633a \</span><br><span class="line">    --experimental-control-plane --certificate-key 4af91f16c3997bc59a56cfc0e3061f6086c62012f4e7e4ed9da84b4622fc9d89</span><br><span class="line">    -v 10</span><br></pre></td></tr></table></figure>
+<h2 id="添加worker-节点"><a href="#添加worker-节点" class="headerlink" title="添加worker 节点"></a>添加worker 节点</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">kubeadm join 10.0.0.101:8443 --token u20jmk.7cnbp7soe1e7vr4l \</span><br><span class="line">    --discovery-token-ca-cert-hash sha256:3a5206c743a9369c2386db8bf181b78765862c4eb9caf12e332b6868db20633a  </span><br><span class="line">     --cri-socket /var/run/dockershim.sock -v 10</span><br><span class="line"></span><br><span class="line">可以print一个 join cluster command</span><br><span class="line">kubeadm  token create --print-join-command</span><br></pre></td></tr></table></figure>
+<h2 id="其他命令"><a href="#其他命令" class="headerlink" title="其他命令"></a>其他命令</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubeadm reset  -f //重置node</span><br></pre></td></tr></table></figure>
+<p>参考：<a href="https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/high-availability/" target="_blank" rel="noopener">https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/high-availability/</a></p>
+<h2 id="https-kubernetes-io-docs-setup-production-environment-container-runtimes"><a href="#https-kubernetes-io-docs-setup-production-environment-container-runtimes" class="headerlink" title="https://kubernetes.io/docs/setup/production-environment/container-runtimes/"></a><a href="https://kubernetes.io/docs/setup/production-environment/container-runtimes/" target="_blank" rel="noopener">https://kubernetes.io/docs/setup/production-environment/container-runtimes/</a></h2><p><a href="https://kubernetes.io/docs/setup/production-environment/container-runtimes/" target="_blank" rel="noopener">https://kubernetes.io/docs/setup/production-environment/container-runtimes/</a></p>
+<h1 id="——————————————————————"><a href="#——————————————————————" class="headerlink" title="——————————————————————"></a>——————————————————————</h1><p>systemctl stop firewalld.service</p>
+<h2 id="永久设置hostname"><a href="#永久设置hostname" class="headerlink" title="永久设置hostname"></a><a href="https://www.jb51.net/article/155394.htm" target="_blank" rel="noopener">永久设置hostname</a></h2><p>hostnamectl set-hostname master</p>
+<p><a href="https://www.jianshu.com/p/3c6146fca22e" target="_blank" rel="noopener">Kubernetes国内yum源</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">cat &lt;&lt;EOF &gt; /etc/yum.repos.d/kubernetes.repo</span><br><span class="line">[kubernetes]</span><br><span class="line">name=Kubernetes</span><br><span class="line">baseurl=https://mirrors.aliyun.com/kubernetes/yum/repos/kubernetes-el7-x86_64</span><br><span class="line">enabled=1</span><br><span class="line">gpgcheck=1</span><br><span class="line">repo_gpgcheck=1</span><br><span class="line">gpgkey=https://mirrors.aliyun.com/kubernetes/yum/doc/yum-key.gpg https://mirrors.aliyun.com/kubernetes/yum/doc/rpm-package-key.gpg</span><br><span class="line">EOF</span><br><span class="line"></span><br><span class="line">sudo mv kubernetes.repo /etc/yum.repos.d/</span><br></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">kubeadm.k8s.io/v1beta2</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">ClusterConfiguration</span></span><br><span class="line"><span class="attr">kubernetesVersion:</span> <span class="number">1.15</span><span class="number">.3</span></span><br><span class="line"><span class="attr">controlPlaneEndpoint:</span> <span class="string">"10.0.0.148:6443"</span>  <span class="comment"># haproxy host</span></span><br><span class="line"><span class="attr">imageRepository:</span> <span class="string">registry.aliyuncs.com/google_containers</span></span><br><span class="line"><span class="attr">networking:</span></span><br><span class="line"><span class="attr">  podSubnet:</span> <span class="number">10.148</span><span class="number">.0</span><span class="number">.0</span><span class="string">/16</span></span><br><span class="line"><span class="attr">  serviceSubnet:</span> <span class="number">10.196</span><span class="number">.0</span><span class="number">.0</span><span class="string">/12</span></span><br><span class="line"><span class="attr">dns:</span></span><br><span class="line"><span class="attr">  type:</span> <span class="string">CoreDNS</span></span><br><span class="line"><span class="attr">  imageTag:</span> <span class="number">1.5</span><span class="number">.0</span></span><br><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">kubeproxy.config.k8s.io/v1alpha1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">KubeProxyConfiguration</span></span><br><span class="line"><span class="attr">mode:</span> <span class="string">"ipvs"</span></span><br></pre></td></tr></table></figure>
+<p><a href="https://godoc.org/k8s.io/kubernetes/cmd/kubeadm/app/apis/kubeadm/v1beta2#ClusterConfiguration" target="_blank" rel="noopener">https://godoc.org/k8s.io/kubernetes/cmd/kubeadm/app/apis/kubeadm/v1beta2#ClusterConfiguration</a></p>
+<pre><code>cat /var/lib/kubelet/kubeadm-flags.env
+KUBELET_KUBEADM_ARGS=&quot;--cgroup-driver=cgroupfs --network-plugin=cni --pod-infra-container-image=registry.aliyuncs.com/google_containers/pause:3.1&quot;
+
+
+cat /etc/sysconfig/kubelet
+KUBELET_EXTRA_ARGS=--pod-infra-container-image=10.0.0.44/library/pause:3.1 \
+                   --runtime-cgroups=/systemd/system.slice --kubelet-cgroups=/systemd/system.slice \
+                   --feature-gates=LocalStorageCapacityIsolation=true \
+                   --kube-reserved-cgroup=/kubepods.slice --kube-reserved=cpu=500m,memory=500Mi,ephemeral-storage=1Gi \
+                   --system-reserved-cgroup=/system.slice --system-reserved=cpu=500m,memory=500Mi,ephemeral-storage=1Gi \
+                   --eviction-hard=memory.available&lt;500Mi,nodefs.available&lt;10% \
+                   --max-pods=250
+
+</code></pre><p><a href="https://mp.weixin.qq.com/s/vnriX2bTtnkv8i2UpLeNnA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/vnriX2bTtnkv8i2UpLeNnA</a>     </p>
+<p><a href="https://github.com/kubernetes/kubernetes/blob/master/pkg/proxy/ipvs/README.md" target="_blank" rel="noopener">https://github.com/kubernetes/kubernetes/blob/master/pkg/proxy/ipvs/README.md</a>              </p>
+<p>hostnamectl set-hostname weiyuxuan</p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+      
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
+    <article id="post-https-harbor"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/06/25/https-harbor/">https_harbor 搭建</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/06/25/https-harbor/" class="article-date">
+	  <time datetime="2019-06-25T10:19:53.000Z" itemprop="datePublished">June 25, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">openssl genrsa -out ca.key 4096</span><br><span class="line">openssl req -x509 -new -nodes -sha512 -days 3650 \</span><br><span class="line">    -subj &quot;/C=TW/ST=Taipei/L=Taipei/O=example/OU=Personal/CN=yourdomain.com&quot; \</span><br><span class="line">    -key ca.key \</span><br><span class="line">    -out ca.crt</span><br><span class="line">openssl genrsa -out yourdomain.com.key 4096</span><br><span class="line"></span><br><span class="line">openssl req -sha512 -new \</span><br><span class="line">    -subj &quot;/C=TW/ST=Taipei/L=Taipei/O=example/OU=Personal/CN=yourdomain.com&quot; \</span><br><span class="line">    -key yourdomain.com.key \</span><br><span class="line">    -out yourdomain.com.csr</span><br><span class="line">cat &gt; v3.ext &lt;&lt;-EOF</span><br><span class="line">authorityKeyIdentifier=keyid,issuer</span><br><span class="line">basicConstraints=CA:FALSE</span><br><span class="line">keyUsage = digitalSignature, nonRepudiation, keyEncipherment, dataEncipherment</span><br><span class="line">extendedKeyUsage = serverAuth</span><br><span class="line">subjectAltName = @alt_names</span><br><span class="line"></span><br><span class="line">[alt_names]</span><br><span class="line">DNS.1=yourdomain.com</span><br><span class="line">DNS.2=yourdomain</span><br><span class="line">DNS.3=https-harbor</span><br><span class="line">DNS.4=10.0.0.88</span><br><span class="line">EOF</span><br><span class="line">openssl x509 -req -sha512 -days 3650 \</span><br><span class="line">    -extfile v3.ext \</span><br><span class="line">    -CA ca.crt -CAkey ca.key -CAcreateserial \</span><br><span class="line">    -in yourdomain.com.csr \</span><br><span class="line">    -out yourdomain.com.crt</span><br><span class="line"></span><br><span class="line">mkdir -p /data/cert/</span><br><span class="line">cp yourdomain.com.crt /data/cert/</span><br><span class="line">cp yourdomain.com.key /data/cert/</span><br><span class="line"></span><br><span class="line">openssl x509 -inform PEM -in yourdomain.com.crt -out yourdomain.com.cert</span><br><span class="line"></span><br><span class="line">mkdir -p /etc/docker/certs.d/yourdomain.com/</span><br><span class="line">cp yourdomain.com.cert /etc/docker/certs.d/yourdomain.com/</span><br><span class="line">cp yourdomain.com.key /etc/docker/certs.d/yourdomain.com/</span><br><span class="line">cp ca.crt /etc/docker/certs.d/yourdomain.com/</span><br></pre></td></tr></table></figure>
+<h4 id="参考：https-github-com-goharbor-harbor-blob-master-docs-configure-https-md"><a href="#参考：https-github-com-goharbor-harbor-blob-master-docs-configure-https-md" class="headerlink" title="参考：https://github.com/goharbor/harbor/blob/master/docs/configure_https.md"></a>参考：<a href="https://github.com/goharbor/harbor/blob/master/docs/configure_https.md" target="_blank" rel="noopener">https://github.com/goharbor/harbor/blob/master/docs/configure_https.md</a></h4>
       
     </div>
     <footer class="entry-meta entry-footer">
       
       
   <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/">docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/harbor/">harbor</a></li></ul>
 
       
             
@@ -221,7 +333,7 @@ var themeMenus = {};
     
 
   
-    <article id="post-helm"  class="article article-type-post" itemscope itemprop="blogPost" >
+    <article id="post-ca"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
@@ -229,7 +341,7 @@ var themeMenus = {};
         
   
     <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/02/26/helm/">helm</a>
+      <a class="article-title" href="/2019/06/23/ca/"> https证书制作</a>
     </h1>
   
 
@@ -237,211 +349,16 @@ var themeMenus = {};
     
     <div class="article-meta">
       
-	Posted on <a href="/2019/02/26/helm/" class="article-date">
-	  <time datetime="2019-02-26T10:42:41.000Z" itemprop="datePublished">February 26, 2019</time>
+	Posted on <a href="/2019/06/23/ca/" class="article-date">
+	  <time datetime="2019-06-23T14:53:42.000Z" itemprop="datePublished">June 23, 2019</time>
 	</a>
 
       
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="helm-注意事项"><a href="#helm-注意事项" class="headerlink" title="helm  注意事项"></a>helm  注意事项</h4><p>helm  install chats 与repo 有关</p>
-<p>helm 获取删除chats release 只与config 有关</p>
-<p>helm repo add  可以 重复，第二次添加类似update<br>helm create wp<br>helm package wp –debug</p>
-<h3 id="启动helm-repo-serve"><a href="#启动helm-repo-serve" class="headerlink" title="启动helm repo  serve"></a>启动helm repo  serve</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nohup ./helm serve --address 0.0.0.0:8879 &amp;</span><br></pre></td></tr></table></figure>
-<h3 id="通过harbor-启动helm-repo"><a href="#通过harbor-启动helm-repo" class="headerlink" title="通过harbor 启动helm repo"></a>通过harbor 启动helm repo</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ./install.sh   --with-clair --with-chartmuseum</span><br></pre></td></tr></table></figure>
-<h3 id="添加harbor-repo-需要密码"><a href="#添加harbor-repo-需要密码" class="headerlink" title="添加harbor repo  需要密码"></a>添加harbor repo  需要密码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">helm repo add --username=admin --password=Passw0rd myrepo https://xx.xx.xx.xx/chartrepo</span><br></pre></td></tr></table></figure>
-<h3 id="添加私有特定仓库-公有的无需密码"><a href="#添加私有特定仓库-公有的无需密码" class="headerlink" title="添加私有特定仓库  公有的无需密码"></a>添加私有特定仓库  公有的无需密码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">helm repo add --username=admin --password=Passw0rd myrepo https://xx.xx.xx.xx/chartrepo/myproject</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/helm/">helm</a>, <a class="article-category-link" href="/categories/helm/kubernetes/">kubernetes</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/helm/">helm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kubernetes/">kubernetes</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
-    <article id="post-fluentd"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/02/26/fluentd/">容器化日志收集方案-EFK</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/02/26/fluentd/" class="article-date">
-	  <time datetime="2019-02-26T04:12:53.000Z" itemprop="datePublished">February 26, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>本文将描述如何使用<br>elasticsearch、<br>fluentd 、<br>kibana构建容器化日志收集系统</p>
-<h3 id="介绍："><a href="#介绍：" class="headerlink" title="介绍："></a>介绍：</h3><h6 id="elasticsearch："><a href="#elasticsearch：" class="headerlink" title="elasticsearch："></a>elasticsearch：</h6><ul>
-<li><p>一个分布式的实时文档存储，每个字段 可以被索引与搜索</p>
-</li>
-<li><p>一个分布式实时分析搜索引擎</p>
-</li>
-<li><p>能胜任上百个服务节点的扩展，并支持 PB 级别的结构化或者非结构化数据</p>
-</li>
-</ul>
-<h6 id="fluentd"><a href="#fluentd" class="headerlink" title="fluentd:"></a>fluentd:</h6><p>是日志收集系统，通过丰富的插件，可以收集来自于各种系统或应用的日志，然后根据用户定义将日志做分类处理。 </p>
-<h6 id="kibana"><a href="#kibana" class="headerlink" title="kibana:"></a>kibana:</h6><p>是一个针对Elasticsearch的开源分析及可视化平台，用来搜索、查看交互存储在Elasticsearch索引中的数据。 </p>
-<h6 id="Kafka"><a href="#Kafka" class="headerlink" title="Kafka:"></a>Kafka:</h6><p>是分布式的、可分区的、可复制的消息系统。它提供了普通消息系统的功能，但具有自己独特的设计</p>
-<p>Kafka将消息以topic为单位进行归纳。<br>将向Kafka topic发布消息的程序成为producers.<br>将预订topics并消费消息的程序成为consumer.</p>
-<h2 id="如何安装"><a href="#如何安装" class="headerlink" title="如何安装"></a>如何安装</h2><ul>
-<li><h5 id="安装kafka-zookeeper"><a href="#安装kafka-zookeeper" class="headerlink" title="安装kafka+zookeeper"></a>安装kafka+zookeeper</h5></li>
-</ul>
-<p>参考：<a href="https://hub.docker.com/r/wurstmeister/kafka/" target="_blank" rel="noopener">https://hub.docker.com/r/wurstmeister/kafka/</a></p>
-<ul>
-<li><h5 id="安装elasticsearch-kibana"><a href="#安装elasticsearch-kibana" class="headerlink" title="安装elasticsearch+kibana:"></a>安装elasticsearch+kibana:</h5></li>
-</ul>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -v "$PWD/esdata":/usr/share/elasticsearch/data -p <span class="number">9200</span>:<span class="number">9200</span>  elasticsearch</span><br><span class="line">docker run --name kibana -e ELASTICSEARCH_URL=http://<span class="number">127</span>.<span class="number">0</span>.<span class="number">0</span>.<span class="number">1</span>:<span class="number">9200</span> -p <span class="number">5601</span>:<span class="number">5601</span> -d kibana</span><br></pre></td></tr></table></figure>
-<ul>
-<li><h5 id="安装fluentd"><a href="#安装fluentd" class="headerlink" title="安装fluentd"></a>安装fluentd</h5></li>
-</ul>
-<h6 id="1、自定义fluentd的Dockerfile"><a href="#1、自定义fluentd的Dockerfile" class="headerlink" title="1、自定义fluentd的Dockerfile"></a>1、自定义fluentd的Dockerfile</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">FROM fluent/fluentd:v1.2</span><br><span class="line"></span><br><span class="line"># below RUN includes plugin as examples elasticsearch is not required</span><br><span class="line"># you may customize including plugins as you wish</span><br><span class="line"></span><br><span class="line">RUN apk add --update --virtual .build-deps \</span><br><span class="line">                                sudo \</span><br><span class="line">                                build-base \</span><br><span class="line">                                ruby-dev \</span><br><span class="line">                                tzdata \</span><br><span class="line">    &amp;&amp; cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \</span><br><span class="line">    &amp;&amp; sudo gem install fluent-plugin-elasticsearch \</span><br><span class="line">    &amp;&amp; sudo gem install fluent-plugin-kafka \</span><br><span class="line">    &amp;&amp; sudo gem sources --clear-all \</span><br><span class="line">    &amp;&amp; apk del .build-deps \</span><br><span class="line">    &amp;&amp; rm -rf /var/cache/apk/* \</span><br><span class="line">              /home/fluent/.gem/ruby/2.3.0/cache/*.gem</span><br><span class="line"></span><br><span class="line">ENTRYPOINT [&quot;fluentd&quot;, &quot;-c&quot;, &quot;/fluentd/etc/fluent.conf&quot;, &quot;-p&quot;, &quot;/fluentd/plugins&quot;]</span><br></pre></td></tr></table></figure>
-<h6 id="2、编写fluent-conf"><a href="#2、编写fluent-conf" class="headerlink" title="2、编写fluent.conf"></a>2、编写fluent.conf</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">&lt;system&gt;</span><br><span class="line">  rpc_endpoint 127.0.0.1:24444</span><br><span class="line">&lt;/system&gt;</span><br><span class="line">&lt;source&gt;</span><br><span class="line">	@type forward</span><br><span class="line">	@id forward_input</span><br><span class="line">&lt;/source&gt;</span><br><span class="line"></span><br><span class="line">&lt;source&gt;</span><br><span class="line">		@type    tail  #### tail方式采集日志</span><br><span class="line">		#format   none</span><br><span class="line">		format   /^(?&lt;all&gt;.*)$/</span><br><span class="line">		path     /log/log.txt</span><br><span class="line">		pos_file /log/pos_file/httpd-access.log.pos</span><br><span class="line">		tag      log.tag</span><br><span class="line">&lt;/source&gt;</span><br><span class="line"></span><br><span class="line">&lt;match log.**&gt;</span><br><span class="line">       @type copy</span><br><span class="line">       &lt;store&gt;</span><br><span class="line">        @type elasticsearch</span><br><span class="line">        hosts localhost:9200</span><br><span class="line">        type_name elasticsearch_fluentd</span><br><span class="line">        include_tag_key true</span><br><span class="line">        tag_key log_name</span><br><span class="line">        flush_interval 10s # for testing</span><br><span class="line">        logstash_format true</span><br><span class="line">        logstash_prefix logstash</span><br><span class="line">       &lt;/store&gt;</span><br><span class="line">       &lt;store&gt;</span><br><span class="line">         @type     kafka</span><br><span class="line">		brokers              localhost:9092</span><br><span class="line">		#zookeeper           localhost:2181</span><br><span class="line">		default_topic       fluent_kafka</span><br><span class="line">		#刷新间隔</span><br><span class="line">		flush_interval      30</span><br><span class="line">		ack_timeout      2000</span><br><span class="line">		output_data_type    attr:all</span><br><span class="line">       &lt;/store&gt;</span><br><span class="line"></span><br><span class="line">&lt;/match&gt;</span><br><span class="line"></span><br><span class="line">&lt;source&gt;</span><br><span class="line">	@type monitor_agent</span><br><span class="line">	@id monitor_agent_input</span><br><span class="line">	port 24220</span><br><span class="line">&lt;/source&gt;</span><br><span class="line"></span><br><span class="line">&lt;match debug.**&gt;</span><br><span class="line">	@type stdout</span><br><span class="line">&lt;/match&gt;</span><br></pre></td></tr></table></figure>
-<h6 id="3、构建fluentd-image"><a href="#3、构建fluentd-image" class="headerlink" title="3、构建fluentd image:"></a>3、构建fluentd image:</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker build -t fluentd:test -f Dockerfile .</span><br></pre></td></tr></table></figure>
-<h6 id="4、启动fluentd"><a href="#4、启动fluentd" class="headerlink" title="4、启动fluentd"></a>4、启动fluentd</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -it --rm --name fluent_test -v $(pwd)/log/:/log/ -v $(pwd)/:/fluentd/etc/ fluentd:test</span><br></pre></td></tr></table></figure>
-<p>==说明==</p>
-<p>配置fluentd的RPC 为了重新加载fluentd.conf文件<br>参考：<a href="https://docs.fluentd.org/v1.0/articles/rpc" target="_blank" rel="noopener">https://docs.fluentd.org/v1.0/articles/rpc</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;system&gt;</span><br><span class="line">  rpc_endpoint 127.0.0.1:24444</span><br><span class="line">&lt;/system&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">增加这个文件的日志    echo  test &gt; $(pwd)/log/log.txt</span><br></pre></td></tr></table></figure>
-<p>在kibana中进行日志查看：</p>
-<p><img src="https://note.youdao.com/yws/api/personal/file/FB957D2F60304CDC9043EFF343CB6B61?method=download&amp;shareKey=a31b0bd854f7e7fad8dd9f952117006f" alt="image"></p>
-<p>修改fluent.conf</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tag_key log_name 修改为tag_key log_name_key</span><br><span class="line">执行curl http://127.0.0.1:24444/api/config.reload</span><br></pre></td></tr></table></figure>
-<p>即可以重新加载fluent.conf配置文件，使其生效<br>继续向log.txt写入日志</p>
-<p>fluentd向kafka写入日志</p>
-<p>进入kafka的container中</p>
-<p>执行</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic fluent_kafka --from-beginning</span><br></pre></td></tr></table></figure>
-<p>附上kafka基本命令 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">创建topic 这里创建的topic为：</span><br><span class="line">bin/kafka-topics.sh --create --zookeeper zookeeper:2181 --replication-factor 1 --partitions 1 --topic </span><br><span class="line"></span><br><span class="line">查看topic</span><br><span class="line">king bin/kafka-topics.sh --list --zookeeper zookeeper:2181</span><br><span class="line"></span><br><span class="line">挂起生产者：producer</span><br><span class="line">bin/kafka-console-producer.sh --broker-list localhost:9092 --topic test</span><br><span class="line"></span><br><span class="line">挂起之后，就可以输入信息：test</span><br><span class="line">挂起消费者： consumer:</span><br><span class="line">bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic test --from-beginning</span><br><span class="line"></span><br><span class="line">在consulmer就可以看到生产出来的：test</span><br></pre></td></tr></table></figure>
-<p>至此完成了基本的elk  和fluent+kafka+zookeeper的日志系统</p>
-<p>在kubernetes中使用DaemonSet  来获取主机日志或docker container日志</p>
-<p>参考：<a href="https://docs.fluentd.org/v1.0/articles/quickstart" target="_blank" rel="noopener">https://docs.fluentd.org/v1.0/articles/quickstart</a></p>
-<p>​           <a href="https://www.elastic.co/products" target="_blank" rel="noopener">https://www.elastic.co/products</a></p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/log/">log</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
-    <article id="post-dragonfly"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/02/26/dragonfly/">dragonfly 之 p2p 镜像分发</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/02/26/dragonfly/" class="article-date">
-	  <time datetime="2019-02-26T01:07:21.000Z" itemprop="datePublished">February 26, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>支持https harbor，公有或私有仓库<br>支持push image </p>
-<h3 id="什么是dragonfly"><a href="#什么是dragonfly" class="headerlink" title="什么是dragonfly"></a>什么是dragonfly</h3><p> Dragonfly 是一款基于 P2P 的智能镜像和文件分发工具。它旨在提高文件传输的效率和速率，最大限度地利用网络带宽，尤其是在分发大量数据时，例如应用分发、缓存分发、日志分发和镜像分发。</p>
-<p>在阿里巴巴，Dragonfly 每个月会被调用 20 亿次，分发的数据量高达 3.4PB。Dragonfly 已成为阿里巴巴基础设施中的重要一环。</p>
-<p>尽管容器技术大部分时候简化了运维工作，但是它也带来了一些挑战：例如镜像分发的效率问题，尤其是必须在多个主机上复制镜像分发时。</p>
-<p>Dragonfly 在这种场景下能够完美支持 Docker 和 PouchContainer。它也兼容其他格式的容器。相比原生方式，它能将容器分发速度提高 57 倍，并让 Registry 网络出口流量降低 99.5%。</p>
-<p>Dragonfly 能让所有类型的文件、镜像或数据分发变得简单而经济。</p>
-<h3 id="Dragonfly-有何优势（具备以下特性）？"><a href="#Dragonfly-有何优势（具备以下特性）？" class="headerlink" title="Dragonfly 有何优势（具备以下特性）？"></a>Dragonfly 有何优势（具备以下特性）？</h3><ul>
-<li>基于 P2P 的文件分发：通过利用 P2P 技术进行文件传输，它能最大限度地利用每个对等节点（Peer）的带宽资源，以提高下载效率，并节省大量跨机房带宽，尤其是昂贵的跨境带宽。</li>
-<li>非侵入式支持所有类型的容器技术：Dragonfly 可无缝支持多种容器用于分发镜像。</li>
-<li>机器级别的限速：除了像许多其他下载工具（例如 wget 和 curl）那样的针对当前下载任务的限速之外，Dragonfly 还支持针对整个机器的限速。</li>
-<li>被动式 CDN：这种 CDN 机制可防止重复远程下载。</li>
-<li>高度一致性：Dragonfly 可确保所有下载的文件是一致的，即使用户不提供任何检查代码（MD5）。</li>
-<li>磁盘保护和高效 IO：预检磁盘空间、延迟同步、以最佳顺序写文件分块、隔离网络-读/磁盘-写等等。</li>
-<li>高性能：SuperNode 是完全闭环的，意味着它不依赖任何数据库或分布式缓存，能够以极高性能处理请求。</li>
-<li>自动隔离异常：Dragonfly 会自动隔离异常节点（对等节点或 SuperNode）来提高下载稳定性。</li>
-<li>对文件源无压力：一般只有少数几个 SuperNode 会从源下载文件。</li>
-<li>支持标准 HTTP 头文件：支持通过 HTTP 头文件提交鉴权信息。</li>
-<li>有效的 Registry 鉴权并发控制：减少对 Registry 鉴权服务的压力。</li>
-<li>简单易用：仅需极少的配置。</li>
-</ul>
-<h3 id="dragonfly原理"><a href="#dragonfly原理" class="headerlink" title="dragonfly原理"></a>dragonfly原理</h3><p>Dragonfly 下载普通文件和下载容器镜像的工作原理略有不同。</p>
-<h5 id="下载普通文件"><a href="#下载普通文件" class="headerlink" title="下载普通文件"></a>下载普通文件</h5><p>SuperNode 充当 CDN，并负责调度对等节点（Peer）之间的文件分块传输。dfget 是 P2P 客户端，也称为“Peer”（对等节点），主要用于下载和共享文件分块。</p>
-<p><img src="https://d7y.io/docs/zh-cn/img/dfget.png" alt="image"></p>
-<h4 id="下载镜像文件"><a href="#下载镜像文件" class="headerlink" title="下载镜像文件"></a>下载镜像文件</h4><p>Registry 类似于文件服务器。dfget proxy 也称为 dfdaemon，会拦截来自 docker pull 或 docker push 的 HTTP 请求，然后使用 dfget 来处理那些跟镜像分层相关的请求。</p>
-<p><img src="https://d7y.io/docs/zh-cn/img/dfget-combine-container.png" alt="image"></p>
-<h4 id="下载文件分块"><a href="#下载文件分块" class="headerlink" title="下载文件分块"></a>下载文件分块</h4><p>每个文件会被分成多个分块，并在对等节点之间传输。一个对等节点就是一个 P2P 客户端。SuperNode 会判断本地是否存在对应的文件。如果不存在，则会将其从文件服务器下载到 SuperNode。</p>
-<p><img src="https://d7y.io/docs/zh-cn/img/distributing.png" alt="image"></p>
-<h3 id="dragonfly部署（参考dragonfly官网）"><a href="#dragonfly部署（参考dragonfly官网）" class="headerlink" title="dragonfly部署（参考dragonfly官网）"></a>dragonfly部署（参考dragonfly官网）</h3><p><a href="https://d7y.io/zh-cn/" target="_blank" rel="noopener">https://d7y.io/zh-cn/</a></p>
-<h3 id="dragonfly-https的harbor"><a href="#dragonfly-https的harbor" class="headerlink" title="dragonfly https的harbor"></a>dragonfly https的harbor</h3><p>dragonfly 常见问题</p>
-<p><a href="https://github.com/dragonflyoss/Dragonfly/blob/master/FAQ.md" target="_blank" rel="noopener">https://github.com/dragonflyoss/Dragonfly/blob/master/FAQ.md</a></p>
-<p>目的：启用 docker PROXY  让dragonfly 支持https </p>
-<h4 id="1、部署https-harbor"><a href="#1、部署https-harbor" class="headerlink" title="1、部署https harbor"></a>1、部署https harbor</h4><p><a href="https://github.com/goharbor/harbor/blob/master/docs/configure_https.md" target="_blank" rel="noopener">https://github.com/goharbor/harbor/blob/master/docs/configure_https.md</a></p>
-<h4 id="2、部署docker-proxy"><a href="#2、部署docker-proxy" class="headerlink" title="2、部署docker_proxy"></a>2、部署docker_proxy</h4><p>pull images</p>
-<p>pull_images.sh<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/sh</span><br><span class="line">docker_registry_proxy=&quot;dockerhubwp/docker_proxy_nginx:latest&quot;</span><br><span class="line">supernode=&quot;registry.cn-hangzhou.aliyuncs.com/alidragonfly/supernode:0.2.0&quot;</span><br><span class="line">dfclient=&quot;dockerhubwp/dfclient:latest&quot;</span><br><span class="line"></span><br><span class="line">images=&quot;$&#123;docker_registry_proxy&#125; $&#123;supernode&#125; $&#123;dfclient&#125;&quot;</span><br><span class="line"></span><br><span class="line">function pullImage()&#123;</span><br><span class="line">   for image in $&#123;images&#125;; do</span><br><span class="line">        echo -e &quot;pull image ======&gt;$&#123;image&#125;&quot;</span><br><span class="line">        docker pull $&#123;image&#125;</span><br><span class="line">    done</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">pullImage</span><br></pre></td></tr></table></figure></p>
-<p>docker_proxy.sh</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">#! /bin/sh</span><br><span class="line"></span><br><span class="line">#   Separate deployment docker_proxy</span><br><span class="line"></span><br><span class="line"># dfdaemon and docker registry map</span><br><span class="line"># example  x.x.x</span><br><span class="line">registry=&quot;harbor域名&quot;</span><br><span class="line">containername=docker_registry_proxy</span><br><span class="line">#  你需要配置的dns 服务器 (如：dnsmasq)  </span><br><span class="line">DNS_SERVER=&quot;dns-server&quot;</span><br><span class="line">docker_registry_proxy=&quot;dockerhubwp/docker_proxy_nginx:latest&quot;</span><br><span class="line"></span><br><span class="line"># get localhost ip</span><br><span class="line">ipaddr=$(ip addr | awk &apos;/^[0-9]+: / &#123;&#125;; /inet.*global/ &#123;print gensub(/(.*)\/(.*)/, &quot;\\1&quot;, &quot;g&quot;, $2)&#125;&apos;)</span><br><span class="line">localhostIp=$(echo $&#123;ipaddr&#125; | cut -d &quot; &quot; -f 1)</span><br><span class="line"></span><br><span class="line">function changeDockerProxy() &#123;</span><br><span class="line">    mkdir -p /etc/systemd/system/docker.service.d</span><br><span class="line">	cat &lt;&lt;EOD &gt;/etc/systemd/system/docker.service.d/http-proxy.conf</span><br><span class="line">[Service]</span><br><span class="line">Environment=&quot;HTTP_PROXY=http://127.0.0.1:3128/&quot;</span><br><span class="line">Environment=&quot;HTTPS_PROXY=http://127.0.0.1:3128/&quot;</span><br><span class="line">EOD</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function dockerDockerProxyRun() &#123;</span><br><span class="line">    if [[ 0 != $(docker ps -a | grep $&#123;containername&#125; | wc -l) ]]; then</span><br><span class="line">        docker rm -f $&#123;containername&#125;</span><br><span class="line">    fi</span><br><span class="line">    docker run --restart=always --privileged=true --name $&#123;containername&#125; -d -p 0.0.0.0:3128:3128 -v /etc/docker_proxy_nginx/docker_mirror_certs:/ca -v /var/log/docker_proxy_nginx:/var/log/nginx/ -e DRAGONFLY_REGISTRIES=&quot;$&#123;registry&#125;,http://$&#123;localhostIp&#125;:65001&quot; -e REGISTRIES=&quot;$&#123;registry&#125;&quot; -e DNS_SERVER=$&#123;DNS_SERVER&#125; $&#123;docker_registry_proxy&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">changeDockerProxy</span><br><span class="line"></span><br><span class="line">systemctl daemon-reload</span><br><span class="line">systemctl restart docker</span><br><span class="line"></span><br><span class="line">dockerDockerProxyRun</span><br></pre></td></tr></table></figure>
-<h4 id="3、部署dragonfly"><a href="#3、部署dragonfly" class="headerlink" title="3、部署dragonfly"></a>3、部署dragonfly</h4><h5 id="部署Supernode"><a href="#部署Supernode" class="headerlink" title="部署Supernode"></a>部署Supernode</h5><p>supernode.sh<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/sh</span><br><span class="line"></span><br><span class="line">#   Separate deployment supernode</span><br><span class="line"></span><br><span class="line">supernode=&quot;registry.cn-hangzhou.aliyuncs.com/alidragonfly/supernode:0.2.0&quot;</span><br><span class="line">containername=supernode</span><br><span class="line"></span><br><span class="line">function superNode() &#123;</span><br><span class="line">    if [[ 0 != $(docker ps -a | grep $&#123;containername&#125; | wc -l) ]]; then</span><br><span class="line">        docker rm -f $&#123;containername&#125;</span><br><span class="line">    fi</span><br><span class="line">    docker run --name $&#123;containername&#125; --restart=always -d -p 8001:8001 -p 8002:8002 $&#123;supernode&#125;</span><br><span class="line">&#125;</span><br><span class="line">superNode</span><br></pre></td></tr></table></figure></p>
-<h5 id="部署dfclient"><a href="#部署dfclient" class="headerlink" title="部署dfclient"></a>部署dfclient</h5><p>dfclient.sh</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/sh</span><br><span class="line"></span><br><span class="line">#   Separate deployment docker_proxy</span><br><span class="line"></span><br><span class="line">dfclient=&quot;dockerhubwp/dfclient:latest&quot;</span><br><span class="line"></span><br><span class="line">#harbor 地址</span><br><span class="line">dfdaemon_registry=&quot;https://x.x.x&quot;</span><br><span class="line">containername=dfclient</span><br><span class="line"></span><br><span class="line"># supernode ips  example (10.0.0.160,10.0.0.162)</span><br><span class="line">supernodes=&quot;supernodeip&quot;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">ipaddr=$(ip addr | awk &apos;/^[0-9]+: / &#123;&#125;; /inet.*global/ &#123;print gensub(/(.*)\/(.*)/, &quot;\\1&quot;, &quot;g&quot;, $2)&#125;&apos;)</span><br><span class="line">localhostIp=$(echo $&#123;ipaddr&#125; | cut -d &quot; &quot; -f 1)</span><br><span class="line"></span><br><span class="line">cat &lt;&lt;EOD &gt;/etc/dragonfly.conf</span><br><span class="line">[node]</span><br><span class="line">address=$&#123;supernodes&#125;</span><br><span class="line">EOD</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">function startDfClient() &#123;</span><br><span class="line">    if [[ 0 != $(docker ps -a | grep $&#123;containername&#125; | wc -l) ]]; then</span><br><span class="line">        docker rm -f $&#123;containername&#125;</span><br><span class="line">    fi</span><br><span class="line">    docker run --name $&#123;containername&#125; --restart=always -d  -p 65001:65001 -v /root/.small-dragonfly:/root/.small-dragonfly -v /etc/dragonfly.conf:/etc/dragonfly.conf  -e dfdaemon_registry=$&#123;dfdaemon_registry&#125; -e localhostIp=$&#123;localhostIp&#125; $&#123;dfclient&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">startDfClient</span><br></pre></td></tr></table></figure>
-<p>最后</p>
-<p>trust.sh<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/sh</span><br><span class="line"></span><br><span class="line"># trust ca</span><br><span class="line"></span><br><span class="line">curl http://127.0.0.1:3128/ca.crt &gt;/etc/pki/ca-trust/source/anchors/docker_proxy_nginx.crt</span><br><span class="line"></span><br><span class="line">update-ca-trust</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull x.x.x/library/nginx:latest</span><br></pre></td></tr></table></figure>
-<p>参考：</p>
-<p>   <a href="https://d7y.io/zh-cn/" target="_blank" rel="noopener">https://d7y.io/zh-cn/</a></p>
-<p>   <a href="https://github.com/goharbor/harbor/" target="_blank" rel="noopener">https://github.com/goharbor/harbor/</a></p>
-<p>   <a href="https://github.com/rpardini/docker-registry-proxy" target="_blank" rel="noopener">https://github.com/rpardini/docker-registry-proxy</a></p>
-<p>   <a href="https://github.com/chobits/ngx_http_proxy_connect_module" target="_blank" rel="noopener">https://github.com/chobits/ngx_http_proxy_connect_module</a></p>
-
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line"></span><br><span class="line"># step 1 为服务器端和客户端准备公钥、私钥</span><br><span class="line"># 生成服务器端私钥</span><br><span class="line">openssl genrsa -out server.key 1024</span><br><span class="line"># 生成服务器端公钥</span><br><span class="line">openssl rsa -in server.key -pubout -out server.pem</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># step 2 生成 CA 证书</span><br><span class="line"># 生成客户端私钥</span><br><span class="line">openssl genrsa -out client.key 1024</span><br><span class="line"># 生成客户端公钥</span><br><span class="line">openssl rsa -in client.key -pubout -out client.pem</span><br><span class="line"></span><br><span class="line"># 生成 CA 私钥</span><br><span class="line">openssl genrsa -out ca.key 1024</span><br><span class="line"># X.509 Certificate Signing Request (CSR) Management.</span><br><span class="line">openssl req -new -key ca.key -out ca.csr</span><br><span class="line"># X.509 Certificate Data Management.</span><br><span class="line">openssl x509 -req -in ca.csr -signkey ca.key -out ca.crt</span><br><span class="line"></span><br><span class="line"># ➜  keys  openssl req -new -key ca.key -out ca.csr</span><br><span class="line"># You are about to be asked to enter information that will be incorporated</span><br><span class="line"># into your certificate request.</span><br><span class="line"># What you are about to enter is what is called a Distinguished Name or a DN.</span><br><span class="line"># There are quite a few fields but you can leave some blank</span><br><span class="line"># For some fields there will be a default value,</span><br><span class="line"># If you enter &apos;.&apos;, the field will be left blank.</span><br><span class="line"># -----</span><br><span class="line"># Country Name (2 letter code) [AU]:CN</span><br><span class="line"># State or Province Name (full name) [Some-State]:Zhejiang</span><br><span class="line"># Locality Name (eg, city) []:Hangzhou</span><br><span class="line"># Organization Name (eg, company) [Internet Widgits Pty Ltd]:My CA</span><br><span class="line"># Organizational Unit Name (eg, section) []:</span><br><span class="line"># Common Name (e.g. server FQDN or YOUR name) []:localhost</span><br><span class="line"># Email Address []:</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># step 3 生成服务器端证书和客户端证书</span><br><span class="line"># 服务器端需要向 CA 机构申请签名证书，在申请签名证书之前依然是创建自己的 CSR 文件</span><br><span class="line">openssl req -new -key server.key -out server.csr</span><br><span class="line"># 向自己的 CA 机构申请证书，签名过程需要 CA 的证书和私钥参与，最终颁发一个带有 CA 签名的证书</span><br><span class="line">openssl x509 -req -CA ca.crt -CAkey ca.key -CAcreateserial -in server.csr -out server.crt</span><br><span class="line"></span><br><span class="line"># client 端</span><br><span class="line">openssl req -new -key client.key -out client.csr</span><br><span class="line"># client 端到 CA 签名</span><br><span class="line">openssl x509 -req -CA ca.crt -CAkey ca.key -CAcreateserial -in client.csr -out client.crt</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">获取服务端签名, 即server.crt的内容:</span><br><span class="line">openssl x509 -in &lt;(openssl s_client -showcerts -servername dfdaemon.com -connect dfdaemon.com:65001 -prexit 2&gt;/dev/null)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">openssl x509部分命令</span><br><span class="line">打印出证书的内容：</span><br><span class="line">openssl x509 -in cert.pem -noout -text</span><br><span class="line">打印出证书的系列号</span><br><span class="line">openssl x509 -in cert.pem -noout -serial</span><br><span class="line">打印出证书的拥有者名字</span><br><span class="line">openssl x509 -in cert.pem -noout -subject</span><br><span class="line">以RFC2253规定的格式打印出证书的拥有者名字</span><br><span class="line">openssl x509 -in cert.pem -noout -subject -nameopt RFC2253</span><br><span class="line">在支持UTF8的终端一行过打印出证书的拥有者名字</span><br><span class="line">openssl x509 -in cert.pem -noout -subject -nameopt oneline -nameopt -escmsb</span><br><span class="line">打印出证书的MD5特征参数</span><br><span class="line">openssl x509 -in cert.pem -noout -fingerprint</span><br><span class="line">打印出证书的SHA特征参数</span><br><span class="line">openssl x509 -sha1 -in cert.pem -noout -fingerprint</span><br><span class="line">把PEM格式的证书转化成DER格式</span><br><span class="line">openssl x509 -in cert.pem -inform PEM -out cert.der -outform DER</span><br><span class="line">把一个证书转化成CSR</span><br><span class="line">openssl x509 -x509toreq -in cert.pem -out req.pem -signkey key.pem</span><br><span class="line">给一个CSR进行处理，颁发字签名证书，增加CA扩展项</span><br><span class="line">openssl x509 -req -in careq.pem -extfile openssl.cnf -extensions v3_ca -signkey key.pem -out cacert.pem</span><br><span class="line">给一个CSR签名，增加用户证书扩展项</span><br><span class="line">openssl x509 -req -in req.pem -extfile openssl.cnf -extensions v3_usr -CA cacert.pem -CAkey key.pem -CAcreateserial</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="entry-meta entry-footer">
@@ -460,7 +377,7 @@ var themeMenus = {};
     
 
   
-    <article id="post-nginx-https"  class="article article-type-post" itemscope itemprop="blogPost" >
+    <article id="post-distributed"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
@@ -468,7 +385,7 @@ var themeMenus = {};
         
   
     <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/02/25/nginx-https/">搭建nginx-https</a>
+      <a class="article-title" href="/2019/05/09/distributed/">高并发-分布式事务</a>
     </h1>
   
 
@@ -476,177 +393,22 @@ var themeMenus = {};
     
     <div class="article-meta">
       
-	Posted on <a href="/2019/02/25/nginx-https/" class="article-date">
-	  <time datetime="2019-02-25T04:24:07.000Z" itemprop="datePublished">February 25, 2019</time>
+	Posted on <a href="/2019/05/09/distributed/" class="article-date">
+	  <time datetime="2019-05-09T12:48:16.000Z" itemprop="datePublished">May 9, 2019</time>
 	</a>
 
       
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="nginx-https"><a href="#nginx-https" class="headerlink" title="nginx https"></a>nginx https</h2><p>defalut.conf<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">   upstream www.aaa.com.38240.r1.up &#123;</span><br><span class="line"></span><br><span class="line">       server 127.0.0.1:8443  weight=1  max_fails=1 fail_timeout=10s;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line"></span><br><span class="line">       listen                        38240;</span><br><span class="line">       server_name                   registry.wise2c.com;</span><br><span class="line"></span><br><span class="line">       access_log                    /var/log/nginx/host.access.log  main;</span><br><span class="line">       error_log                     /var/log/nginx/host_error.log;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">       # for support ssl</span><br><span class="line"></span><br><span class="line">       ssl                           on;</span><br><span class="line">       ssl_certificate               /etc/nginx/registry.wise2c.com.crt;</span><br><span class="line">       ssl_certificate_key           /etc/nginx/registry.wise2c.com.key;</span><br><span class="line">       ssl_protocols TLSv1 TLSv1.1 TLSv1.2;</span><br><span class="line">       ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:HIGH:!aNULL:!MD5:!RC4:!DHE;</span><br><span class="line">       ssl_prefer_server_ciphers on;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">      proxy_headers_hash_max_size     51200;</span><br><span class="line">      proxy_headers_hash_bucket_size  6400;</span><br><span class="line">      proxy_set_header                X-Forwarded-For  $remote_addr;</span><br><span class="line">      proxy_set_header                Host             $http_host;</span><br><span class="line">      proxy_set_header                X-Real-IP        $remote_addr;</span><br><span class="line">      proxy_set_header                X-Forwarded-For  $proxy_add_x_forwarded_for;</span><br><span class="line"></span><br><span class="line">      add_header Upgrade &quot;TLS/1.2, HTTP/1.1&quot;;</span><br><span class="line">      add_header Connection &quot;Upgrade&quot;;</span><br><span class="line">      add_header PPP  https://$host:$server_port$uri/;</span><br><span class="line">      error_page   500 502 503 504  /50x.html;</span><br><span class="line">       location = /50x.html &#123;</span><br><span class="line">           root   html;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">       location / &#123;</span><br><span class="line">               proxy_pass                http://www.aaa.com.38240.r1.up/;</span><br><span class="line">               proxy_connect_timeout     2s;</span><br><span class="line">               proxy_redirect http:// $scheme://;</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">https http</span><br><span class="line"></span><br><span class="line">端口(88)相同  域名不相同  </span><br><span class="line"></span><br><span class="line">访问http://www.xx.com:88     400  </span><br><span class="line">访问https://www.xxx.com:88     200</span><br><span class="line"></span><br><span class="line">端口相同  域名相同  只有https的存在</span><br><span class="line"></span><br><span class="line">问题</span><br><span class="line">nginx log</span><br><span class="line"></span><br><span class="line">2019/02/25 08:10:46 [warn] 1#1: conflicting server name &quot;registry.wise2c.com&quot; on 0.0.0.0:38240, ignored</span><br><span class="line">nginx: [warn] conflicting server name &quot;registry.wise2c.com&quot; on 0.0.0.0:38240, ignored</span><br><span class="line"></span><br><span class="line">端口不相同  域名相同 200</span><br></pre></td></tr></table></figure>
-<h2 id="Nginx环境下http和https可同时访问方法"><a href="#Nginx环境下http和https可同时访问方法" class="headerlink" title="Nginx环境下http和https可同时访问方法"></a>Nginx环境下http和https可同时访问方法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">listen 80 default backlog=2048;</span><br><span class="line">listen 443 ssl;</span><br><span class="line">server_name x.x.x;</span><br><span class="line">root /var/www/html;</span><br><span class="line">ssl_certificate /usr/local/Tengine/sslcrt/domain.crt;</span><br><span class="line">ssl_certificate_key /usr/local/Tengine/sslcrt/domain.Key;</span><br><span class="line"></span><br><span class="line"> location / &#123;</span><br><span class="line">                proxy_pass                http://www.aaa.com.38240.r1.up/;</span><br><span class="line">                proxy_connect_timeout     2s;</span><br><span class="line">                proxy_redirect http:// $scheme://;</span><br><span class="line">      &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">https://www.ixsystems.com/community/threads/how-to-owncloud-using-nginx-php-fpm-and-mysql.17786/page-78#post-395092</span><br><span class="line">过添加</span><br><span class="line"></span><br><span class="line">client_body_in_file_only clean 找到解决方案; </span><br><span class="line">client_body_buffer_size 32K; #set </span><br><span class="line"></span><br><span class="line">max upload size </span><br><span class="line">client_max_body_size 4000M; </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">       add_header X-Xss-Protection“1; mode = block”总是;</span><br><span class="line">	   add_header X-Content-Type-Options“nosniff”总是;</span><br><span class="line">	   add_header Strict-Transport-Security“max-age = 2592000; includeSubdomains”总是;</span><br><span class="line">	   add_header X-Frame-Options“SAMEORIGIN”总是;</span><br><span class="line">	   proxy_hide_header X-Powered-By;</span><br><span class="line">	   add_header&apos;Referrer-Policy&apos;&apos;no-referrer&apos;;</span><br><span class="line">	   add_header Content-Security-Policy“frame-ancestors mydomain.eu;”;</span><br></pre></td></tr></table></figure>
-<p>dragonfly docker proxy   branch fix-md2</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen       443 ssl;</span><br><span class="line">    server_name localhost;</span><br><span class="line"></span><br><span class="line">    # 上面生成的自签名证书</span><br><span class="line">    ssl_certificate /tmp/ssl/server.crt;</span><br><span class="line">    ssl_certificate_key /tmp/ssl/server.key;</span><br><span class="line"></span><br><span class="line">    ssl_session_timeout 5m;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">        proxy_set_header  X-Real-IP  $remote_addr;</span><br><span class="line">        proxy_set_header  Host $host;</span><br><span class="line">        proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">        # 后端服务</span><br><span class="line">        proxy_pass http://localhost:8080;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/">nginx</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
-    <article id="post-kafka"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/02/25/kafka/">docker 版kafka集群搭建</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/02/25/kafka/" class="article-date">
-	  <time datetime="2019-02-25T02:27:45.000Z" itemprop="datePublished">February 25, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="kafka-集群搭建"><a href="#kafka-集群搭建" class="headerlink" title="kafka 集群搭建"></a>kafka 集群搭建</h2><p>参考:<a href="https://hub.docker.com/r/wurstmeister/kafka/tags" target="_blank" rel="noopener">https://hub.docker.com/r/wurstmeister/kafka/tags</a></p>
-<h3 id="docker-compose-yaml"><a href="#docker-compose-yaml" class="headerlink" title="docker-compose.yaml"></a>docker-compose.yaml</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">version: &apos;2&apos;</span><br><span class="line">services:</span><br><span class="line">  zookeeper:</span><br><span class="line">    image: wurstmeister/zookeeper</span><br><span class="line">    ports:</span><br><span class="line">      - &quot;2181:2181&quot;</span><br><span class="line">  kafka:</span><br><span class="line">    image: wurstmeister/kafka</span><br><span class="line">    ports:</span><br><span class="line">      - &quot;9092&quot;</span><br><span class="line">    environment:</span><br><span class="line">      KAFKA_ADVERTISED_HOST_NAME: 10.0.0.159  #需要改成宿主ip</span><br><span class="line">      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181</span><br><span class="line">    volumes:</span><br><span class="line">      - /var/run/docker.sock:/var/run/docker.sock</span><br></pre></td></tr></table></figure>
-<h3 id="启动kafka"><a href="#启动kafka" class="headerlink" title="启动kafka"></a>启动kafka</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker-compose up -d</span><br><span class="line">docker-compose scale kafka=3</span><br></pre></td></tr></table></figure>
+        <p><a href="https://blog.csdn.net/jxpxlinkui/article/details/79688326" target="_blank" rel="noopener">高并发设计整合-分布式事务</a></p>
+<p><a href="https://medium.com/@mail_50938/fault-tolerance-in-asynchronous-choreographed-distributed-system-36b1cae037d1" target="_blank" rel="noopener">异步，编排，分布式系统的容错性</a></p>
 
       
     </div>
     <footer class="entry-meta entry-footer">
       
       
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/">docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kafka/">kafka</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
-    <article id="post-report"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/02/08/report/">report</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/02/08/report/" class="article-date">
-	  <time datetime="2019-02-08T03:42:58.000Z" itemprop="datePublished">February 8, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="bug报告模版"><a href="#bug报告模版" class="headerlink" title="bug报告模版"></a>bug报告模版</h3><p><a href="https://marker.io/blog/bug-report-template/" target="_blank" rel="noopener">https://marker.io/blog/bug-report-template/</a></p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-      
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
-    <article id="post-hello-world"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/02/01/hello-world/">Use Hexo</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/02/01/hello-world/" class="article-date">
-	  <time datetime="2019-02-01T07:23:02.000Z" itemprop="datePublished">February 1, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-<p><a href="https://www.cnblogs.com/bobo1/p/10929539.html" target="_blank" rel="noopener">md</a></p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
-
       
             
       
@@ -664,7 +426,7 @@ var themeMenus = {};
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/4/">Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span>
+    <a class="extend prev" rel="prev" href="/page/4/">Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/6/">Next</a>
   </nav>
 
 </section>
