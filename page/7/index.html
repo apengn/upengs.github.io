@@ -161,75 +161,6 @@ var themeMenus = {};
         
           <section id="main">
   
-    <article id="post-如何在-Linux-中不使用-CD-命令进入目录-文件夹"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/04/12/如何在-Linux-中不使用-CD-命令进入目录-文件夹/">如何在 Linux 中不使用 CD 命令进入目录/文件夹</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/04/12/如何在-Linux-中不使用-CD-命令进入目录-文件夹/" class="article-date">
-	  <time datetime="2019-04-12T02:00:06.000Z" itemprop="datePublished">April 12, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>众所周知，如果没有 cd 命令，我们无法 Linux 中切换目录。这个没错，但我们有一个名为 shopt的 Linux 内置命令能帮助我们解决这个问题。</p>
-<p>shopt[1] 是一个 shell 内置命令，用于设置和取消设置各种 bash shell 选项，由于它已安装，因此我们不需要再次安装它。</p>
-<p>是的，我们可以在启用此选项后，可以不使用 cd 命令切换目录。</p>
-<p>我们将在本文中向你展示如何操作。这是一个小的调整，但对于那些从 Windows 迁移到 Linux 的新手来说非常有用。</p>
-<p>这对 Linux 管理员没用，因为我们不会在没有 cd 命令的情况下切换到该目录，因为我们对此有经验。</p>
-<p>如果你尝试在没有 cd 命令的情况下切换 Linux 的目录/文件夹，你将看到以下错误消息。这在 Linux 中很常见。</p>
-<p>$ Documents/<br>bash: Documents/: Is a directory<br>为此，我们需要在用户 .bashrc 中追加以下值。</p>
-<p>什么是 .bashrc ？</p>
-<p>.bashrc 是一个 shell 脚本，每次用户以交互模式打开新 shell 时都会运行该脚本。</p>
-<p>你可以在该文件中添加要在命令提示符下输入的任何命令。</p>
-<p>.bashrc 文件本身包含终端会话的一系列配置。包括设置和启用：着色、补全，shell 历史，命令别名等。</p>
-<p>$ vi ~/.bashrc<br>加入这一行：</p>
-<p>shopt -s autocd<br>运行以下命令使更改生效。</p>
-<p>$ source ~/.bashrc<br>我们已完成所有配置。简单地对此进行测试以确认这是否有效。</p>
-<p>$ Documents/<br>cd – Documents/<br>$ daygeek/<br>cd – daygeek/<br>$ /home/daygeek/Documents/daygeek<br>cd – /home/daygeek/Documents/daygeek<br>$ pwd<br>/home/daygeek/Documents/daygeek</p>
-<p>是的，它正如预期的那样正常工作。</p>
-<p>而且，它在 fish shell 中工作正常，而无需对 .bashrc 进行任何更改。</p>
-<p>如果要暂时执行此操作，请使用以下命令（设置或取消设置）。重启系统时，它将消失。</p>
-<h1 id="shopt-s-autocd"><a href="#shopt-s-autocd" class="headerlink" title="shopt -s autocd"></a>shopt -s autocd</h1><h1 id="shopt-grep-autocd"><a href="#shopt-grep-autocd" class="headerlink" title="shopt | grep autocd"></a>shopt | grep autocd</h1><p>autocd  on</p>
-<h1 id="shopt-u-autocd"><a href="#shopt-u-autocd" class="headerlink" title="shopt -u autocd"></a>shopt -u autocd</h1><h1 id="shopt-grep-autocd-1"><a href="#shopt-grep-autocd-1" class="headerlink" title="shopt | grep autocd"></a>shopt | grep autocd</h1><p>autocd  off<br>shopt 命令提供了许多其他选项，如果要验证这些选项，请运行以下命令。</p>
-<p>$ shopt<br>autocd  on<br>assoc_expand_once   off<br>cdable_vars     off<br>cdspell     on<br>checkhash   off<br>checkjobs   off<br>checkwinsize    on<br>cmdhist     on<br>compat31    off<br>compat32    off<br>compat40    off<br>compat41    off<br>compat42    off<br>compat43    off<br>compat44    off<br>complete_fullquote  on<br>direxpand   off<br>dirspell    off<br>dotglob     off<br>execfail    off<br>expand_aliases  on<br>extdebug    off<br>extglob     off<br>extquote    on<br>failglob    off<br>force_fignore   on<br>globasciiranges on<br>globstar    off<br>gnu_errfmt  off<br>histappend  on<br>histreedit  off<br>histverify  off<br>hostcomplete    on<br>huponexit   off<br>inherit_errexit off<br>interactive_comments    on<br>lastpipe    off<br>lithist     off<br>localvar_inherit    off<br>localvar_unset  off<br>login_shell     off<br>mailwarn    off<br>no_empty_cmd_completion off<br>nocaseglob  off<br>nocasematch     off<br>nullglob    off<br>progcomp    on<br>progcomp_alias  off<br>promptvars  on<br>restricted_shell    off<br>shift_verbose   off<br>sourcepath  on<br>xpg_echo    off<br>此外，我找到了一些其他程序，它们可以帮助我们在 Linux 中比 cd 命令更快地切换目录。</p>
-<p>它们是 pushd、popd、up shell 脚本和 bd 工具。我们将在接下来的文章中介绍这些主题。</p>
-<p>via: <a href="https://www.2daygeek.com/navigate-switch-directory-without-using-cd-command-in-linux/" target="_blank" rel="noopener">https://www.2daygeek.com/navigate-switch-directory-without-using-cd-command-in-linux/</a></p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
     <article id="post-vim"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -445,6 +376,59 @@ extraArgs:
     
 
   
+    <article id="post-pprof"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/03/06/pprof/">pprof</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/03/06/pprof/" class="article-date">
+	  <time datetime="2019-03-06T15:18:18.000Z" itemprop="datePublished">March 6, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>CPU Profiling：CPU 分析，按照一定的频率采集所监听的应用程序 CPU（含寄存器）的使用情况，可确定应用程序在主动消耗 CPU 周期时花费时间的位置<br>Memory Profiling：内存分析，在应用程序进行堆分配时记录堆栈跟踪，用于监视当前和历史内存使用情况，以及检查内存泄漏<br>Block Profiling：阻塞分析，记录 goroutine 阻塞等待同步（包括定时器通道）的位置<br>Mutex Profiling：互斥锁分析，报告互斥锁的竞争情况</p>
+<p>cpu（CPU Profiling）: $HOST/debug/pprof/profile，默认进行 30s 的 CPU Profiling，得到一个分析用的 profile 文件<br>block（Block Profiling）：$HOST/debug/pprof/block，查看导致阻塞同步的堆栈跟踪<br>goroutine：$HOST/debug/pprof/goroutine，查看当前所有运行的 goroutines 堆栈跟踪<br>heap（Memory Profiling）: $HOST/debug/pprof/heap，查看活动对象的内存分配情况<br>mutex（Mutex Profiling）：$HOST/debug/pprof/mutex，查看导致互斥锁的竞争持有者的堆栈跟踪<br>threadcreate：$HOST/debug/pprof/threadcreate，查看创建新OS线程的堆栈跟踪</p>
+<p><a href="https://www.jianshu.com/p/4e4ff6be6af9" target="_blank" rel="noopener">https://www.jianshu.com/p/4e4ff6be6af9</a></p>
+<p><a href="https://www.cnblogs.com/li-peng/p/9391543.html" target="_blank" rel="noopener">https://www.cnblogs.com/li-peng/p/9391543.html</a></p>
+<p>go tool pprof httpdemo <a href="http://192.168.3.34:9909/debug/pprof/profile" target="_blank" rel="noopener">http://192.168.3.34:9909/debug/pprof/profile</a></p>
+<p>top</p>
+<p>list handleData</p>
+<p>mac环境下graphviz安装及使用</p>
+<p><a href="https://blog.csdn.net/mouday/article/details/80902025" target="_blank" rel="noopener">https://blog.csdn.net/mouday/article/details/80902025</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">go get -u github.com/google/pprof</span><br><span class="line">8711  go tool pprof http://dev-9:9902/debug/pprof/heap</span><br><span class="line">8722  go tool pprof http://dev-9:9092/debug/pprof/profile\?seconds\=60</span><br><span class="line">8723  go tool pprof http://dev-9:9092/debug/pprof/profile</span><br><span class="line">8724  pprof</span><br><span class="line">8725  pprof -http=:9902 cpu.prof</span><br><span class="line">8729  pprof -http=:8080 profile</span><br><span class="line">8733  go tool pprof profile</span><br><span class="line">8734  go tool pprof http://dev-9:9902/debug/pprof/heap\?debug\=1</span><br><span class="line">8740  go tool pprof -alloc_space/-inuse_space http://hw1:9902/debug/pprof/heap\?debug\=1</span><br><span class="line">8741  go tool pprof -alloc_space/-inuse_space http://hw1:9902/debug/pprof/heap</span><br><span class="line">8742  go tool pprof  http://hw1:9902/debug/pprof/heap</span><br><span class="line">8745  go tool pprof  -inuse_space -svg http://dev-9:9902/debug/pprof/heap &gt; a.svg</span><br><span class="line">8747  go tool pprof  -inuse_space -svg http://hw2:9902/debug/pprof/heap &gt; a.svg</span><br><span class="line">8800  go tool pprof --alloc_space/-inuse_space  http://hw1:9902/debug/pprof/heap</span><br><span class="line">8801  go tool pprof -alloc_space/-inuse_space  http://hw1:9902/debug/pprof/heap</span><br><span class="line">8802  go tool pprof  -inuse_space  http://hw1:9902/debug/pprof/heap</span><br><span class="line">8803  go tool pprof  -inuse_space  http://hw2:9902/debug/pprof/heap</span><br><span class="line">8807  <span class="built_in">cd</span> /Users/wupeng/pprof/</span><br><span class="line">8817  go tool pprof  -inuse_space  http://hw2:30992/debug/pprof/heap\?debug\=1 pdf</span><br><span class="line">8818  go tool pprof  -inuse_space  http://hw2:30992/debug/pprof/heap\?debug\=1</span><br><span class="line">8819  go tool pprof  -alloc_objects  http://hw2:30992/debug/pprof/heap\?debug\=1</span><br><span class="line">8830  go tool pprof  -inuse_space  http://139.198.125.237:30302/debug/pprof/heap\?debug\=1</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><figcaption><span>pprof.Index)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">router.HandleFunc(&quot;/debug/pprof/cmdline&quot;, pprof.Cmdline)</span><br><span class="line">router.HandleFunc(&quot;/debug/pprof/profile&quot;, pprof.Profile)</span><br><span class="line">router.HandleFunc(&quot;/debug/pprof/symbol&quot;, pprof.Symbol)</span><br><span class="line">router.HandleFunc(&quot;/debug/pprof/trace&quot;, pprof.Trace)</span><br><span class="line"></span><br><span class="line">router.Handle(&quot;/debug/pprof/block&quot;, pprof.Handler(&quot;block&quot;))</span><br><span class="line">router.Handle(&quot;/debug/pprof/goroutine&quot;, pprof.Handler(&quot;goroutine&quot;))</span><br><span class="line">router.Handle(&quot;/debug/pprof/heap&quot;, pprof.Handler(&quot;heap&quot;))</span><br><span class="line">router.Handle(&quot;/debug/pprof/threadcreate&quot;, pprof.Handler(&quot;threadcreate&quot;))</span><br><span class="line">router.Handle(&quot;/debug/pprof/allocs&quot;, pprof.Handler(&quot;allocs&quot;))</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+      
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
 
 
   <nav id="page-nav">
@@ -597,18 +581,6 @@ extraArgs:
               <div class="widget-entry-summary" style="margin: 0;">
             
 
-              <h6 style="margin: 0;"><a href="/2019/09/09/Define-a-Command-and-Arguments-for-a-Container/">(no title)</a></h6>
-              <span>September 9, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
               <h6 style="margin: 0;"><a href="/2019/09/07/prometheus-1/">prometheus</a></h6>
               <span>September 7, 2019</span>
             </div>
@@ -635,6 +607,18 @@ extraArgs:
 
               <h6 style="margin: 0;"><a href="/2019/08/19/golang-redis-分布式锁/">golang-redis-分布式锁</a></h6>
               <span>August 19, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2019/08/12/prometheus/">prometheus</a></h6>
+              <span>August 12, 2019</span>
             </div>
 
           </li>
@@ -678,7 +662,7 @@ extraArgs:
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">11</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">11</span></li></ul>
     </div>
   </div>
 

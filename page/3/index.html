@@ -161,87 +161,6 @@ var themeMenus = {};
         
           <section id="main">
   
-    <article id="post-kubectl-config"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/08/07/kubectl-config/">通过配置kubectl config对多个kubernetes群集的访问</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2019/08/07/kubectl-config/" class="article-date">
-	  <time datetime="2019-08-07T01:34:21.000Z" itemprop="datePublished">August 7, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>目的：在使用kubernetes集群的时候当用户访问不同的kubernetes环境的时候可以随意切换<br>     通过设置ClusterRole  Role中的rules来控制集群下资源的操作</p>
-<h3 id="以下主要介绍用不同的kubernetes的认证信息来访问集群中的指定的namespace"><a href="#以下主要介绍用不同的kubernetes的认证信息来访问集群中的指定的namespace" class="headerlink" title="以下主要介绍用不同的kubernetes的认证信息来访问集群中的指定的namespace"></a>以下主要介绍用不同的kubernetes的认证信息来访问集群中的指定的namespace</h3><h4 id="1、通过Token访问"><a href="#1、通过Token访问" class="headerlink" title="1、通过Token访问"></a>1、通过Token访问</h4><h4 id="2、通过用户名密码访问"><a href="#2、通过用户名密码访问" class="headerlink" title="2、通过用户名密码访问"></a>2、通过用户名密码访问</h4><h4 id="3、通过RBAC-来访问"><a href="#3、通过RBAC-来访问" class="headerlink" title="3、通过RBAC 来访问"></a>3、通过RBAC 来访问</h4><h3 id="先了解一番-kubectl-config-命令："><a href="#先了解一番-kubectl-config-命令：" class="headerlink" title="先了解一番 kubectl config 命令："></a>先了解一番 kubectl config 命令：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">Modify kubeconfig files using subcommands like <span class="string">"kubectl config set current-context my-context"</span></span><br><span class="line"></span><br><span class="line"> The loading order follows these rules:</span><br><span class="line"></span><br><span class="line">  1.  If the --kubeconfig flag is <span class="built_in">set</span>, <span class="keyword">then</span> only that file is loaded. The flag may only be <span class="built_in">set</span> once and no merging takes</span><br><span class="line">place.</span><br><span class="line">  2.  If <span class="variable">$KUBECONFIG</span> environment variable is <span class="built_in">set</span>, <span class="keyword">then</span> it is used as a list of paths (normal path delimiting rules <span class="keyword">for</span></span><br><span class="line">your system). These paths are merged. When a value is modified, it is modified <span class="keyword">in</span> the file that defines the stanza. When</span><br><span class="line">a value is created, it is created <span class="keyword">in</span> the first file that exists. If no files <span class="keyword">in</span> the chain exist, <span class="keyword">then</span> it creates the</span><br><span class="line">last file <span class="keyword">in</span> the list.</span><br><span class="line">  3.  Otherwise, <span class="variable">$&#123;HOME&#125;</span>/.kube/config is used and no merging takes place.</span><br><span class="line"></span><br><span class="line">Available Commands:</span><br><span class="line">  current-context Displays the current-context</span><br><span class="line">  delete-cluster  Delete the specified cluster from the kubeconfig</span><br><span class="line">  delete-context  Delete the specified context from the kubeconfig</span><br><span class="line">  get-clusters    Display clusters defined <span class="keyword">in</span> the kubeconfig</span><br><span class="line">  get-contexts    Describe one or many contexts</span><br><span class="line">  rename-context  Renames a context from the kubeconfig file.</span><br><span class="line">  <span class="built_in">set</span>             Sets an individual value <span class="keyword">in</span> a kubeconfig file</span><br><span class="line">  <span class="built_in">set</span>-cluster     Sets a cluster entry <span class="keyword">in</span> kubeconfig</span><br><span class="line">  <span class="built_in">set</span>-context     Sets a context entry <span class="keyword">in</span> kubeconfig</span><br><span class="line">  <span class="built_in">set</span>-credentials Sets a user entry <span class="keyword">in</span> kubeconfig</span><br><span class="line">  <span class="built_in">unset</span>           Unsets an individual value <span class="keyword">in</span> a kubeconfig file</span><br><span class="line">  use-context     Sets the current-context <span class="keyword">in</span> a kubeconfig file</span><br><span class="line">  view            Display merged kubeconfig settings or a specified kubeconfig file</span><br><span class="line"></span><br><span class="line">Usage:</span><br><span class="line">  kubectl config SUBCOMMAND [options]</span><br><span class="line"></span><br><span class="line">Use <span class="string">"kubectl &lt;command&gt; --help"</span> <span class="keyword">for</span> more information about a given <span class="built_in">command</span>.</span><br><span class="line">Use <span class="string">"kubectl options"</span> <span class="keyword">for</span> a list of global <span class="built_in">command</span>-line options (applies to all commands).</span><br></pre></td></tr></table></figure>
-<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><h4 id="1、设置api-server的token-认证信息"><a href="#1、设置api-server的token-认证信息" class="headerlink" title="1、设置api-server的token  认证信息"></a>1、设置api-server的token  认证信息</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cat &gt; /etc/kubernetes/pki/token_auth_file&lt;&lt;EOF</span><br><span class="line">11111111111111,username,1</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
-<h4 id="2、设置api-server的username-password认证信息"><a href="#2、设置api-server的username-password认证信息" class="headerlink" title="2、设置api-server的username password认证信息"></a>2、设置api-server的username password认证信息</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cat &gt; /etc/kubernetes/pki/basic_auth_file&lt;&lt;EOF</span><br><span class="line">password,username,1</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
-<h4 id="3、修改api-server的启动参数"><a href="#3、修改api-server的启动参数" class="headerlink" title="3、修改api-server的启动参数"></a>3、修改api-server的启动参数</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">- --token-auth-file=/etc/kubernetes/pki/token_auth_file</span><br><span class="line">- --basic-auth-file=/etc/kubernetes/pki/basic_auth_file</span><br></pre></td></tr></table></figure>
-<h4 id="4、-重启apisever"><a href="#4、-重启apisever" class="headerlink" title="4、 重启apisever"></a>4、 重启apisever</h4><h4 id="5、test-api-server-是否配置成功"><a href="#5、test-api-server-是否配置成功" class="headerlink" title="5、test api-server 是否配置成功"></a>5、test api-server 是否配置成功</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">CLUSTER_NAME=kubernetes</span><br><span class="line">API_SERVER=$(kubectl config view -o jsonpath=<span class="string">"&#123;.clusters[?(@.name==\"<span class="variable">$&#123;CLUSTER_NAME&#125;</span>\")].cluster.server&#125;"</span>)</span><br><span class="line">curl <span class="variable">$&#123;API_SERVER&#125;</span>/version --basic -u username:password -k</span><br><span class="line">curl <span class="variable">$&#123;API_SERVER&#125;</span>/version --header <span class="string">"Authorization: Bearer 11111111111111"</span> -k</span><br></pre></td></tr></table></figure>
-<h4 id="6、添加ClusterRole"><a href="#6、添加ClusterRole" class="headerlink" title="6、添加ClusterRole"></a>6、添加ClusterRole</h4><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">rbac.authorization.k8s.io/v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">ClusterRole</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line"><span class="attr">  name:</span> <span class="string">wp-cluster-role</span></span><br><span class="line"><span class="attr">rules:</span></span><br><span class="line"><span class="attr">- apiGroups:</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">'*'</span></span><br><span class="line"><span class="attr">  resources:</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">'*'</span></span><br><span class="line"><span class="attr">  verbs:</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">'*'</span></span><br><span class="line"><span class="attr">- nonResourceURLs:</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">'*'</span></span><br><span class="line"><span class="attr">  verbs:</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">'*'</span></span><br></pre></td></tr></table></figure>
-<h4 id="7、创建一个用于测试的namespace-wp"><a href="#7、创建一个用于测试的namespace-wp" class="headerlink" title="7、创建一个用于测试的namespace wp"></a>7、创建一个用于测试的namespace wp</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl create ns wp</span><br></pre></td></tr></table></figure>
-<h4 id="8、创建RoleBinding"><a href="#8、创建RoleBinding" class="headerlink" title="8、创建RoleBinding"></a>8、创建RoleBinding</h4><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">rbac.authorization.k8s.io/v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">RoleBinding</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line"><span class="attr">  name:</span> <span class="string">wp-role-binding</span></span><br><span class="line"><span class="attr">  namespace:</span> <span class="string">wp</span></span><br><span class="line"><span class="attr">roleRef:</span></span><br><span class="line"><span class="attr">  apiGroup:</span> <span class="string">rbac.authorization.k8s.io</span></span><br><span class="line"><span class="attr">  kind:</span> <span class="string">ClusterRole</span></span><br><span class="line"><span class="attr">  name:</span> <span class="string">wp-cluster-role</span></span><br><span class="line"><span class="attr">subjects:</span></span><br><span class="line"><span class="attr">- kind:</span> <span class="string">ServiceAccount</span></span><br><span class="line"><span class="attr">  name:</span> <span class="string">default</span></span><br><span class="line"><span class="attr">  namespace:</span> <span class="string">wp</span></span><br><span class="line"><span class="attr">- kind:</span> <span class="string">User</span></span><br><span class="line"><span class="attr">  name:</span> <span class="string">username</span></span><br></pre></td></tr></table></figure>
-<h2 id="下面进行实际操作"><a href="#下面进行实际操作" class="headerlink" title="下面进行实际操作"></a>下面进行实际操作</h2><h3 id="一、使用api-server-token来访问kubernetes"><a href="#一、使用api-server-token来访问kubernetes" class="headerlink" title="一、使用api-server token来访问kubernetes"></a>一、使用api-server token来访问kubernetes</h3><h4 id="1、通过命令获取kubernetes-cluster-server"><a href="#1、通过命令获取kubernetes-cluster-server" class="headerlink" title="1、通过命令获取kubernetes cluster server"></a>1、通过命令获取kubernetes cluster server</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CLUSTER_NAME=kubernetes</span><br><span class="line">API_SERVER=$(kubectl config view -o jsonpath=<span class="string">"&#123;.clusters[?(@.name==\"<span class="variable">$&#123;CLUSTER_NAME&#125;</span>\")].cluster.server&#125;"</span>)</span><br></pre></td></tr></table></figure>
-<h4 id="2、设置-config中的集群信息"><a href="#2、设置-config中的集群信息" class="headerlink" title="2、设置 config中的集群信息"></a>2、设置 config中的集群信息</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl config <span class="built_in">set</span>-cluster wp --insecure-skip-tls-verify=<span class="literal">true</span> --server=<span class="variable">$&#123;API_SERVER&#125;</span></span><br></pre></td></tr></table></figure>
-<h4 id="3、通过token设置客户端认证参数"><a href="#3、通过token设置客户端认证参数" class="headerlink" title="3、通过token设置客户端认证参数"></a>3、通过token设置客户端认证参数</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl config <span class="built_in">set</span>-credentials wp --token=11111111111111</span><br></pre></td></tr></table></figure>
-<h4 id="4、设置上下文参数"><a href="#4、设置上下文参数" class="headerlink" title="4、设置上下文参数"></a>4、设置上下文参数</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl config <span class="built_in">set</span>-context wp --cluster=wp --user=wp</span><br></pre></td></tr></table></figure>
-<h4 id="5、使用当前的上下文"><a href="#5、使用当前的上下文" class="headerlink" title="5、使用当前的上下文"></a>5、使用当前的上下文</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl config use-context wp</span><br></pre></td></tr></table></figure>
-<h3 id="二、-通过用户名密码来访问kubernetes"><a href="#二、-通过用户名密码来访问kubernetes" class="headerlink" title="二、 通过用户名密码来访问kubernetes"></a>二、 通过用户名密码来访问kubernetes</h3><h4 id="1、通过命令获取kubernetes-cluster-server-1"><a href="#1、通过命令获取kubernetes-cluster-server-1" class="headerlink" title="1、通过命令获取kubernetes cluster server"></a>1、通过命令获取kubernetes cluster server</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CLUSTER_NAME=kubernetes</span><br><span class="line">API_SERVER=$(kubectl config view -o jsonpath=<span class="string">"&#123;.clusters[?(@.name==\"<span class="variable">$&#123;CLUSTER_NAME&#125;</span>\")].cluster.server&#125;"</span>)</span><br></pre></td></tr></table></figure>
-<h4 id="2、设置-config中的集群信息-1"><a href="#2、设置-config中的集群信息-1" class="headerlink" title="2、设置 config中的集群信息"></a>2、设置 config中的集群信息</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl config <span class="built_in">set</span>-cluster user-pwd-cluster --insecure-skip-tls-verify=<span class="literal">true</span> --server=<span class="variable">$&#123;API_SERVER&#125;</span></span><br></pre></td></tr></table></figure>
-<h4 id="3、通过token设置客户端认证参数-1"><a href="#3、通过token设置客户端认证参数-1" class="headerlink" title="3、通过token设置客户端认证参数"></a>3、通过token设置客户端认证参数</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl config <span class="built_in">set</span>-credentials user --username=username --password=password</span><br></pre></td></tr></table></figure>
-<h4 id="4、设置上下文参数-1"><a href="#4、设置上下文参数-1" class="headerlink" title="4、设置上下文参数"></a>4、设置上下文参数</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl config <span class="built_in">set</span>-context user --cluster=user-pwd-cluster  --user=user</span><br></pre></td></tr></table></figure>
-<h4 id="5、使用当前的上下文-1"><a href="#5、使用当前的上下文-1" class="headerlink" title="5、使用当前的上下文"></a>5、使用当前的上下文</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl config use-context user</span><br></pre></td></tr></table></figure>
-<h3 id="三、-通过rbac-的方式-来访问kubernetes"><a href="#三、-通过rbac-的方式-来访问kubernetes" class="headerlink" title="三、 通过rbac 的方式 来访问kubernetes"></a>三、 通过rbac 的方式 来访问kubernetes</h3><h4 id="1、通过命令获取kubernetes-cluster-server-2"><a href="#1、通过命令获取kubernetes-cluster-server-2" class="headerlink" title="1、通过命令获取kubernetes cluster server"></a>1、通过命令获取kubernetes cluster server</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CLUSTER_NAME=kubernetes</span><br><span class="line">API_SERVER=$(kubectl config view -o jsonpath=<span class="string">"&#123;.clusters[?(@.name==\"<span class="variable">$&#123;CLUSTER_NAME&#125;</span>\")].cluster.server&#125;"</span>)</span><br></pre></td></tr></table></figure>
-<h4 id="2、设置-config中的集群信息-2"><a href="#2、设置-config中的集群信息-2" class="headerlink" title="2、设置 config中的集群信息"></a>2、设置 config中的集群信息</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl config <span class="built_in">set</span>-cluster sa-cluster --insecure-skip-tls-verify=<span class="literal">true</span> --server=<span class="variable">$&#123;API_SERVER&#125;</span></span><br></pre></td></tr></table></figure>
-<h4 id="3、通过token设置客户端认证参数-2"><a href="#3、通过token设置客户端认证参数-2" class="headerlink" title="3、通过token设置客户端认证参数"></a>3、通过token设置客户端认证参数</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl config <span class="built_in">set</span>-credentials sa --token=$(<span class="built_in">echo</span> $(kubectl get secrets  default-token-c82z6 -n wp -o jsonpath=<span class="string">"&#123;.data.token&#125;"</span>)|base64 -d)</span><br></pre></td></tr></table></figure>
-<h4 id="4、设置上下文参数-2"><a href="#4、设置上下文参数-2" class="headerlink" title="4、设置上下文参数"></a>4、设置上下文参数</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl config <span class="built_in">set</span>-context sa --cluster=sa-cluster --user=sa</span><br></pre></td></tr></table></figure>
-<h4 id="5、使用当前的上下文-2"><a href="#5、使用当前的上下文-2" class="headerlink" title="5、使用当前的上下文"></a>5、使用当前的上下文</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl config use-context sa</span><br></pre></td></tr></table></figure>
-<h2 id="test"><a href="#test" class="headerlink" title="test"></a>test</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost pki]<span class="comment"># k get pod</span></span><br><span class="line">Error from server (Forbidden): pods is forbidden: User <span class="string">"system:serviceaccount:wp:default"</span> cannot list resource <span class="string">"pods"</span> <span class="keyword">in</span> API group <span class="string">""</span> <span class="keyword">in</span> the namespace <span class="string">"default"</span></span><br><span class="line">[root@localhost pki]<span class="comment"># k get pod -n wp</span></span><br><span class="line">NAME                     READY   STATUS    RESTARTS   AGE</span><br><span class="line">nginx-7bb7cd8db5-xrwxw   1/1     Running   0          4m24s</span><br><span class="line">[root@localhost pki]<span class="comment">#</span></span><br></pre></td></tr></table></figure>
-<p>参考：<br><a href="https://kubernetes.io/docs/reference/access-authn-authz/rbac/#default-roles-and-role-bindings" target="_blank" rel="noopener">https://kubernetes.io/docs/reference/access-authn-authz/rbac/#default-roles-and-role-bindings</a><br><a href="https://kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/" target="_blank" rel="noopener">https://kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl create sa wp -n</span><br></pre></td></tr></table></figure>
-<pre><code>PID=$(docker inspect --format &quot;{{ .State.Pid}}&quot; &lt;container id&gt;)
-
-nsenter --target $PID --mount --uts --ipc --net --pid
-
-curl -k --cacert &quot;$CERT&quot; -H  &quot;Authorization: Bearer $TOKEN_VALUE&quot; https://192.168.0.9:6443/api/v1/pods?resourceVersion=0
-
-
-ln -s /Users/wupeng/go/src/gitee.com/wisecloud/ingress/controller /Users/wupeng/go/src/gitee.com/wisecloud/wisecloud-ingress-controller
-</code></pre>
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kubernetes/">kubernetes</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
     <article id="post-Define-a-Command-and-Arguments-for-a-Container"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -493,6 +412,53 @@ ln -s /Users/wupeng/go/src/gitee.com/wisecloud/ingress/controller /Users/wupeng/
     
 
   
+    <article id="post-makefile"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/07/19/makefile/">makefile相关资料</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/07/19/makefile/" class="article-date">
+	  <time datetime="2019-07-19T07:45:18.000Z" itemprop="datePublished">July 19, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Makefile旅行"><a href="#Makefile旅行" class="headerlink" title="Makefile旅行"></a>Makefile旅行</h2><p><a href="http://makefiletutorial.com/" target="_blank" rel="noopener">http://makefiletutorial.com/</a></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/makefile/">makefile</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
 
 
   <nav id="page-nav">
@@ -645,18 +611,6 @@ ln -s /Users/wupeng/go/src/gitee.com/wisecloud/ingress/controller /Users/wupeng/
               <div class="widget-entry-summary" style="margin: 0;">
             
 
-              <h6 style="margin: 0;"><a href="/2019/09/09/Define-a-Command-and-Arguments-for-a-Container/">(no title)</a></h6>
-              <span>September 9, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
               <h6 style="margin: 0;"><a href="/2019/09/07/prometheus-1/">prometheus</a></h6>
               <span>September 7, 2019</span>
             </div>
@@ -683,6 +637,18 @@ ln -s /Users/wupeng/go/src/gitee.com/wisecloud/ingress/controller /Users/wupeng/
 
               <h6 style="margin: 0;"><a href="/2019/08/19/golang-redis-分布式锁/">golang-redis-分布式锁</a></h6>
               <span>August 19, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2019/08/12/prometheus/">prometheus</a></h6>
+              <span>August 12, 2019</span>
             </div>
 
           </li>
@@ -726,7 +692,7 @@ ln -s /Users/wupeng/go/src/gitee.com/wisecloud/ingress/controller /Users/wupeng/
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">11</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">11</span></li></ul>
     </div>
   </div>
 
