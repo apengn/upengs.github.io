@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+
+  <!-- PACE Progress Bar START -->
+  
+    <script src="https://raw.githubusercontent.com/HubSpot/pace/v1.0.2/pace.min.js"></script>
+    <link rel="stylesheet" href="https://github.com/HubSpot/pace/raw/master/themes/orange/pace-theme-flash.css">
+  
+  
+
+  <!-- PACE Progress Bar START -->
+
+  
+  <title>use-kubeadm-install-kubernetes | Peng</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+  
+  
+  <meta name="description" content="在安装kubernetes之前需要准备一台或多台运行以下其中一项的计算机：Ubuntu 16.04以上 Debian 9+ CentOS的7 红帽企业Linux（RHEL）7 Fedora 25+ HypriotOS v1.0.1 + 容器Linux（已通过1800.6.0测试） 每台机器2 GB或更多的RAM（更少的空间将为您的应用程序留出很少的空间） 2个或更多CPU群集中所有计算机之间的完整">
+<meta property="og:type" content="article">
+<meta property="og:title" content="use-kubeadm-install-kubernetes">
+<meta property="og:url" content="https://upengs.github.io/2019/09/28/use-kubeadm-install-kubernetes/index.html">
+<meta property="og:site_name" content="Peng">
+<meta property="og:description" content="在安装kubernetes之前需要准备一台或多台运行以下其中一项的计算机：Ubuntu 16.04以上 Debian 9+ CentOS的7 红帽企业Linux（RHEL）7 Fedora 25+ HypriotOS v1.0.1 + 容器Linux（已通过1800.6.0测试） 每台机器2 GB或更多的RAM（更少的空间将为您的应用程序留出很少的空间） 2个或更多CPU群集中所有计算机之间的完整">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-09-28T06:16:57.020Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="use-kubeadm-install-kubernetes">
+<meta name="twitter:description" content="在安装kubernetes之前需要准备一台或多台运行以下其中一项的计算机：Ubuntu 16.04以上 Debian 9+ CentOS的7 红帽企业Linux（RHEL）7 Fedora 25+ HypriotOS v1.0.1 + 容器Linux（已通过1800.6.0测试） 每台机器2 GB或更多的RAM（更少的空间将为您的应用程序留出很少的空间） 2个或更多CPU群集中所有计算机之间的完整">
+  
+    <link rel="alternate" href="/atom.xml" title="Peng" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/hiero.css">
+  <link rel="stylesheet" href="/css/glyphs.css">
+  
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/my.css">
+  <!-- Google Adsense -->
+  
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-0123456789ABCDEFl",
+          enable_page_level_ads: true
+      });
+  </script>
+  
+</head>
+</html>
+<script>
+var themeMenus = {};
+
+  themeMenus["/"] = "Home"; 
+
+  themeMenus["/archives"] = "Archives"; 
+
+  themeMenus["/categories"] = "Categories"; 
+
+  themeMenus["/tags"] = "Tags"; 
+
+  themeMenus["/about"] = "About"; 
+
+</script>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  <header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" title="Peng" rel="home"> Peng </a>
+            
+          </h1>
+
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+            <div class="clearfix sf-menu">
+
+              <ul id="main-nav" class="nmenu sf-js-enabled">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/archives">Archives</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/categories">Categories</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/tags">Tags</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/about">About</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="originBgDiv" style="background: #fff; width: 100%;">
+
+      <div style="max-height:600px; overflow: hidden;  display: flex; display: -webkit-flex; align-items: center;">
+        <img id="originBg" width="100%" alt="" src="">
+      </div>
+
+  </div>
+
+  <script>
+  function setAboutIMG(){
+      var imgUrls = "css/images/pose.jpg,https://source.unsplash.com/collection/954550/1920x1080".split(",");
+      var random = Math.floor((Math.random() * imgUrls.length ));
+      if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
+        document.getElementById("originBg").src=imgUrls[random];
+      } else {
+        document.getElementById("originBg").src='/' + imgUrls[random];
+      }
+  }
+  bgDiv=document.getElementById("originBgDiv");
+  if(location.pathname.match('about')){
+    setAboutIMG();
+    bgDiv.style.display='block';
+  }else{
+    bgDiv.style.display='none';
+  }
+  </script>
+
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-use-kubeadm-install-kubernetes" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      use-kubeadm-install-kubernetes
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/09/28/use-kubeadm-install-kubernetes/" class="article-date">
+	  <time datetime="2019-09-28T03:00:14.000Z" itemprop="datePublished">September 28, 2019</time>
+	</a>
+
+      
+	<span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="在安装kubernetes之前需要准备一台或多台运行以下其中一项的计算机："><a href="#在安装kubernetes之前需要准备一台或多台运行以下其中一项的计算机：" class="headerlink" title="在安装kubernetes之前需要准备一台或多台运行以下其中一项的计算机："></a>在安装kubernetes之前需要准备一台或多台运行以下其中一项的计算机：</h4><p>Ubuntu 16.04以上</p>
+<p>Debian 9+</p>
+<p>CentOS的7</p>
+<p>红帽企业Linux（RHEL）7</p>
+<p>Fedora 25+</p>
+<p>HypriotOS v1.0.1 +</p>
+<p>容器Linux（已通过1800.6.0测试）</p>
+<p>每台机器2 GB或更多的RAM（更少的空间将为您的应用程序留出很少的空间）</p>
+<p>2个或更多CPU<br>群集中所有计算机之间的完整网络连接</p>
+<p>每个节点的唯一主机名，MAC地址和product_uuid。</p>
+<p>某些端口在您的计算机上打开。</p>
+<p>交换已禁用。您必须禁用交换才能使kubelet正常工作</p>
+<h4 id="验证MAC地址和product-uuid对于每个节点都是唯一的"><a href="#验证MAC地址和product-uuid对于每个节点都是唯一的" class="headerlink" title="验证MAC地址和product_uuid对于每个节点都是唯一的"></a>验证MAC地址和product_uuid对于每个节点都是唯一的</h4><p>以下命令获得网络接口的MAC地址<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ip link或ifconfig -a</span><br></pre></td></tr></table></figure></p>
+<p>命令检查product_uuid<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /sys/class/dmi/id/product_uuid</span><br></pre></td></tr></table></figure></p>
+<p> 如果您需要修改 hostname，可执行如下指令：<br> <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 修改 hostname</span></span><br><span class="line">hostnamectl <span class="built_in">set</span>-hostname master</span><br><span class="line"><span class="comment"># 查看修改结果</span></span><br><span class="line">hostnamectl status</span><br><span class="line"><span class="comment"># 设置 hostname 解析</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"127.0.0.1   <span class="variable">$(hostname)</span>"</span> &gt;&gt; /etc/hosts</span><br></pre></td></tr></table></figure></p>
+<h3 id="安装-docker"><a href="#安装-docker" class="headerlink" title="安装 docker"></a>安装 docker</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># step 1: 安装必要的一些系统工具</span></span><br><span class="line">sudo yum install -y yum-utils device-mapper-persistent-data lvm2</span><br><span class="line"> </span><br><span class="line"><span class="comment"># Step 2: 添加软件源信息</span></span><br><span class="line">sudo yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo</span><br><span class="line"> </span><br><span class="line"><span class="comment"># Step 3: 更新并安装Docker-CE</span></span><br><span class="line">sudo yum makecache fast</span><br><span class="line">sudo yum -y install docker-ce-18.09.1</span><br><span class="line">cat &gt; /etc/docker/daemon.json &lt;&lt;EOF</span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"exec-opts"</span>: [<span class="string">"native.cgroupdriver=systemd"</span>],</span><br><span class="line">  <span class="string">"log-driver"</span>: <span class="string">"json-file"</span>,</span><br><span class="line">  <span class="string">"log-opts"</span>: &#123;</span><br><span class="line">    <span class="string">"max-size"</span>: <span class="string">"100m"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">"storage-driver"</span>: <span class="string">"overlay2"</span>,</span><br><span class="line">  <span class="string">"storage-opts"</span>: [</span><br><span class="line">    <span class="string">"overlay2.override_kernel_check=true"</span></span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br><span class="line">EOF</span><br><span class="line">mkdir -p /etc/systemd/system/docker.service.d</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Restart Docker</span></span><br><span class="line">systemctl daemon-reload</span><br><span class="line">systemctl restart docker</span><br><span class="line">systemctl start docker.service</span><br></pre></td></tr></table></figure>
+<h5 id="通过运行setenforce-0并sed-…有效禁用SELinux，将其设置为许可模式。这是允许容器访问主机文件系统所必需的，例如Pod网络所需要的。您必须执行此操作，直到kubelet中的SELinux支持得到改善。"><a href="#通过运行setenforce-0并sed-…有效禁用SELinux，将其设置为许可模式。这是允许容器访问主机文件系统所必需的，例如Pod网络所需要的。您必须执行此操作，直到kubelet中的SELinux支持得到改善。" class="headerlink" title="通过运行setenforce 0并sed …有效禁用SELinux，将其设置为许可模式。这是允许容器访问主机文件系统所必需的，例如Pod网络所需要的。您必须执行此操作，直到kubelet中的SELinux支持得到改善。"></a>通过运行setenforce 0并sed …有效禁用SELinux，将其设置为许可模式。这是允许容器访问主机文件系统所必需的，例如Pod网络所需要的。您必须执行此操作，直到kubelet中的SELinux支持得到改善。</h5><h5 id="RHEL-CentOS-7上的一些用户报告了由于绕过iptables而导致流量无法正确路由的问题。您应该确保-net-bridge-bridge-nf-call-iptables在sysctl配置中将其设置为1"><a href="#RHEL-CentOS-7上的一些用户报告了由于绕过iptables而导致流量无法正确路由的问题。您应该确保-net-bridge-bridge-nf-call-iptables在sysctl配置中将其设置为1" class="headerlink" title="RHEL / CentOS 7上的一些用户报告了由于绕过iptables而导致流量无法正确路由的问题。您应该确保 net.bridge.bridge-nf-call-iptables在sysctl配置中将其设置为1"></a>RHEL / CentOS 7上的一些用户报告了由于绕过iptables而导致流量无法正确路由的问题。您应该确保 net.bridge.bridge-nf-call-iptables在sysctl配置中将其设置为1</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">cat &lt;&lt;EOF &gt;  /etc/sysctl.d/k8s.conf</span><br><span class="line">net.bridge.bridge-nf-call-ip6tables = 1</span><br><span class="line">net.bridge.bridge-nf-call-iptables = 1</span><br><span class="line">EOF</span><br><span class="line">sysctl --system</span><br><span class="line">setenforce 0</span><br><span class="line">swapoff -a</span><br><span class="line">sed -i <span class="string">'s/^SELINUX=enforcing$/SELINUX=permissive/'</span> /etc/selinux/config</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">cat &lt;&lt;EOF &gt; /etc/yum.repos.d/kubernetes.repo</span><br><span class="line">[kubernetes]</span><br><span class="line">name=Kubernetes</span><br><span class="line">baseurl=https://mirrors.aliyun.com/kubernetes/yum/repos/kubernetes-el7-x86_64</span><br><span class="line">enabled=1</span><br><span class="line">gpgcheck=1</span><br><span class="line">repo_gpgcheck=1</span><br><span class="line">gpgkey=https://mirrors.aliyun.com/kubernetes/yum/doc/yum-key.gpg https://mirrors.aliyun.com/kubernetes/yum/doc/rpm-package-key.gpg</span><br><span class="line">EOF</span><br><span class="line"><span class="comment"># 安装</span></span><br><span class="line">yum install -y kubectl kubelet kubeadm</span><br><span class="line"><span class="comment"># 开机启动</span></span><br><span class="line">systemctl <span class="built_in">enable</span> kubelet</span><br><span class="line"><span class="comment"># 启动</span></span><br><span class="line">systemctl start kubelet</span><br></pre></td></tr></table></figure>
+<p>config.yaml<br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">kubeadm.k8s.io/v1beta2</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">ClusterConfiguration</span></span><br><span class="line"><span class="attr">kubernetesVersion:</span> <span class="number">1.16</span><span class="number">.0</span></span><br><span class="line"><span class="attr">controlPlaneEndpoint:</span> <span class="string">"ip:6443"</span> <span class="comment"># 192.168.1.88:6443</span></span><br><span class="line"><span class="attr">imageRepository:</span> <span class="string">registry.aliyuncs.com/google_containers</span></span><br><span class="line"><span class="attr">networking:</span></span><br><span class="line"><span class="attr">  podSubnet:</span> <span class="number">10.148</span><span class="number">.0</span><span class="number">.0</span><span class="string">/16</span></span><br><span class="line"><span class="attr">  serviceSubnet:</span> <span class="number">10.196</span><span class="number">.0</span><span class="number">.0</span><span class="string">/12</span></span><br><span class="line"><span class="attr">dns:</span></span><br><span class="line"><span class="attr">  type:</span> <span class="string">CoreDNS</span></span><br><span class="line"><span class="attr">  imageTag:</span> <span class="number">1.5</span><span class="number">.0</span></span><br><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">kubeproxy.config.k8s.io/v1alpha1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">KubeProxyConfiguration</span></span><br><span class="line"><span class="attr">mode:</span> <span class="string">"ipvs"</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="初始化控制平面节点"><a href="#初始化控制平面节点" class="headerlink" title="初始化控制平面节点"></a>初始化控制平面节点</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubeadm init --config config.yaml --upload-certs -v=10</span><br></pre></td></tr></table></figure>
+<h2 id="使kubectl适用于您的非root用户，请运行以下命令，这些命令也是kubeadm-init输出的一部分："><a href="#使kubectl适用于您的非root用户，请运行以下命令，这些命令也是kubeadm-init输出的一部分：" class="headerlink" title="使kubectl适用于您的非root用户，请运行以下命令，这些命令也是kubeadm init输出的一部分："></a>使kubectl适用于您的非root用户，请运行以下命令，这些命令也是kubeadm init输出的一部分：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p $HOME/.kube</span><br><span class="line">sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config</span><br><span class="line">sudo chown $(id -u):$(id -g) $HOME/.kube/config</span><br></pre></td></tr></table></figure>
+<h2 id="安装Pod网络附加组件"><a href="#安装Pod网络附加组件" class="headerlink" title="安装Pod网络附加组件"></a>安装Pod网络附加组件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/2140ac876ef134e0ed5af15c65e414cf26827915/Documentation/kube-flannel.yml</span><br></pre></td></tr></table></figure>
+<p>检查初始化结果<br>在 master 节点上执行<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl get node</span><br></pre></td></tr></table></figure></p>
+<p>获取集群信息<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl cluster-info</span><br></pre></td></tr></table></figure></p>
+<p>获取组件状态<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl get componentstatuses</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl get pod -n kube-system</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+      
+      
+            
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/10/10/etcdctl/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          etcdctl
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/09/09/Define-a-Command-and-Arguments-for-a-Container/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article" style="overflow-y: scroll; max-width: 28%;">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#在安装kubernetes之前需要准备一台或多台运行以下其中一项的计算机："><span class="nav-number">1.</span> <span class="nav-text">在安装kubernetes之前需要准备一台或多台运行以下其中一项的计算机：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#验证MAC地址和product-uuid对于每个节点都是唯一的"><span class="nav-number">2.</span> <span class="nav-text">验证MAC地址和product_uuid对于每个节点都是唯一的</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装-docker"><span class="nav-number"></span> <span class="nav-text">安装 docker</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#通过运行setenforce-0并sed-…有效禁用SELinux，将其设置为许可模式。这是允许容器访问主机文件系统所必需的，例如Pod网络所需要的。您必须执行此操作，直到kubelet中的SELinux支持得到改善。"><span class="nav-number">0.1.</span> <span class="nav-text">通过运行setenforce 0并sed …有效禁用SELinux，将其设置为许可模式。这是允许容器访问主机文件系统所必需的，例如Pod网络所需要的。您必须执行此操作，直到kubelet中的SELinux支持得到改善。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#RHEL-CentOS-7上的一些用户报告了由于绕过iptables而导致流量无法正确路由的问题。您应该确保-net-bridge-bridge-nf-call-iptables在sysctl配置中将其设置为1"><span class="nav-number">0.2.</span> <span class="nav-text">RHEL / CentOS 7上的一些用户报告了由于绕过iptables而导致流量无法正确路由的问题。您应该确保 net.bridge.bridge-nf-call-iptables在sysctl配置中将其设置为1</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#初始化控制平面节点"><span class="nav-number"></span> <span class="nav-text">初始化控制平面节点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使kubectl适用于您的非root用户，请运行以下命令，这些命令也是kubeadm-init输出的一部分："><span class="nav-number"></span> <span class="nav-text">使kubectl适用于您的非root用户，请运行以下命令，这些命令也是kubeadm init输出的一部分：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装Pod网络附加组件"><span class="nav-number"></span> <span class="nav-text">安装Pod网络附加组件</span></a>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2019 Peng All Rights Reserved.
+          
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hiero" target="_blank">hiero</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var contentdiv = document.getElementById("content");
+
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+</script>
+
+<!-- Custome JS -->
+<script src="/js/my.js"></script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="https://dnqof95d40fo6.cloudfront.net/atw7f8.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>

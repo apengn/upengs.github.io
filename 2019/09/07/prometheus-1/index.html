@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+
+  <!-- PACE Progress Bar START -->
+  
+    <script src="https://raw.githubusercontent.com/HubSpot/pace/v1.0.2/pace.min.js"></script>
+    <link rel="stylesheet" href="https://github.com/HubSpot/pace/raw/master/themes/orange/pace-theme-flash.css">
+  
+  
+
+  <!-- PACE Progress Bar START -->
+
+  
+  <title>prometheus | Peng</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+  
+  
+  <meta name="description" content="prometheus.yml:123456789101112131415161718192021222324252627282930313233343536373839404142434445464748# my global configglobal:  scrape_interval:     15s # Set the scrape interval to every 15 seconds.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="prometheus">
+<meta property="og:url" content="https://upengs.github.io/2019/09/07/prometheus-1/index.html">
+<meta property="og:site_name" content="Peng">
+<meta property="og:description" content="prometheus.yml:123456789101112131415161718192021222324252627282930313233343536373839404142434445464748# my global configglobal:  scrape_interval:     15s # Set the scrape interval to every 15 seconds.">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-09-08T14:51:10.677Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="prometheus">
+<meta name="twitter:description" content="prometheus.yml:123456789101112131415161718192021222324252627282930313233343536373839404142434445464748# my global configglobal:  scrape_interval:     15s # Set the scrape interval to every 15 seconds.">
+  
+    <link rel="alternate" href="/atom.xml" title="Peng" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/hiero.css">
+  <link rel="stylesheet" href="/css/glyphs.css">
+  
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/my.css">
+  <!-- Google Adsense -->
+  
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-0123456789ABCDEFl",
+          enable_page_level_ads: true
+      });
+  </script>
+  
+</head>
+</html>
+<script>
+var themeMenus = {};
+
+  themeMenus["/"] = "Home"; 
+
+  themeMenus["/archives"] = "Archives"; 
+
+  themeMenus["/categories"] = "Categories"; 
+
+  themeMenus["/tags"] = "Tags"; 
+
+  themeMenus["/about"] = "About"; 
+
+</script>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  <header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" title="Peng" rel="home"> Peng </a>
+            
+          </h1>
+
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+            <div class="clearfix sf-menu">
+
+              <ul id="main-nav" class="nmenu sf-js-enabled">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/archives">Archives</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/categories">Categories</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/tags">Tags</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/about">About</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="originBgDiv" style="background: #fff; width: 100%;">
+
+      <div style="max-height:600px; overflow: hidden;  display: flex; display: -webkit-flex; align-items: center;">
+        <img id="originBg" width="100%" alt="" src="">
+      </div>
+
+  </div>
+
+  <script>
+  function setAboutIMG(){
+      var imgUrls = "css/images/pose.jpg,https://source.unsplash.com/collection/954550/1920x1080".split(",");
+      var random = Math.floor((Math.random() * imgUrls.length ));
+      if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
+        document.getElementById("originBg").src=imgUrls[random];
+      } else {
+        document.getElementById("originBg").src='/' + imgUrls[random];
+      }
+  }
+  bgDiv=document.getElementById("originBgDiv");
+  if(location.pathname.match('about')){
+    setAboutIMG();
+    bgDiv.style.display='block';
+  }else{
+    bgDiv.style.display='none';
+  }
+  </script>
+
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-prometheus-1" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      prometheus
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/09/07/prometheus-1/" class="article-date">
+	  <time datetime="2019-09-07T14:50:12.000Z" itemprop="datePublished">September 7, 2019</time>
+	</a>
+
+      
+	<span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>prometheus.yml:<br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># my global config</span></span><br><span class="line"><span class="attr">global:</span></span><br><span class="line"><span class="attr">  scrape_interval:</span>     <span class="number">15</span><span class="string">s</span> <span class="comment"># Set the scrape interval to every 15 seconds. Default is every 1 minute.</span></span><br><span class="line"><span class="attr">  evaluation_interval:</span> <span class="number">15</span><span class="string">s</span> <span class="comment"># Evaluate rules every 15 seconds. The default is every 1 minute.</span></span><br><span class="line">  <span class="comment"># scrape_timeout is set to the global default (10s).</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Alertmanager configuration</span></span><br><span class="line"><span class="attr">alerting:</span></span><br><span class="line"><span class="attr">  alertmanagers:</span></span><br><span class="line"><span class="attr">  - static_configs:</span></span><br><span class="line"><span class="attr">    - targets:</span></span><br><span class="line">      <span class="comment"># - alertmanager:9093</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Load rules once and periodically evaluate them according to the global 'evaluation_interval'.</span></span><br><span class="line"><span class="attr">rule_files:</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">"prometheus.rules.yml"</span></span><br><span class="line">  <span class="comment"># - "first_rules.yml"</span></span><br><span class="line">  <span class="comment"># - "second_rules.yml"</span></span><br><span class="line">  <span class="comment"># - "/rules/*rules.yml"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># A scrape configuration containing exactly one endpoint to scrape:</span></span><br><span class="line"><span class="comment"># Here it's Prometheus itself.</span></span><br><span class="line"><span class="attr">scrape_configs:</span></span><br><span class="line">  <span class="comment"># The job name is added as a label `job=&lt;job_name&gt;` to any timeseries scraped from this config.</span></span><br><span class="line"><span class="attr">  - job_name:</span> <span class="string">'prometheus'</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># metrics_path defaults to '/metrics'</span></span><br><span class="line">    <span class="comment"># scheme defaults to 'http'.</span></span><br><span class="line"></span><br><span class="line"><span class="attr">    static_configs:</span></span><br><span class="line"><span class="attr">    - targets:</span> <span class="string">['localhost:9090']</span></span><br><span class="line"><span class="attr">  - job_name:</span> <span class="string">'example-random'</span></span><br><span class="line"><span class="attr">    scrape_interval:</span> <span class="number">5</span><span class="string">s</span></span><br><span class="line"><span class="attr">    static_configs:</span></span><br><span class="line"><span class="attr">    - targets:</span> <span class="string">['192.168.100.132:8080','192.168.100.132:8081']</span></span><br><span class="line"><span class="attr">      labels:</span></span><br><span class="line"><span class="attr">        group:</span> <span class="string">'production'</span></span><br><span class="line"><span class="attr">    - targets:</span> <span class="string">["192.168.100.132:8082"]</span></span><br><span class="line"><span class="attr">      labels:</span></span><br><span class="line"><span class="attr">        group:</span> <span class="string">'canary'</span></span><br><span class="line"><span class="attr">    relabel_configs:</span>  <span class="comment"># 重新给labale赋值</span></span><br><span class="line"><span class="attr">    - source_labels:</span> <span class="string">['group']</span> </span><br><span class="line"><span class="attr">      regex:</span> <span class="string">(.*)</span></span><br><span class="line"><span class="attr">      action:</span> <span class="string">replace</span></span><br><span class="line"><span class="attr">      separator:</span> <span class="string">;</span></span><br><span class="line"><span class="attr">      target_label:</span> <span class="string">newlabel_key</span></span><br><span class="line"><span class="attr">      replacement:</span>  <span class="string">newlabel_value</span></span><br></pre></td></tr></table></figure></p>
+<p>prometheus.rules.yml<br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">groups:</span></span><br><span class="line"><span class="attr">- name:</span> <span class="string">example</span></span><br><span class="line"><span class="attr">  rules:</span></span><br><span class="line"><span class="attr">  - record:</span> <span class="attr">job_service:rpc_durations_seconds_count:avg_rate5m</span></span><br><span class="line"><span class="attr">    expr:</span> <span class="string">avg(rate(rpc_durations_seconds_count[5m]))</span> <span class="string">by</span> <span class="string">(job,</span> <span class="string">service,</span> <span class="string">instance)</span></span><br><span class="line"><span class="attr">- name:</span> <span class="string">example3</span></span><br><span class="line"><span class="attr">  rules:</span></span><br><span class="line"><span class="attr">  - alert:</span> <span class="string">HighRequestLatency2</span></span><br><span class="line"><span class="attr">    expr:</span> <span class="attr">job_service:rpc_durations_seconds_count:avg_rate5m</span> <span class="string">&gt; 0.5</span></span><br><span class="line"><span class="string"></span><span class="attr">    for:</span> <span class="number">10</span><span class="string">m</span> <span class="comment">#Prometheus在第一次遇到新的表达式输出向量元素和将警报计为此元素的触发之间等待一段时间。在这种情况下，Prometheus将在每次评估期间检查警报是否继续处于活动状态10分钟，然后再触发警报。处于活动状态但尚未触发的元素处于暂挂状态</span></span><br><span class="line"><span class="attr">    labels:</span> <span class="comment"># 该labels子句允许指定要附加到警报的一组附加标签。任何现有的冲突标签都将被覆盖。标签值可以是模板化的。</span></span><br><span class="line"><span class="attr">      group:</span> <span class="string">'production'</span></span><br><span class="line"><span class="attr">      instance:</span> <span class="string">&#123;&#123;$labels.instance&#125;&#125;</span></span><br><span class="line"><span class="attr">    annotations:</span> <span class="comment"># 该annotations子句指定一组信息标签，可用于存储更长的附加信息，例如警报描述或Runbook链接。注释值可以是模板化的。</span></span><br><span class="line"><span class="attr">      summary:</span> <span class="string">High</span> <span class="string">request</span> <span class="string">latency</span></span><br><span class="line"><span class="attr">      value:</span> <span class="string">&#123;&#123;$value&#125;&#125;</span></span><br><span class="line"><span class="attr">  - alert:</span> <span class="string">InstanceDown</span></span><br><span class="line"><span class="attr">    expr:</span> <span class="string">up</span> <span class="string">==</span> <span class="number">0</span></span><br><span class="line"><span class="attr">    for:</span> <span class="number">5</span><span class="string">m</span></span><br><span class="line"><span class="attr">    labels:</span></span><br><span class="line"><span class="attr">      group:</span> <span class="string">'production'</span></span><br><span class="line"><span class="attr">    annotations:</span></span><br><span class="line"><span class="attr">      summary:</span> <span class="string">"Instance <span class="template-variable">&#123;&#123; $labels.instance &#125;&#125;</span> down"</span></span><br><span class="line"><span class="attr">      description:</span> <span class="string">"<span class="template-variable">&#123;&#123; $labels.instance &#125;&#125;</span> of job <span class="template-variable">&#123;&#123; $labels.job &#125;&#125;</span> has been down for more than 5 minutes."</span></span><br><span class="line"><span class="attr">  - alert:</span> <span class="string">APIHighRequestLatency</span></span><br><span class="line"><span class="attr">    expr:</span> <span class="string">go_gc_duration_seconds_count&#123;quantile="0.5"&#125;</span> <span class="string">&gt; 100</span></span><br><span class="line"><span class="string"></span><span class="attr">    for:</span> <span class="number">10</span><span class="string">m</span></span><br><span class="line"><span class="attr">    annotations:</span></span><br><span class="line"><span class="attr">      summary:</span> <span class="string">"High request latency on <span class="template-variable">&#123;&#123; $labels.instance &#125;&#125;</span>"</span></span><br><span class="line"><span class="attr">      description:</span> <span class="string">"<span class="template-variable">&#123;&#123; $labels.instance &#125;&#125;</span> has a median request latency above 1s (current value: <span class="template-variable">&#123;&#123; $value &#125;&#125;</span>s)"</span></span><br><span class="line"><span class="attr">      value:</span> <span class="string">&#123;&#123;$value&#125;&#125;</span></span><br></pre></td></tr></table></figure></p>
+<p>alert_manager.yaml<br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 全局配置项</span></span><br><span class="line"><span class="attr">global:</span> </span><br><span class="line"><span class="attr">  resolve_timeout:</span> <span class="number">5</span><span class="string">m</span> <span class="comment">#处理超时时间，默认为5min</span></span><br><span class="line"><span class="attr">  smtp_smarthost:</span> <span class="string">'smtp.qq.com:25'</span> <span class="comment"># 邮箱smtp服务器代理</span></span><br><span class="line"><span class="attr">  smtp_from:</span> <span class="number">1399094187</span><span class="string">@qq.com</span> <span class="comment"># 发送邮箱名称</span></span><br><span class="line"><span class="attr">  smtp_auth_username:</span> <span class="string">'1399094187@qq.com'</span> <span class="comment"># 邮箱名称</span></span><br><span class="line"><span class="attr">  smtp_auth_password:</span> <span class="string">'******'</span> <span class="comment"># 邮箱密码或授权码</span></span><br><span class="line">  <span class="comment">#wechat_api_url: 'https://qyapi.weixin.qq.com/cgi-bin/' # 企业微信地址</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义模板信心</span></span><br><span class="line"><span class="attr">templates:</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">'template/*.tmpl'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义路由树信息</span></span><br><span class="line"><span class="attr">route:</span></span><br><span class="line"><span class="attr">  group_by:</span> <span class="string">['alertname']</span> <span class="comment"># 报警分组依据</span></span><br><span class="line"><span class="attr">  group_wait:</span> <span class="number">10</span><span class="string">s</span> <span class="comment"># 最初即第一次等待多久时间发送一组警报的通知</span></span><br><span class="line"><span class="attr">  group_interval:</span> <span class="number">10</span><span class="string">s</span> <span class="comment"># 在发送新警报前的等待时间</span></span><br><span class="line"><span class="attr">  repeat_interval:</span> <span class="number">1</span><span class="string">m</span> <span class="comment"># 发送重复警报的周期 对于email配置中，此项不可以设置过低，否则将会由于邮件发送太多频繁，被smtp服务器拒绝</span></span><br><span class="line"><span class="attr">  receiver:</span> <span class="string">'email'</span> <span class="comment"># 发送警报的接收者的名称，以下receivers name的名称</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义警报接收者信息</span></span><br><span class="line"><span class="attr">receivers:</span></span><br><span class="line"><span class="attr">  - name:</span> <span class="string">'email'</span> <span class="comment"># 警报</span></span><br><span class="line"><span class="attr">    email_configs:</span> <span class="comment"># 邮箱配置</span></span><br><span class="line"><span class="attr">    - to:</span> <span class="string">'1399094187@qq.com'</span>  <span class="comment"># 接收警报的email配置</span></span><br><span class="line"><span class="attr">      html:</span> <span class="string">'<span class="template-variable">&#123;&#123; template "test.html" . &#125;&#125;</span>'</span> <span class="comment"># 设定邮箱的内容模板</span></span><br><span class="line"><span class="attr">      headers:</span> <span class="string">&#123;</span> <span class="attr">Subject:</span> <span class="string">"[WARN] 报警邮件"</span><span class="string">&#125;</span> <span class="comment"># 接收邮件的标题</span></span><br><span class="line">    <span class="comment">#webhook_configs: # webhook配置</span></span><br><span class="line">    <span class="comment">#- url: 'http://127.0.0.1:5001'</span></span><br><span class="line"><span class="comment"># 一个inhibition规则是在与另一组匹配器匹配的警报存在的条件下，使匹配一组匹配器的警报失效的规则。两个警报必须具有一组相同的标签。 </span></span><br><span class="line"><span class="attr">inhibit_rules:</span> </span><br><span class="line"><span class="attr">  - source_match:</span> </span><br><span class="line"><span class="attr">     severity:</span> <span class="string">'critical'</span> </span><br><span class="line"><span class="attr">    target_match:</span> </span><br><span class="line"><span class="attr">     severity:</span> <span class="string">'warning'</span> </span><br><span class="line"><span class="attr">    equal:</span> <span class="string">['alertname',</span> <span class="string">'dev'</span><span class="string">,</span> <span class="string">'instance'</span><span class="string">]</span></span><br></pre></td></tr></table></figure></p>
+<p>自定义 test.tmpl<br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#123;&#123;</span> <span class="string">define</span> <span class="string">"test.html"</span> <span class="string">&#125;&#125;</span></span><br><span class="line"><span class="string">&lt;table</span> <span class="string">border="1"&gt;</span></span><br><span class="line">        <span class="string">&lt;tr&gt;</span></span><br><span class="line">                <span class="string">&lt;td&gt;报警项&lt;/td&gt;</span></span><br><span class="line">                <span class="string">&lt;td&gt;实例&lt;/td&gt;</span></span><br><span class="line">                <span class="string">&lt;td&gt;报警阀值&lt;/td&gt;</span></span><br><span class="line">                <span class="string">&lt;td&gt;开始时间&lt;/td&gt;</span></span><br><span class="line">        <span class="string">&lt;/tr&gt;</span></span><br><span class="line">        <span class="string">&#123;&#123;</span> <span class="string">range</span> <span class="string">$i,</span> <span class="string">$alert</span> <span class="string">:=</span> <span class="string">.Alerts</span> <span class="string">&#125;&#125;</span></span><br><span class="line">                <span class="string">&lt;tr&gt;</span></span><br><span class="line">                        <span class="string">&lt;td&gt;&#123;&#123;</span> <span class="string">index</span> <span class="string">$alert.Labels</span> <span class="string">"alertname"</span> <span class="string">&#125;&#125;&lt;/td&gt;</span></span><br><span class="line">                        <span class="string">&lt;td&gt;&#123;&#123;</span> <span class="string">index</span> <span class="string">$alert.Labels</span> <span class="string">"instance"</span> <span class="string">&#125;&#125;&lt;/td&gt;</span></span><br><span class="line">                        <span class="string">&lt;td&gt;&#123;&#123;</span> <span class="string">index</span> <span class="string">$alert.Annotations</span> <span class="string">"value"</span> <span class="string">&#125;&#125;&lt;/td&gt;</span></span><br><span class="line">                        <span class="string">&lt;td&gt;&#123;&#123;</span> <span class="string">$alert.StartsAt</span> <span class="string">&#125;&#125;&lt;/td&gt;</span></span><br><span class="line">                <span class="string">&lt;/tr&gt;</span></span><br><span class="line">        <span class="string">&#123;&#123;</span> <span class="string">end</span> <span class="string">&#125;&#125;</span></span><br><span class="line"><span class="string">&lt;/table&gt;</span></span><br><span class="line"><span class="string">&#123;&#123;</span> <span class="string">end</span> <span class="string">&#125;&#125;</span></span><br></pre></td></tr></table></figure></p>
+<p><a href="https://www.cnblogs.com/longcnblogs/p/9620733.html" target="_blank" rel="noopener">https://www.cnblogs.com/longcnblogs/p/9620733.html</a></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+      
+      
+            
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/09/09/Define-a-Command-and-Arguments-for-a-Container/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/08/30/svc/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">玩转kubernetes Service</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article" style="overflow-y: scroll; max-width: 28%;">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav">None</ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2019 Peng All Rights Reserved.
+          
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hiero" target="_blank">hiero</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var contentdiv = document.getElementById("content");
+
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+</script>
+
+<!-- Custome JS -->
+<script src="/js/my.js"></script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="https://dnqof95d40fo6.cloudfront.net/atw7f8.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>

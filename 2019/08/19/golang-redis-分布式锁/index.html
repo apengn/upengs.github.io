@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+
+  <!-- PACE Progress Bar START -->
+  
+    <script src="https://raw.githubusercontent.com/HubSpot/pace/v1.0.2/pace.min.js"></script>
+    <link rel="stylesheet" href="https://github.com/HubSpot/pace/raw/master/themes/orange/pace-theme-flash.css">
+  
+  
+
+  <!-- PACE Progress Bar START -->
+
+  
+  <title>golang-redis-分布式锁 | Peng</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="golangredis">
+  
+  
+  
+  
+  <meta name="description" content="在golang中使用redis分布式锁实现数据一致性什么是分布式锁1分布式锁其实可以理解为：控制分布式系统有序的去对共享资源进行操作，使用互斥性来保持一致性 实现原理 互斥性保证同一时间只有一个客户端可以拿到锁，也就是这个客户端可以对共享资源进行操作 安全性1、只有加锁的客户端才能有解锁的权限，2、可能出现的情况就是a去查询发现持有锁，就在准备解锁，这时候忽然a持有的锁过期了，然后b去获得锁，因为">
+<meta name="keywords" content="golang,redis">
+<meta property="og:type" content="article">
+<meta property="og:title" content="golang-redis-分布式锁">
+<meta property="og:url" content="https://upengs.github.io/2019/08/19/golang-redis-分布式锁/index.html">
+<meta property="og:site_name" content="Peng">
+<meta property="og:description" content="在golang中使用redis分布式锁实现数据一致性什么是分布式锁1分布式锁其实可以理解为：控制分布式系统有序的去对共享资源进行操作，使用互斥性来保持一致性 实现原理 互斥性保证同一时间只有一个客户端可以拿到锁，也就是这个客户端可以对共享资源进行操作 安全性1、只有加锁的客户端才能有解锁的权限，2、可能出现的情况就是a去查询发现持有锁，就在准备解锁，这时候忽然a持有的锁过期了，然后b去获得锁，因为">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-08-20T03:37:12.094Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="golang-redis-分布式锁">
+<meta name="twitter:description" content="在golang中使用redis分布式锁实现数据一致性什么是分布式锁1分布式锁其实可以理解为：控制分布式系统有序的去对共享资源进行操作，使用互斥性来保持一致性 实现原理 互斥性保证同一时间只有一个客户端可以拿到锁，也就是这个客户端可以对共享资源进行操作 安全性1、只有加锁的客户端才能有解锁的权限，2、可能出现的情况就是a去查询发现持有锁，就在准备解锁，这时候忽然a持有的锁过期了，然后b去获得锁，因为">
+  
+    <link rel="alternate" href="/atom.xml" title="Peng" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/hiero.css">
+  <link rel="stylesheet" href="/css/glyphs.css">
+  
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/my.css">
+  <!-- Google Adsense -->
+  
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-0123456789ABCDEFl",
+          enable_page_level_ads: true
+      });
+  </script>
+  
+</head>
+</html>
+<script>
+var themeMenus = {};
+
+  themeMenus["/"] = "Home"; 
+
+  themeMenus["/archives"] = "Archives"; 
+
+  themeMenus["/categories"] = "Categories"; 
+
+  themeMenus["/tags"] = "Tags"; 
+
+  themeMenus["/about"] = "About"; 
+
+</script>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  <header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" title="Peng" rel="home"> Peng </a>
+            
+          </h1>
+
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+            <div class="clearfix sf-menu">
+
+              <ul id="main-nav" class="nmenu sf-js-enabled">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/archives">Archives</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/categories">Categories</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/tags">Tags</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/about">About</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="originBgDiv" style="background: #fff; width: 100%;">
+
+      <div style="max-height:600px; overflow: hidden;  display: flex; display: -webkit-flex; align-items: center;">
+        <img id="originBg" width="100%" alt="" src="">
+      </div>
+
+  </div>
+
+  <script>
+  function setAboutIMG(){
+      var imgUrls = "css/images/pose.jpg,https://source.unsplash.com/collection/954550/1920x1080".split(",");
+      var random = Math.floor((Math.random() * imgUrls.length ));
+      if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
+        document.getElementById("originBg").src=imgUrls[random];
+      } else {
+        document.getElementById("originBg").src='/' + imgUrls[random];
+      }
+  }
+  bgDiv=document.getElementById("originBgDiv");
+  if(location.pathname.match('about')){
+    setAboutIMG();
+    bgDiv.style.display='block';
+  }else{
+    bgDiv.style.display='none';
+  }
+  </script>
+
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-golang-redis-分布式锁" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      golang-redis-分布式锁
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/08/19/golang-redis-分布式锁/" class="article-date">
+	  <time datetime="2019-08-19T13:55:13.000Z" itemprop="datePublished">August 19, 2019</time>
+	</a>
+
+      
+	<span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="在golang中使用redis分布式锁实现数据一致性"><a href="#在golang中使用redis分布式锁实现数据一致性" class="headerlink" title="在golang中使用redis分布式锁实现数据一致性"></a>在golang中使用redis分布式锁实现数据一致性</h3><h2 id="什么是分布式锁"><a href="#什么是分布式锁" class="headerlink" title="什么是分布式锁"></a>什么是分布式锁</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">分布式锁其实可以理解为：控制分布式系统有序的去对共享资源进行操作，使用互斥性来保持一致性</span></span><br></pre></td></tr></table></figure>
+<h2 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h2><ul>
+<li><h4 id="互斥性"><a href="#互斥性" class="headerlink" title="互斥性"></a>互斥性</h4>保证同一时间只有一个客户端可以拿到锁，也就是这个客户端可以对共享资源进行操作</li>
+<li><h4 id="安全性"><a href="#安全性" class="headerlink" title="安全性"></a>安全性</h4>1、只有加锁的客户端才能有解锁的权限，<br>2、可能出现的情况就是a去查询发现持有锁，就在准备解锁，这时候忽然a持有的锁过期了，然后b去获得锁，因为a锁过期，b拿到锁，这时候a继续执行第二步进行解锁如果不加校验，就将b持有的锁就给删除了</li>
+<li><h4 id="避免死锁"><a href="#避免死锁" class="headerlink" title="避免死锁"></a>避免死锁</h4>出现死锁就会导致后续的任何服务都拿不到锁,不能再对共享资源进行任何操作了</li>
+<li><h4 id="保证加锁与解锁是原子性操作"><a href="#保证加锁与解锁是原子性操作" class="headerlink" title="保证加锁与解锁是原子性操作"></a>保证加锁与解锁是原子性操作</h4></li>
+</ul>
+<p>这个其实属于是实现分布式锁的问题，假设a用redis实现分布式锁<br>假设加锁操作，操作步骤分为两步：</p>
+<p>1，设置key set（key，value）2，给key设置过期时间</p>
+<p>假设现在a刚实现set后，程序崩了就导致了没给key设置过期时间就导致key一直存在就发生了死锁</p>
+<h2 id="为什么会使用分布式锁"><a href="#为什么会使用分布式锁" class="headerlink" title="为什么会使用分布式锁"></a>为什么会使用分布式锁</h2><p>在分布式服务中对同一共享资源进行操作的时候，为了保证每次操作的数据是一致的.我们必须在获取到共享资源的时候。对获取共享资源的对象进行加锁，然后进行各种业务逻辑处理。处理完成之后进行保存。最后解锁。</p>
+<p>举一个例子：</p>
+<p>秒杀活动：<br>当对一个商品进行秒杀的时候，会对商品的数量进行减操作等。这个时候就需要分布式锁来保持数据的一致性。每一个秒杀请求到分布式服务时，需要对该商品进行加锁操作，然后进行逻辑处理之后，进行减操作，然后持久化数据库中，最终解锁，以后每个秒杀请求以此类推</p>
+<h2 id="遇到了什么问题"><a href="#遇到了什么问题" class="headerlink" title="遇到了什么问题"></a>遇到了什么问题</h2><p>如果已经加锁的服务出现故障，崩溃或者其他情况无法释放该锁会发生什么情况，是不是所有的请求都会被锁在外面，无法执行相关逻辑了。</p>
+<h2 id="最后是怎么解决死锁的"><a href="#最后是怎么解决死锁的" class="headerlink" title="最后是怎么解决死锁的"></a>最后是怎么解决死锁的</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">SETNX</span> <span class="string">lock.foo</span> <span class="string">&lt;current</span> <span class="string">Unix</span> <span class="string">time</span> <span class="string">+</span> <span class="string">lock</span> <span class="string">timeout</span> <span class="string">+</span> <span class="number">1</span><span class="string">&gt;</span></span><br></pre></td></tr></table></figure>
+<p>如果客户端获得锁，SETNX返回1，那么将lock.foo键的Unix时间设置为不在被认为有效的时间。客户端随后会使用DEL lock.foo去释放该锁。</p>
+<p>如果SETNX返回0，那么该键已经被其他的客户端锁定。如果这是一个非阻塞的锁，才能立刻返回给调用者，或者尝试重新获取该锁，直到成功或者过期超时</p>
+<h3 id="以上加锁算法存在一个问题："><a href="#以上加锁算法存在一个问题：" class="headerlink" title="以上加锁算法存在一个问题："></a>以上加锁算法存在一个问题：</h3><p>如果客户端出现故障，崩溃或者其他情况无法释放该锁会发生什么情况？这是能够检测到这种情况，因为该锁包含一个Unix时间戳，如果这样一个时间戳等于当前的Unix时间，该锁将不再有效。<br>当以下这种情况发生时，我们不能调用DEL来删除该锁，并且尝试执行一个SETNX，因为这里存在一个竞态条件，当多个客户端察觉到一个过期的锁并且都尝试去释放它。</p>
+<p>C1 和 C2 读lock.foo检查时间戳，因为他们执行完SETNX后都被返回了0，因为锁仍然被 C3 所持有，并且 C3 已经崩溃。<br>C1 发送DEL lock.foo<br>C1 发送SETNX lock.foo命令并且成功返回<br>C2 发送DEL lock.foo<br>C2 发送SETNX lock.foo命令并且成功返回<br>错误：由于竞态条件导致 C1 和 C2 都获取到了锁<br>幸运的是，可以使用以下的算法来避免这种情况，请看 C4 客户端所使用的好的算法：</p>
+<p>C4 发送SETNX lock.foo为了获得该锁<br>已经崩溃的客户端 C3 仍然持有该锁，所以Redis将会返回0给 C4<br>C4 发送GET lock.foo检查该锁是否已经过期。如果没有过期，C4 客户端将会睡眠一会，并且从一开始进行重试操作<br>另一种情况，如果因为 lock.foo键的Unix时间小于当前的Unix时间而导致该锁已经过期，C4 会尝试执行以下的操作：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">GETSET</span> <span class="string">lock.foo</span> <span class="string">&lt;current</span> <span class="string">Unix</span> <span class="string">timestamp</span> <span class="string">+</span> <span class="string">lock</span> <span class="string">timeout</span> <span class="string">+</span> <span class="number">1</span><span class="string">&gt;</span></span><br></pre></td></tr></table></figure>
+<p>由于GETSET 的语意，C4会检查已经过期的旧值是否仍然存储在lock.foo中。如果是的话，C4 会获得锁<br>如果另一个客户端，假如为 C5 ，比 C4 更快的通过GETSET操作获取到锁，那么 C4 执行GETSET操作会被返回一个不过期的时间戳。C4 将会从第一个步骤重新开始。请注意：即使 C4 在将来几秒设置该键，这也不是问题。<br>为了使这种加锁算法更加的健壮，持有锁的客户端应该总是要检查是否超时，保证使用DEL释放锁之前不会过期，因为客户端故障的情况可能是复杂的，不止是崩溃，还会阻塞一段时间，阻止一些操作的执行，并且在阻塞恢复后尝试执行DEL（此时，该LOCK已经被其他客户端所持有）</p>
+<h2 id="实现流程-golang-伪代码"><a href="#实现流程-golang-伪代码" class="headerlink" title="实现流程 golang 伪代码"></a>实现流程 golang 伪代码</h2><p><a href="https://github.com/garyburd/redigo/" target="_blank" rel="noopener">https://github.com/garyburd/redigo/</a><br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">import</span> <span class="string">github.com/garyburd/redigo/redis</span></span><br><span class="line"></span><br><span class="line"><span class="string">const</span> <span class="string">expireTime</span> <span class="string">=</span> <span class="number">60</span><span class="string">*4</span></span><br><span class="line"></span><br><span class="line"><span class="string">type</span> <span class="string">RedigoRedis</span> <span class="string">struct</span> <span class="string">&#123;</span></span><br><span class="line">	<span class="string">m</span>         <span class="string">*sync.Mutex</span></span><br><span class="line">	<span class="string">pool</span>      <span class="string">*redis.Pool</span></span><br><span class="line">	<span class="string">conn</span>      <span class="string">redis.Conn</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="string">//</span> <span class="string">获取锁</span></span><br><span class="line"><span class="string">func</span> <span class="string">(r</span> <span class="string">*RedigoRedis)</span> <span class="string">TryLock(key</span> <span class="string">string)</span> <span class="string">(bool,</span> <span class="string">error)</span> <span class="string">&#123;</span></span><br><span class="line">	<span class="string">now</span> <span class="string">:=</span> <span class="string">time.Now().Unix()</span></span><br><span class="line">	<span class="string">r.lock()</span></span><br><span class="line">	<span class="string">defer</span> <span class="string">r.Close()</span></span><br><span class="line">	<span class="string">v,</span> <span class="string">err</span> <span class="string">:=</span> <span class="string">r.setNx(key,</span> <span class="string">now)</span></span><br><span class="line">	<span class="string">if</span> <span class="string">err</span> <span class="string">!=</span> <span class="string">nil</span> <span class="string">&#123;</span></span><br><span class="line">		<span class="string">return</span> <span class="literal">false</span><span class="string">,</span> <span class="string">err</span></span><br><span class="line">	<span class="string">&#125;</span></span><br><span class="line"></span><br><span class="line">	<span class="string">if</span> <span class="string">v</span> <span class="string">&#123;</span></span><br><span class="line">		<span class="string">return</span> <span class="literal">true</span><span class="string">,</span> <span class="string">nil</span></span><br><span class="line">	<span class="string">&#125;</span></span><br><span class="line"></span><br><span class="line">	<span class="string">old,</span> <span class="string">err</span> <span class="string">:=</span> <span class="string">redis.Int64(r.getset(key,</span> <span class="string">now))</span></span><br><span class="line">	<span class="string">if</span> <span class="string">err</span> <span class="string">!=</span> <span class="string">nil</span> <span class="string">&#123;</span></span><br><span class="line">		<span class="string">return</span> <span class="literal">false</span><span class="string">,</span> <span class="string">err</span></span><br><span class="line">	<span class="string">&#125;</span></span><br><span class="line">	<span class="string">if</span> <span class="string">now-old</span> <span class="string">&gt; expireTime &#123;</span></span><br><span class="line"><span class="string">		return true, nil</span></span><br><span class="line"><span class="string">	&#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">	return false, nil</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">// delete redis key</span></span><br><span class="line"><span class="string">func (r *RedigoRedis) del(key string) (err error) &#123;</span></span><br><span class="line"><span class="string">	if r.pool == nil &#123;</span></span><br><span class="line"><span class="string">		return fmt.Errorf(errMsg)</span></span><br><span class="line"><span class="string">	&#125;</span></span><br><span class="line"><span class="string">	r.conn = r.pool.Get()</span></span><br><span class="line"><span class="string">	if _, err = r.conn.Do("DEL", key); err != nil &#123;</span></span><br><span class="line"><span class="string">		err = fmt.Errorf("delete redis key: %s, error: %v ", key, err)</span></span><br><span class="line"><span class="string">	&#125;</span></span><br><span class="line"><span class="string">	return</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">func (r *RedigoRedis) getset(key, value interface&#123;&#125;) (interface&#123;&#125;, error) &#123;</span></span><br><span class="line"><span class="string">	if r.pool == nil &#123;</span></span><br><span class="line"><span class="string">		return 0, fmt.Errorf(errMsg)</span></span><br><span class="line"><span class="string">	&#125;</span></span><br><span class="line"><span class="string">	r.conn = r.pool.Get()</span></span><br><span class="line"><span class="string">	v, err := r.conn.Do("GETSET", key, value)</span></span><br><span class="line"><span class="string">	if err != nil &#123;</span></span><br><span class="line"><span class="string">		err = fmt.Errorf(" getset redis key: %s  error: %v ", key, err)</span></span><br><span class="line"><span class="string">	&#125;</span></span><br><span class="line"><span class="string">	return v, err</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">// 释放锁</span></span><br><span class="line"><span class="string">func (r *RedigoRedis) UnLock(key string) error &#123;</span></span><br><span class="line"><span class="string">	now := time.Now().Unix()</span></span><br><span class="line"><span class="string">	r.lock()</span></span><br><span class="line"><span class="string">	defer r.Close()</span></span><br><span class="line"><span class="string">	old, err := redis.Int64(r.getset(key, now))</span></span><br><span class="line"><span class="string">	if err != nil &#123;</span></span><br><span class="line"><span class="string">		return err</span></span><br><span class="line"><span class="string">	&#125;</span></span><br><span class="line"><span class="string">	if now-old &lt; expireTime &#123;</span></span><br><span class="line"><span class="string">		return r.del(key)</span></span><br><span class="line"><span class="string">	&#125;</span></span><br><span class="line"><span class="string">	return nil</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">// close redis conn</span></span><br><span class="line"><span class="string">func (r *RedigoRedis) Close() &#123;</span></span><br><span class="line"><span class="string">	if err := r.conn.Close(); err != nil &#123;</span></span><br><span class="line"><span class="string">		logrus.Errorf("close redis failed, error:%s", err)</span></span><br><span class="line"><span class="string">	&#125;</span></span><br><span class="line"><span class="string">	r.unlock()</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">func (r *RedigoRedis) unlock() &#123;</span></span><br><span class="line"><span class="string">	r.m.Unlock()</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">func (r *RedigoRedis) lock() &#123;</span></span><br><span class="line"><span class="string">	r.m.Lock()</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="什么是乐观锁-悲观锁"><a href="#什么是乐观锁-悲观锁" class="headerlink" title="什么是乐观锁,悲观锁"></a><a href="https://www.jianshu.com/p/d2ac26ca6525" target="_blank" rel="noopener">什么是乐观锁,悲观锁</a></h2><p> 参考：<a href="http://www.redis.cn/commands/setnx.html" target="_blank" rel="noopener">http://www.redis.cn/commands/setnx.html</a></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/golang/">golang</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redis/">redis</a></li></ul>
+
+      
+            
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/08/30/svc/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          玩转kubernetes Service
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/08/12/prometheus/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">prometheus</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article" style="overflow-y: scroll; max-width: 28%;">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#在golang中使用redis分布式锁实现数据一致性"><span class="nav-number">1.</span> <span class="nav-text">在golang中使用redis分布式锁实现数据一致性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是分布式锁"><span class="nav-number"></span> <span class="nav-text">什么是分布式锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现原理"><span class="nav-number"></span> <span class="nav-text">实现原理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#互斥性"><span class="nav-number">0.1.</span> <span class="nav-text">互斥性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安全性"><span class="nav-number">0.2.</span> <span class="nav-text">安全性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#避免死锁"><span class="nav-number">0.3.</span> <span class="nav-text">避免死锁</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#保证加锁与解锁是原子性操作"><span class="nav-number">0.4.</span> <span class="nav-text">保证加锁与解锁是原子性操作</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么会使用分布式锁"><span class="nav-number"></span> <span class="nav-text">为什么会使用分布式锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#遇到了什么问题"><span class="nav-number"></span> <span class="nav-text">遇到了什么问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后是怎么解决死锁的"><span class="nav-number"></span> <span class="nav-text">最后是怎么解决死锁的</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#以上加锁算法存在一个问题："><span class="nav-number">1.</span> <span class="nav-text">以上加锁算法存在一个问题：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现流程-golang-伪代码"><span class="nav-number"></span> <span class="nav-text">实现流程 golang 伪代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是乐观锁-悲观锁"><span class="nav-number"></span> <span class="nav-text">什么是乐观锁,悲观锁</span></a>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2019 Peng All Rights Reserved.
+          
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hiero" target="_blank">hiero</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var contentdiv = document.getElementById("content");
+
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+</script>
+
+<!-- Custome JS -->
+<script src="/js/my.js"></script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="https://dnqof95d40fo6.cloudfront.net/atw7f8.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>
