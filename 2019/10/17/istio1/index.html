@@ -13,23 +13,26 @@
   <!-- PACE Progress Bar START -->
 
   
-  <title>kubernetes | Peng</title>
+  <title>istio1 | Peng</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
+  <meta name="keywords" content="istio">
   
   
   
-  <meta name="description" content="123456789101112131415161718192021222324252627282930313233343536cat &amp;lt;&amp;lt;EOF &amp;gt;  /etc/sysctl.d/k8s.confnet.bridge.bridge-nf-call-ip6tables = 1net.bridge.bridge-nf-call-iptables = 1EOFsysctl --syst">
+  
+  <meta name="description" content="启动应用程序服务ingress gateway vs DestinationRule">
+<meta name="keywords" content="istio">
 <meta property="og:type" content="article">
-<meta property="og:title" content="kubernetes">
-<meta property="og:url" content="https://upengs.github.io/2019/03/27/kubernetes/index.html">
+<meta property="og:title" content="istio1">
+<meta property="og:url" content="https://upengs.github.io/2019/10/17/istio1/index.html">
 <meta property="og:site_name" content="Peng">
-<meta property="og:description" content="123456789101112131415161718192021222324252627282930313233343536cat &amp;lt;&amp;lt;EOF &amp;gt;  /etc/sysctl.d/k8s.confnet.bridge.bridge-nf-call-ip6tables = 1net.bridge.bridge-nf-call-iptables = 1EOFsysctl --syst">
+<meta property="og:description" content="启动应用程序服务ingress gateway vs DestinationRule">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-10-17T08:49:09.179Z">
+<meta property="og:updated_time" content="2019-10-17T02:34:49.717Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="kubernetes">
-<meta name="twitter:description" content="123456789101112131415161718192021222324252627282930313233343536cat &amp;lt;&amp;lt;EOF &amp;gt;  /etc/sysctl.d/k8s.confnet.bridge.bridge-nf-call-ip6tables = 1net.bridge.bridge-nf-call-iptables = 1EOFsysctl --syst">
+<meta name="twitter:title" content="istio1">
+<meta name="twitter:description" content="启动应用程序服务ingress gateway vs DestinationRule">
   
     <link rel="alternate" href="/atom.xml" title="Peng" type="application/atom+xml">
   
@@ -163,7 +166,7 @@ var themeMenus = {};
             
       <div id="content" class="outer">
         
-          <section id="main" style="float:none;"><article id="post-kubernetes" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+          <section id="main" style="float:none;"><article id="post-istio1" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
@@ -171,7 +174,7 @@ var themeMenus = {};
         
   
     <h1 class="thumb" class="article-title" itemprop="name">
-      kubernetes
+      istio1
     </h1>
   
 
@@ -179,8 +182,8 @@ var themeMenus = {};
     
     <div class="article-meta">
       
-	Posted on <a href="/2019/03/27/kubernetes/" class="article-date">
-	  <time datetime="2019-03-27T14:12:04.000Z" itemprop="datePublished">March 27, 2019</time>
+	Posted on <a href="/2019/10/17/istio1/" class="article-date">
+	  <time datetime="2019-10-17T02:11:06.000Z" itemprop="datePublished">October 17, 2019</time>
 	</a>
 
       
@@ -191,34 +194,19 @@ var themeMenus = {};
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">cat &lt;&lt;EOF &gt;  /etc/sysctl.d/k8s.conf</span><br><span class="line">net.bridge.bridge-nf-call-ip6tables = 1</span><br><span class="line">net.bridge.bridge-nf-call-iptables = 1</span><br><span class="line">EOF</span><br><span class="line">sysctl --system</span><br><span class="line">setenforce 0</span><br><span class="line">swapoff -a</span><br><span class="line">sed -i &apos;s/^SELINUX=enforcing$/SELINUX=permissive/&apos; /etc/selinux/config</span><br><span class="line"></span><br><span class="line">cat &lt;&lt;EOF &gt; /etc/yum.repos.d/kubernetes.repo</span><br><span class="line">[kubernetes]</span><br><span class="line">name=Kubernetes</span><br><span class="line">baseurl=https://mirrors.aliyun.com/kubernetes/yum/repos/kubernetes-el7-x86_64</span><br><span class="line">enabled=1</span><br><span class="line">gpgcheck=1</span><br><span class="line">repo_gpgcheck=1</span><br><span class="line">gpgkey=https://mirrors.aliyun.com/kubernetes/yum/doc/yum-key.gpg https://mirrors.aliyun.com/kubernetes/yum/doc/rpm-package-key.gpg</span><br><span class="line">EOF</span><br><span class="line"># 安装</span><br><span class="line">yum install -y kubectl kubelet kubeadm</span><br><span class="line"># 开机启动</span><br><span class="line">systemctl enable kubelet</span><br><span class="line"># 启动</span><br><span class="line">systemctl start kubelet</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">kubeadm init --kubernetes-version=1.15.0 --apiserver-advertise-address=10.0.0.101 --image-repository registry.aliyuncs.com/google_containers --service-cidr=10.1.0.0/16 --pod-network-cidr=10.244.0.0/16 -v=10</span><br><span class="line"></span><br><span class="line">https://www.jianshu.com/p/b58c85436f0a</span><br><span class="line"></span><br><span class="line">kubeadm init --kubernetes-version=1.15.0 --apiserver-advertise-address=10.0.0.106 --image-repository registry.aliyuncs.com/google_containers --service-cidr=10.1.0.0/16 --pod-network-cidr=10.244.0.0/16 -v=10</span><br><span class="line"></span><br><span class="line">install cni</span><br><span class="line">kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/a70459be0084506e4ec919aa1c114638878db11b/Documentation/kube-flannel.yml</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pod 优先级调度</span><br><span class="line">参考：</span><br><span class="line">https://kubernetes.io/docs/concepts/configuration/pod-priority-preemption/</span><br></pre></td></tr></table></figure>
-<p>PriorityClass</p>
-<p>crd<br><a href="https://sq.163yun.com/blog/article/174980128954048512" target="_blank" rel="noopener">https://sq.163yun.com/blog/article/174980128954048512</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Kubernetes 1.8开始要求关闭系统的Swap，如果不关闭，默认配置下kubelet将无法启动。可以通过kubelet的启动参数--fail-swap-on=false更改这个限制。</span><br><span class="line"></span><br><span class="line">全局关闭：</span><br><span class="line">关闭系统的Swap方法如下:</span><br><span class="line"></span><br><span class="line">swapoff -a</span><br><span class="line">  </span><br><span class="line">修改 /etc/fstab 文件，注释掉 SWAP 的自动挂载，使用free -m确认swap已经关闭。 &gt; swappiness参数调整，修改/etc/sysctl.d/k8s.conf添加下面一行：</span><br><span class="line"></span><br><span class="line">vm.swappiness=0</span><br><span class="line">  </span><br><span class="line">执行sysctl -p /etc/sysctl.d/k8s.conf使修改生效。</span><br></pre></td></tr></table></figure>
-<p>etcdctl –endpoints=https://[127.0.0.1]:2379 –cacert=/etc/kubernetes/pki/etcd/ca.crt –cert=/etc/kubernetes/pki/etcd/healthcheck-client.crt –key=/etc/kubernetes/pki/etcd/healthcheck-client.key get foo</p>
-<p>export HOST0=10.0.0.106<br>export HOST1=10.0.0.101<br>export HOST2=10.0.0.108</p>
-<p>mkdir -p /tmp/${HOST0}/ /tmp/${HOST1}/ /tmp/${HOST2}/</p>
-<p>ETCDHOSTS=(${HOST0} ${HOST1} ${HOST2})<br>NAMES=(“infra0” “infra1” “infra2”)</p>
-<p>for i in “${!ETCDHOSTS[@]}”; do<br>HOST=${ETCDHOSTS[$i]}<br>NAME=${NAMES[$i]}<br>cat &lt;&lt; EOF &gt; /tmp/${HOST}/kubeadmcfg.yaml<br>apiVersion: “kubeadm.k8s.io/v1beta2”<br>kind: ClusterConfiguration<br>etcd:<br>    local:<br>        serverCertSANs:</p>
-<pre><code>- &quot;${HOST}&quot;
-peerCertSANs:
-- &quot;${HOST}&quot;
-extraArgs:
-    initial-cluster: ${NAMES[0]}=https://${ETCDHOSTS[0]}:2380,${NAMES[1]}=https://${ETCDHOSTS[1]}:2380,${NAMES[2]}=https://${ETCDHOSTS[2]}:2380
-    initial-cluster-state: new
-    name: ${NAME}
-    listen-peer-urls: https://${HOST}:2380
-    listen-client-urls: https://${HOST}:2379
-    advertise-client-urls: https://${HOST}:2379
-    initial-advertise-peer-urls: https://${HOST}:2380
-</code></pre><p>EOF<br>done</p>
+        <h3 id="启动应用程序服务"><a href="#启动应用程序服务" class="headerlink" title="启动应用程序服务"></a>启动应用程序服务</h3><p>ingress</p>
+<p>gateway</p>
+<p>vs</p>
+<p>DestinationRule</p>
 
       
     </div>
     <footer class="entry-meta entry-footer">
       
       
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/istio/">istio</a></li></ul>
+
       
             
       
@@ -252,19 +240,10 @@ extraArgs:
     
 <nav id="article-nav">
   
-    <a href="/2019/04/08/vim/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          vim基本操作
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/03/12/go-mod/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2019/10/10/etcdctl/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">go-mod</div>
+      <div class="article-nav-title">etcdctl</div>
     </a>
   
 </nav>
@@ -278,7 +257,7 @@ extraArgs:
     <div id="toc" class="toc-article" style="overflow-y: scroll; max-width: 28%;">
     <strong class="toc-title">Contents</strong>
     
-      <ol class="nav">None</ol>
+      <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#启动应用程序服务"><span class="nav-number">1.</span> <span class="nav-text">启动应用程序服务</span></a></li></ol>
     
     </div>
   </aside>

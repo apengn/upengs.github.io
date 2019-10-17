@@ -16,13 +16,13 @@
   <title>golang-redis-分布式锁 | Peng</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="keywords" content="golangredis">
+  <meta name="keywords" content="redisgolang">
   
   
   
   
   <meta name="description" content="在golang中使用redis分布式锁实现数据一致性什么是分布式锁1分布式锁其实可以理解为：控制分布式系统有序的去对共享资源进行操作，使用互斥性来保持一致性 实现原理 互斥性保证同一时间只有一个客户端可以拿到锁，也就是这个客户端可以对共享资源进行操作 安全性1、只有加锁的客户端才能有解锁的权限，2、可能出现的情况就是a去查询发现持有锁，就在准备解锁，这时候忽然a持有的锁过期了，然后b去获得锁，因为">
-<meta name="keywords" content="golang,redis">
+<meta name="keywords" content="redis,golang">
 <meta property="og:type" content="article">
 <meta property="og:title" content="golang-redis-分布式锁">
 <meta property="og:url" content="https://upengs.github.io/2019/08/19/golang-redis-分布式锁/index.html">
